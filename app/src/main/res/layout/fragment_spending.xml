@@ -8,7 +8,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/toolbar"
-        android:background="@color/dark_blue"
+        android:background="@color/arenic"
         android:layout_width="0dp"
         android:layout_height="54dp"
         app:layout_constraintEnd_toEndOf="parent"
