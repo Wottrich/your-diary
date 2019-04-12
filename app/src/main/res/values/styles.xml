@@ -43,6 +43,18 @@
         <item name="android:textColor">@color/light_black</item>
     </style>
 
+    <style name="Label.VividBlue">
+        <item name="android:textColor">@color/vivid_blue</item>
+    </style>
+
+    <style name="Label.ShinyShamrock">
+        <item name="android:textColor">@color/shiny_shamrock</item>
+    </style>
+
+    <style name="Label.WebOrange">
+        <item name="android:textColor">@color/web_orange</item>
+    </style>
+
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>

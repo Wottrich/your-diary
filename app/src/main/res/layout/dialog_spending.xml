@@ -16,9 +16,6 @@
             android:id="@+id/constDialog"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/shape_spending"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +31,7 @@
 
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/titleToolbar"
                     style="@style/LabelTitle.LightBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,10 +61,33 @@
                     android:background="@color/transparent_black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title" />
+                    app:layout_constraintTop_toBottomOf="@id/titleToolbar" />
 
 
             </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/Label.LightBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/dialog_spending_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constToolbar" />
+
+            <EditText
+                android:id="@+id/etTitle"
+                style="@style/EditText.Form"
+                android:layout_marginTop="5dp"
+                android:hint="@string/dialog_spending_title_hint"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:ignore="Autofill" />
 
             <TextView
                 android:id="@+id/description"
@@ -79,7 +99,7 @@
                 android:text="@string/dialog_spending_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constToolbar" />
+                app:layout_constraintTop_toBottomOf="@id/etTitle" />
 
             <EditText
                 android:id="@+id/etDescription"

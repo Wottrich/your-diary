@@ -1,25 +1,19 @@
-package wottrich.github.io.yourdiary
+package wottrich.github.io.yourdiary.view.activity
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
+import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ViewPagerAdapter
+import wottrich.github.io.yourdiary.generics.BaseActivity
 
-class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener {
+class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener {
 
     private val viewPagerAdapter: ViewPagerAdapter by lazy {
         ViewPagerAdapter(this.supportFragmentManager)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        initValues()
-    }
-
-    private fun initValues () {
+    override fun initValues () {
         vpFragment.adapter = viewPagerAdapter
 
         tabLayout.setupWithViewPager(vpFragment)
@@ -27,6 +21,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, ViewP
 
         vpFragment.offscreenPageLimit = 1
         vpFragment.addOnPageChangeListener(this)
+
         tabLayout.getTabAt(0)?.icon = getDrawable(R.drawable.add_circle_outline_white)
     }
 

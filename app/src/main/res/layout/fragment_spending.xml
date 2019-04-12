@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".fragments.SpendingFragment">
+    android:background="@color/arenic"
+    tools:context=".view.fragments.SpendingFragment">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/toolbar"
-        android:background="@color/arenic"
         android:layout_width="0dp"
         android:layout_height="54dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,9 +17,9 @@
 
         <TextView
             style="@style/LabelTitle.White"
-            android:text="@string/fragment_spending_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/fragment_spending_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,23 +27,36 @@
 
         <ImageView
             android:id="@+id/ivAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:src="@drawable/add_circle_outline_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
+    <View
+        style="@style/Divider"
+        android:background="@color/slight_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="1dp"
         android:id="@+id/rvSpending"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:reverseLayout="false"
+        tools:itemCount="3"
+        tools:listitem="@layout/row_spending" />
 
 </android.support.constraint.ConstraintLayout>

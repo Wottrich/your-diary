@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/slight_black"
+    tools:context=".view.activity.MainActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vpFragment"
@@ -13,9 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </android.support.v4.view.ViewPager>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
@@ -24,10 +23,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/black"
+        android:background="#535353"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabIndicatorColor="@color/yellow"
+        app:tabIndicatorColor="@color/web_orange"
         app:tabPadding="0dp" />
 
 </android.support.constraint.ConstraintLayout>

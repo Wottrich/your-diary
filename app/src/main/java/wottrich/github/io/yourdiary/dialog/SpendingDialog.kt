@@ -8,6 +8,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.dialog_spending.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.extensions.OnCalendarPicker
+import wottrich.github.io.yourdiary.extensions.cleanText
 import wottrich.github.io.yourdiary.extensions.convertToDouble
 import wottrich.github.io.yourdiary.extensions.showPicker
 import wottrich.github.io.yourdiary.model.Spending
@@ -21,7 +22,6 @@ class SpendingDialog (var onSpending: (Spending) -> Unit) : BaseDialog (R.layout
     private val viewModel: SpendingDialogViewModel by lazy {SpendingDialogViewModel()}
 
     override fun initValues() {
-
         textWatcher()
         baseView.ivClose.setOnClickListener(this)
         baseView.btnDate.setOnClickListener(this)
@@ -55,8 +55,9 @@ class SpendingDialog (var onSpending: (Spending) -> Unit) : BaseDialog (R.layout
         when(v?.id) {
             R.id.btnRegister -> {
                 Spending(
+                        baseView.etTitle.text.toString(),
                         baseView.etDescription.text.toString(),
-                        convertToDouble(baseView.etPrice.text.toString(), Locale("pt", "BR")).toFloat(),
+                        convertToDouble(cleanText(baseView.etPrice.text.toString()), Locale("pt", "BR")),
                         viewModel.date
                 ).also {
                     onSpending(it)
@@ -82,7 +83,7 @@ class SpendingDialog (var onSpending: (Spending) -> Unit) : BaseDialog (R.layout
 
     private fun validButton () {
         baseView.btnRegister.isEnabled = viewModel.date != null
-                && !baseView.etDescription.text.toString().isEmpty()
+                && !baseView.etTitle.text.toString().isEmpty()
                 && convertToDouble(baseView.etPrice.text.toString(), Locale("pt", "BR")) > 0.00
     }
 

@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">#75081A</color>
     <color name="colorAccent">#2E2E2E</color>
 
-    <color name="slight_black">#2E2E2E</color>
     <color name="dark_blue">#073D97</color>
     <color name="light_blue">#77A2B9</color>
     <color name="light_gray">#808185</color>
@@ -15,9 +14,21 @@
     <color name="light_black">#2E2C2C</color>
     <color name="highly_light_black">#F3EEEE</color>
     <color name="yellow">#FFE500</color>
+
+    <color name="slight_black">#2E2E2E</color>
+    <color name="slight_black_05">#8e2e2e2e</color>
     <color name="web_orange">#FFA400</color>
-    <color name="arenic">#374049</color>
+    <color name="vivid_blue">#009FFD</color>
+    <color name="flash_white">#F3EFF5</color>
+    <color name="flash_white_05">#9af3eff5</color>
+    <color name="palatinate_purple">#5B1865</color>
+    <color name="amazon_green">#3A7D44</color>
+    <color name="iguana_green">#69B578</color>
     <color name="dark_red">#75081A</color>
     <color name="spartan_red">#9B0C0C</color>
     <color name="usc_red">#960200</color>
+    <color name="feldgrau">#4E6E58</color>
+    <color name="shiny_shamrock">#49A078</color>
+    <color name="arenic">#374049</color>
+    <color name="venetian_red">#C60D0D</color>
 </resources>
