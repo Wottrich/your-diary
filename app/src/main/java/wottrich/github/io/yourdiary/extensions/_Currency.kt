@@ -6,6 +6,9 @@ import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.util.*
 
+
+var locale = Locale("pt", "BR")
+
 fun convertToDouble(value: String, l: Locale): Double {
     val format = NumberFormat.getCurrencyInstance(l) as DecimalFormat
     val symbols = format.decimalFormatSymbols
@@ -44,6 +47,10 @@ fun cleanText(text: String): String {
     return text.replace("[,.\\s]", "")
 }
 
+fun String.removeDot () : String {
+    return this.replace(".", "")
+}
+
 fun removeSymbol(text: String, symbol: String): String {
     return text.replace(symbol, "").replace(" ", "")
 }
@@ -60,6 +67,15 @@ fun symbol(symbols: DecimalFormatSymbols) : String {
     val symbol = symbols.currencySymbol.trim()
     symbols.currencySymbol = ""
     return symbol
+}
+
+fun Double.addSymbol (locale: Locale) : String {
+    decimalFormat(locale)?.also {
+        val symbols = symbolsFormat(it)
+        val symbol = symbol(symbols)
+        return String.format("$symbol %.2f", this)
+    }
+    return ""
 }
 
 fun removeAllAndFormat(text: String, l: Locale) : Double {

@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.row_spending.view.*
 import wottrich.github.io.yourdiary.R
-import wottrich.github.io.yourdiary.extensions.cleanText
-import wottrich.github.io.yourdiary.extensions.getString
+import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.model.Spending
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import java.util.*
@@ -32,7 +31,7 @@ class SpendingAdapter(
             val spending = spendingList[this.adapterPosition]
             this.itemView.let { view ->
                 view.tvTitle.text = spending.title
-                view.tvPrice.text = CurrencyUtils.formatToLocale(spending.price.toString(), Locale("pt", "BR"))
+                view.tvPrice.text = spending.price?.addSymbol(Locale("pt", "BR"))
                 view.tvDate.text = spending.date?.getString()
                 view.tvDescription.text = spending.description
                 view.constDesc.visibility = if (!spending.selected) View.GONE else View.VISIBLE
@@ -49,6 +48,11 @@ class SpendingAdapter(
 
             }
         }
+    }
+
+    fun updateList () {
+        spendingList = boxList()
+        notifyDataSetChanged()
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view)

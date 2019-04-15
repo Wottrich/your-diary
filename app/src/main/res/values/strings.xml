@@ -14,4 +14,6 @@
     <string name="dialog_spending_date">Data:</string>
     <string name="dialog_spending_date_hint">05/04/2009</string>
     <string name="dialog_spending_btn">Register</string>
+
+    <string name="dialog_spending_register_success">Registrado com sucesso</string>
 </resources>

@@ -1,12 +1,16 @@
 package wottrich.github.io.yourdiary.model
 
+import io.objectbox.annotation.Entity
+import io.objectbox.annotation.Id
 import java.util.Date
 
-class Spending (
-        internal var title: String?,
-        internal var description: String?,
-        internal var price: Double?,
-        internal var date: Date?
+@Entity
+data class Spending(
+    var title: String?,
+    var description: String?,
+    var price: Double?,
+    var date: Date?
 ) {
-        internal var selected: Boolean = false
+    @Id var id: Long = 0
+    var selected: Boolean = false
 }

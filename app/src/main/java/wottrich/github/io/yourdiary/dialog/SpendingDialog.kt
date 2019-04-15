@@ -5,19 +5,17 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.dialog_spending.view.*
 import wottrich.github.io.yourdiary.R
-import wottrich.github.io.yourdiary.extensions.OnCalendarPicker
-import wottrich.github.io.yourdiary.extensions.cleanText
-import wottrich.github.io.yourdiary.extensions.convertToDouble
-import wottrich.github.io.yourdiary.extensions.showPicker
+import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.model.Spending
 import wottrich.github.io.yourdiary.generics.BaseDialog
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import java.util.*
 
 @SuppressLint("ValidFragment")
-class SpendingDialog (var onSpending: (Spending) -> Unit) : BaseDialog (R.layout.dialog_spending), View.OnClickListener, OnCalendarPicker {
+class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_spending), View.OnClickListener, OnCalendarPicker {
 
     private val viewModel: SpendingDialogViewModel by lazy {SpendingDialogViewModel()}
 
@@ -43,7 +41,7 @@ class SpendingDialog (var onSpending: (Spending) -> Unit) : BaseDialog (R.layout
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 baseView.etPrice.removeTextChangedListener(this)
-                baseView.etPrice.setText(CurrencyUtils.formatToLocale(s.toString(), Locale("pt", "BR")), TextView.BufferType.EDITABLE)
+                baseView.etPrice.setText(CurrencyUtils.formatToLocale(s.toString(), locale), TextView.BufferType.EDITABLE)
                 baseView.etPrice.setSelection(baseView.etPrice.text.length)
                 baseView.etPrice.addTextChangedListener(this)
                 validButton()
@@ -54,7 +52,19 @@ class SpendingDialog (var onSpending: (Spending) -> Unit) : BaseDialog (R.layout
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnRegister -> {
-                Spending(
+                box<Spending>().put(
+                    Spending(
+                        baseView.etTitle.text.toString(),
+                        baseView.etDescription.text.toString(),
+                        convertToDouble(baseView.etPrice.text.toString(), locale),
+                        viewModel.date
+                    )
+                )
+                Toast.makeText(activity, getString(R.string.dialog_spending_register_success), Toast.LENGTH_SHORT).show()
+                onSpending()
+                dismiss()
+
+                /*Spending(
                         baseView.etTitle.text.toString(),
                         baseView.etDescription.text.toString(),
                         convertToDouble(cleanText(baseView.etPrice.text.toString()), Locale("pt", "BR")),
@@ -62,7 +72,7 @@ class SpendingDialog (var onSpending: (Spending) -> Unit) : BaseDialog (R.layout
                 ).also {
                     onSpending(it)
                     dismiss()
-                }
+                }*/
             }
             R.id.btnDate -> {
                 context?.let {
