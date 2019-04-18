@@ -1,4 +1,4 @@
-package wottrich.github.io.yourdiary.dialog
+package wottrich.github.io.yourdiary.view.dialog
 
 import android.annotation.SuppressLint
 import android.text.Editable
@@ -20,6 +20,8 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
     private val viewModel: SpendingDialogViewModel by lazy {SpendingDialogViewModel()}
 
     override fun initValues() {
+        this.parent = baseView.constDialog
+        baseView.btnDate.text = viewModel.date?.getDateString()
         textWatcher()
         baseView.ivClose.setOnClickListener(this)
         baseView.btnDate.setOnClickListener(this)
@@ -60,19 +62,10 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
                         viewModel.date
                     )
                 )
+
                 Toast.makeText(activity, getString(R.string.dialog_spending_register_success), Toast.LENGTH_SHORT).show()
                 onSpending()
                 dismiss()
-
-                /*Spending(
-                        baseView.etTitle.text.toString(),
-                        baseView.etDescription.text.toString(),
-                        convertToDouble(cleanText(baseView.etPrice.text.toString()), Locale("pt", "BR")),
-                        viewModel.date
-                ).also {
-                    onSpending(it)
-                    dismiss()
-                }*/
             }
             R.id.btnDate -> {
                 context?.let {
@@ -80,7 +73,7 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
                 }
             }
             R.id.ivClose -> {
-                dismiss()
+                dismissAnimation()
             }
         }
     }
@@ -92,8 +85,8 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
     }
 
     private fun validButton () {
-        baseView.btnRegister.isEnabled = viewModel.date != null
-                && !baseView.etTitle.text.toString().isEmpty()
+        baseView.btnRegister.isEnabled = !baseView.etTitle.text.toString().isEmpty()
+                && !baseView.etPrice.text.toString().isEmpty()
                 && convertToDouble(baseView.etPrice.text.toString(), Locale("pt", "BR")) > 0.00
     }
 

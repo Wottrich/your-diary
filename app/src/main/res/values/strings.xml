@@ -1,12 +1,18 @@
 <resources>
-    <string name="app_name">yourdiary</string>
+    <string name="app_name">Diary</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+    <!--<editor-folder defaultstate="Collapsed" desc="Fragments">-->
+    <!--Fragment Spending-->
     <string name="fragment_spending_title">gastos</string>
+
+    <!--Fragment Clients-->
+    <string name="fragment_clients_register_order">Registrar Pedido</string>
+    <!--</editor-folder>-->
+
+    <!--<editor-folder defaultstate="Collapsed" desc="Dialogs">-->
+    <!--Dialog Spending-->
     <string name="dialog_spending_title">Titulo*:</string>
-    <string name="dialog_spending_title_hint">Laranja do céu</string>
+    <string name="dialog_spending_title_hint">Nome do produto</string>
     <string name="dialog_spending_description">Descrição:</string>
     <string name="dialog_spending_description_hint">Comprado no</string>
     <string name="dialog_spending_price">Preço*:</string>
@@ -14,6 +20,7 @@
     <string name="dialog_spending_date">Data:</string>
     <string name="dialog_spending_date_hint">05/04/2009</string>
     <string name="dialog_spending_btn">Register</string>
-
     <string name="dialog_spending_register_success">Registrado com sucesso</string>
+    <!--</editor-folder>-->
+
 </resources>

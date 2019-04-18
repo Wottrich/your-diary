@@ -19,10 +19,13 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         tabLayout.setupWithViewPager(vpFragment)
         tabLayout.addOnTabSelectedListener(this)
 
-        vpFragment.offscreenPageLimit = 1
+        vpFragment.offscreenPageLimit = 2
         vpFragment.addOnPageChangeListener(this)
 
-        tabLayout.getTabAt(0)?.icon = getDrawable(R.drawable.add_circle_outline_white)
+        tabLayout.getTabAt(0)?.icon = getDrawable(R.drawable.baseline_attach_money_white_36)
+        tabLayout.getTabAt(0)?.text = "Gastos"
+        tabLayout.getTabAt(1)?.icon = getDrawable(R.drawable.baseline_business_center_white_36)
+        tabLayout.getTabAt(1)?.text = "Clientes"
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) = Unit

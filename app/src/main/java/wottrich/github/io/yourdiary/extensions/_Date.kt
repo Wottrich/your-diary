@@ -19,7 +19,7 @@ fun String.getDateFrom( pattern: String): Date {
     }
 }
 
-fun Date.getString (pattern: String = "dd/MM/yyyy"): String {
+fun Date.getDateString (pattern: String = "dd/MM/yyyy"): String {
     return SimpleDateFormat(pattern, Locale("pt", "BR")).format(this)
 }
 

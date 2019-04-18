@@ -17,13 +17,16 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <android.support.design.widget.TabLayout
+        android:visibility="visible"
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
-        android:layout_height="53dp"
+        android:layout_height="58dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="#535353"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/dark_white"
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabIndicatorColor="@color/web_orange"
