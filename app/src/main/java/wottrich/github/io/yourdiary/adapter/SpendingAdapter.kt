@@ -13,14 +13,10 @@ import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import java.util.*
 
 class SpendingAdapter(
+        private var spendingList: List<Spending>,
         private var context: Context,
         private var inflater: LayoutInflater = LayoutInflater.from(context)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-
-    private val spendingList: List<Spending> by lazy {
-        boxList<Spending>()
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         inflater.inflate(R.layout.row_spending, viewGroup, false).also {
@@ -36,7 +32,7 @@ class SpendingAdapter(
             val spending = spendingList[this.adapterPosition]
             this.itemView.let { view ->
                 view.tvTitle.text = spending.title
-                view.tvPrice.text = spending.price?.addSymbol(Locale("pt", "BR"))
+                view.tvPrice.text = spending.price?.addSymbol()
                 view.tvDate.text = spending.date?.getDateString()
                 view.tvDescription.text = spending.description
                 view.constDesc.visibility = if (!spending.selected) View.GONE else View.VISIBLE
@@ -53,6 +49,11 @@ class SpendingAdapter(
 
             }
         }
+    }
+
+    fun updateList() {
+        spendingList = boxList<Spending>().asReversed()
+        notifyDataSetChanged()
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view)

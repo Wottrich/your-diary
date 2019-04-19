@@ -42,28 +42,25 @@ abstract class BaseDialog(private val layoutView: Int) : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return super.onCreateDialog(savedInstanceState).also { dialog ->
-            dialog.window?.attributes.also { params ->
-                params?.width = ViewGroup.LayoutParams.MATCH_PARENT
-                params?.height = ViewGroup.LayoutParams.MATCH_PARENT
-                params?.dimAmount = 0f
-            }
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
-        }
+        val dialog = super.onCreateDialog(savedInstanceState)
+        val attrs = dialog.window?.attributes
+        attrs?.width = ViewGroup.LayoutParams.MATCH_PARENT
+        attrs?.height = ViewGroup.LayoutParams.MATCH_PARENT
+        attrs?.dimAmount = 0f
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+        return dialog
     }
 
     override fun onStart() {
         super.onStart()
-        dialog.also {
-            it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            it.window?.attributes.also { params ->
-                params?.width = ViewGroup.LayoutParams.MATCH_PARENT
-                params?.height = ViewGroup.LayoutParams.MATCH_PARENT
-                params?.dimAmount = 0f
-            }
-            it.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
-        }
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val attrs = dialog.window?.attributes
+        attrs?.width = ViewGroup.LayoutParams.MATCH_PARENT
+        attrs?.height = ViewGroup.LayoutParams.MATCH_PARENT
+        attrs?.dimAmount = 0f
+        dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+
         if (parent != null)
             initAnimation()
     }

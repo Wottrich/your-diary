@@ -8,6 +8,7 @@ import wottrich.github.io.yourdiary.adapter.SpendingAdapter
 import wottrich.github.io.yourdiary.extensions.boxList
 import wottrich.github.io.yourdiary.view.dialog.SpendingDialog
 import wottrich.github.io.yourdiary.generics.BaseFragment
+import wottrich.github.io.yourdiary.model.Spending
 
 @SuppressLint("StaticFieldLeak")
 open class SpendingFragment : BaseFragment(R.layout.fragment_spending) {
@@ -21,7 +22,7 @@ open class SpendingFragment : BaseFragment(R.layout.fragment_spending) {
 
     override fun initValues() {
         if (spendingAdapter == null) {
-            spendingAdapter = SpendingAdapter(activity ?: return)
+            spendingAdapter = SpendingAdapter(boxList<Spending>().asReversed(), activity ?: return)
         }
 
         baseView.rvSpending.adapter = spendingAdapter

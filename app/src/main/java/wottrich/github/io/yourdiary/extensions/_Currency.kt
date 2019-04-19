@@ -69,8 +69,8 @@ fun symbol(symbols: DecimalFormatSymbols) : String {
     return symbol
 }
 
-fun Double.addSymbol (locale: Locale) : String {
-    decimalFormat(locale)?.also {
+fun Double.addSymbol (l: Locale = locale) : String {
+    decimalFormat(l)?.also {
         val symbols = symbolsFormat(it)
         val symbol = symbol(symbols)
         return String.format("$symbol %.2f", this)
