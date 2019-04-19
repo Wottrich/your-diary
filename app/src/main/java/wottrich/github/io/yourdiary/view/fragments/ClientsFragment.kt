@@ -6,6 +6,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_clients.view.*
 
 import wottrich.github.io.yourdiary.R
+import wottrich.github.io.yourdiary.extensions.totalPriceFromSelectedCustomer
 import wottrich.github.io.yourdiary.generics.BaseFragment
 import wottrich.github.io.yourdiary.model.Customer
 
@@ -29,7 +30,7 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients) {
         if (client != null) {
             customerViews(View.VISIBLE)
             baseView.tvCountOrder.text = String.format("%d pedidos por mês", client?.orders?.size)
-            baseView.tvPriceOrder.text = String.format("%s no mês", Customer.totalPriceFromSelectedCustomer())
+            baseView.tvPriceOrder.text = String.format("%s no mês", client?.totalPriceFromSelectedCustomer())
         } else {
             customerViews(View.GONE)
         }
