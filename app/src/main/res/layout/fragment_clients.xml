@@ -48,17 +48,18 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
+                            android:id="@+id/tvCustomer"
                             style="@style/Label.WebOrange"
                             android:layout_width="0dp"
+                            android:layout_height="26dp"
+                            android:text="@string/fragment_clients_register_customer"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintEnd_toStartOf="@id/drop"
+                            app:layout_constraintEnd_toStartOf="@id/ivDrop"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Uniritter" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/drop"
+                            android:id="@+id/ivDrop"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"

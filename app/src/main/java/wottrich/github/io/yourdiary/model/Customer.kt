@@ -19,15 +19,6 @@ open class Customer {
         fun selectedCustomer () : Customer? {
             return boxList<Customer>().find { it.selected }
         }
-
-        fun totalPriceFromSelectedCustomer () : String {
-            val price = 0.0
-            for(orders in selectedCustomer()?.orders ?: arrayListOf()) {
-                price.plus(orders.price ?: 0.0)
-            }
-
-            return price.addSymbol()
-        }
     }
 
 }

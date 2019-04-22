@@ -29,16 +29,13 @@ open class SpendingFragment : BaseFragment(R.layout.fragment_spending) {
         baseView.rvSpending.setHasFixedSize(true)
         baseView.ivAdd.setOnClickListener {
             SpendingDialog {
-                spendingAdapter?.notifyDataSetChanged()
+                spendingAdapter?.updateList()
             }.show(activity?.supportFragmentManager, "SpendingDialog")
         }
     }
 
     open fun reload() {
+        //spendingAdapter?.updateList()
         //SpendingDialog(this::onSpending).show(activity?.supportFragmentManager, "SpendingDialog")
-    }
-
-    private fun onSpending() {
-        spendingAdapter?.notifyDataSetChanged()
     }
 }

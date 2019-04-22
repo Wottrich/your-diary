@@ -28,7 +28,9 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         tabLayout.getTabAt(1)?.text = "Clientes"
     }
 
-    override fun onTabReselected(tab: TabLayout.Tab?) = Unit
+    override fun onTabReselected(tab: TabLayout.Tab?) {
+
+    }
 
     override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
 
@@ -40,7 +42,14 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
     override fun onPageSelected(position: Int) {
         when (position) {
-            0 -> viewPagerAdapter.spendingFragment.reload()
+            0 -> {
+                tabLayout.getTabAt(1)?.text = "Clientes"
+                viewPagerAdapter.spendingFragment.reload()
+            }
+            1 ->  {
+                tabLayout.getTabAt(1)?.text = "Adicionar Cliente"
+                viewPagerAdapter.clientFragment
+            }
         }
     }
 }
