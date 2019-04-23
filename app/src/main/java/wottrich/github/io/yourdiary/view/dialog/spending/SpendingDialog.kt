@@ -1,4 +1,4 @@
-package wottrich.github.io.yourdiary.view.dialog
+package wottrich.github.io.yourdiary.view.dialog.spending
 
 import android.annotation.SuppressLint
 import android.text.Editable
@@ -17,7 +17,7 @@ import java.util.*
 @SuppressLint("ValidFragment")
 class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_spending), View.OnClickListener, OnCalendarPicker {
 
-    private val viewModel: SpendingDialogViewModel by lazy {SpendingDialogViewModel()}
+    private val viewModel: SpendingDialogViewModel by lazy { SpendingDialogViewModel() }
 
     override fun initValues() {
         this.parent = baseView.constDialog
@@ -29,7 +29,7 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
     }
 
     private fun textWatcher () {
-        baseView.etDescription.addTextChangedListener(object : TextWatcher {
+        baseView.etTitle.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) = Unit
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
 

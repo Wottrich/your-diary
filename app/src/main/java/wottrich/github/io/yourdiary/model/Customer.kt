@@ -7,10 +7,15 @@ import wottrich.github.io.yourdiary.extensions.addSymbol
 import wottrich.github.io.yourdiary.extensions.boxList
 
 @Entity
-open class Customer {
+open class Customer() {
     @Id var id: Long = 0
     var name: String? = null
     var selected: Boolean = false
+
+    constructor(name: String, selected: Boolean = true) : this () {
+        this.name = name
+        this.selected = selected
+    }
 
     @Backlink(to = "customer")
     lateinit var orders: List<Order>

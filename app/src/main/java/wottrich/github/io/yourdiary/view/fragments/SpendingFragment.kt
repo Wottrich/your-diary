@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.fragment_spending.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.SpendingAdapter
 import wottrich.github.io.yourdiary.extensions.boxList
-import wottrich.github.io.yourdiary.view.dialog.SpendingDialog
+import wottrich.github.io.yourdiary.view.dialog.spending.SpendingDialog
 import wottrich.github.io.yourdiary.generics.BaseFragment
 import wottrich.github.io.yourdiary.model.Spending
 

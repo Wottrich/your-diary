@@ -1,4 +1,4 @@
-package wottrich.github.io.yourdiary.view.dialog
+package wottrich.github.io.yourdiary.view.dialog.spending
 
 import java.util.*
 

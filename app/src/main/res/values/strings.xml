@@ -22,6 +22,11 @@
     <string name="dialog_spending_date_hint">05/04/2009</string>
     <string name="dialog_spending_btn">Register</string>
     <string name="dialog_spending_register_success">Registrado com sucesso</string>
+    
+    <!--Dialog Customer-->
+    <string name="dialog_customer_title">Cliente</string>
+    <string name="dialog_customer_client">Nome</string>
+    <string name="dialog_customer_client_hint">Nome do Cliente</string>
     <!--</editor-folder>-->
 
 </resources>
