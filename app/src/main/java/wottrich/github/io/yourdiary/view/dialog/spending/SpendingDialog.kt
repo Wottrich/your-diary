@@ -13,11 +13,16 @@ import wottrich.github.io.yourdiary.model.Spending
 import wottrich.github.io.yourdiary.generics.BaseDialog
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import java.util.*
+import kotlin.properties.Delegates
 
 @SuppressLint("ValidFragment")
 class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_spending), View.OnClickListener, OnCalendarPicker {
 
     private val viewModel: SpendingDialogViewModel by lazy { SpendingDialogViewModel() }
+
+    private var priceObserver by Delegates.observable("") { property, oldValue, newValue ->
+        Toast.makeText(activity, "Change to $newValue", Toast.LENGTH_SHORT).show()
+    }
 
     override fun initValues() {
         this.parent = baseView.constDialog
@@ -46,6 +51,7 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
                 baseView.etPrice.setText(CurrencyUtils.formatToLocale(s.toString(), locale), TextView.BufferType.EDITABLE)
                 baseView.etPrice.setSelection(baseView.etPrice.text.length)
                 baseView.etPrice.addTextChangedListener(this)
+                priceObserver = baseView.etPrice.text.toString()
                 validButton()
             }
         })
@@ -54,14 +60,12 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnRegister -> {
-                box<Spending>().put(
-                    Spending(
-                        baseView.etTitle.text.toString(),
-                        baseView.etDescription.text.toString(),
-                        convertToDouble(baseView.etPrice.text.toString(), locale),
-                        viewModel.date
-                    )
-                )
+                put(Spending(
+                    baseView.etTitle.text.toString(),
+                    baseView.etDescription.text.toString(),
+                    convertToDouble(baseView.etPrice.text.toString(), locale),
+                    viewModel.date
+                ))
 
                 Toast.makeText(activity, getString(R.string.dialog_spending_register_success), Toast.LENGTH_SHORT).show()
                 onSpending()

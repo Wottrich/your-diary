@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.dialog_customer.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.isNotNullOrEmpty
+import wottrich.github.io.yourdiary.extensions.put
 import wottrich.github.io.yourdiary.generics.BaseDialog
 import wottrich.github.io.yourdiary.model.Customer
 
@@ -37,9 +38,10 @@ class CustomerDialog(var onCustomer: () -> Unit) : BaseDialog(R.layout.dialog_cu
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnRegisterClient -> {
-                box<Customer>().put(Customer(baseView.etClientName.text.toString()))
+                put(Customer(baseView.etClientName.text.toString()))
                 Toast.makeText(activity, getString(R.string.dialog_spending_register_success), Toast.LENGTH_SHORT).show()
                 onCustomer()
+                dismiss()
             }
             R.id.ivClose -> {
                 dismissAnimation()

@@ -8,3 +8,5 @@ import wottrich.github.io.yourdiary.box.ObjectBox
 inline fun <reified T> box () : Box<T> = ObjectBox.boxStore.boxFor()
 
 inline fun <reified T> boxList () : List<T> = ObjectBox.boxStore.boxFor<T>().all
+
+inline fun <reified T> put(vararg generic: T) = box<T>().put(generic.asList())

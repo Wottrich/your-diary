@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ViewPagerAdapter
 import wottrich.github.io.yourdiary.generics.BaseActivity
+import wottrich.github.io.yourdiary.view.dialog.CustomerDialog
 
 class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener {
 
@@ -29,7 +30,11 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
-
+        if (tab?.position == 1) {
+            CustomerDialog{
+                viewPagerAdapter.clientFragment.loadCustomer()
+            }.show(this.supportFragmentManager, "CustomerDialog")
+        }
     }
 
     override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
@@ -48,7 +53,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
             }
             1 ->  {
                 tabLayout.getTabAt(1)?.text = "Adicionar Cliente"
-                viewPagerAdapter.clientFragment
+                viewPagerAdapter.clientFragment.loadCustomer()
             }
         }
     }
