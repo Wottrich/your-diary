@@ -12,7 +12,7 @@ import wottrich.github.io.yourdiary.extensions.totalPriceFromSelectedCustomer
 import wottrich.github.io.yourdiary.generics.BaseFragment
 import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.view.dialog.CustomerDialog
-import kotlin.properties.Delegates
+import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
 
 @SuppressLint("StaticFieldLeak")
 open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnClickListener {
@@ -61,7 +61,7 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
             }
             R.id.constHeaderClients -> {
                 if(clientCount > 0) {
-
+                    ShowCustomersDialog(this::loadCustomer).show(activity?.supportFragmentManager, "ShowCustomerDialog")
                 } else {
                     CustomerDialog {
                         Toast.makeText(activity, "Cliente Registrado", Toast.LENGTH_SHORT).show()

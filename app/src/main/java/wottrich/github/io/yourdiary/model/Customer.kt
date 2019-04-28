@@ -4,7 +4,9 @@ import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import wottrich.github.io.yourdiary.extensions.addSymbol
+import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.boxList
+import wottrich.github.io.yourdiary.extensions.put
 
 @Entity
 open class Customer() {
@@ -23,6 +25,19 @@ open class Customer() {
     companion object {
         fun selectedCustomer () : Customer? {
             return boxList<Customer>().find { it.selected }
+        }
+
+        fun deselectCustomer () {
+            val customer = selectedCustomer()
+            customer?.selected = false
+            put(customer)
+        }
+
+        fun changeCustomer(customer: Customer) {
+            val selectedCustomer = selectedCustomer()
+            selectedCustomer?.selected = false
+            customer.selected = true
+            put(selectedCustomer, customer)
         }
     }
 

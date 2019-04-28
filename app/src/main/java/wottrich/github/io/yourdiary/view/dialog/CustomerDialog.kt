@@ -38,7 +38,7 @@ class CustomerDialog(var onCustomer: () -> Unit) : BaseDialog(R.layout.dialog_cu
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnRegisterClient -> {
-                put(Customer(baseView.etClientName.text.toString()))
+                Customer.changeCustomer(Customer(baseView.etClientName.text.toString()))
                 Toast.makeText(activity, getString(R.string.dialog_spending_register_success), Toast.LENGTH_SHORT).show()
                 onCustomer()
                 dismiss()
