@@ -3,8 +3,6 @@ package wottrich.github.io.yourdiary.model
 import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
-import wottrich.github.io.yourdiary.extensions.addSymbol
-import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.boxList
 import wottrich.github.io.yourdiary.extensions.put
 
@@ -37,7 +35,11 @@ open class Customer() {
             val selectedCustomer = selectedCustomer()
             selectedCustomer?.selected = false
             customer.selected = true
-            put(selectedCustomer, customer)
+            if (selectedCustomer == null) {
+                put(customer)
+            } else {
+                put(selectedCustomer, customer)
+            }
         }
     }
 

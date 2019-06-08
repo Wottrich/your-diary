@@ -44,6 +44,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
+    <TextView
+        android:id="@+id/tvEmptyList"
+        android:visibility="gone"
+        android:textAlignment="center"
+        style="@style/Label.WebOrange"
+        android:text="@string/fragment_spending_empty_list"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="1dp"
@@ -56,7 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:reverseLayout="false"
-        tools:itemCount="3"
+        tools:itemCount="13"
         tools:listitem="@layout/row_spending" />
 
 </android.support.constraint.ConstraintLayout>

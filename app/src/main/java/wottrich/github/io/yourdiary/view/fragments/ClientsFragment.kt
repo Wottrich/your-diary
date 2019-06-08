@@ -19,9 +19,7 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
 
     private val clientCount: Int get() = boxList<Customer>().size
 
-    private val client: Customer? by lazy {
-        Customer.selectedCustomer()
-    }
+    private val client: Customer? get() = Customer.selectedCustomer()
 
     companion object : ClientsFragment() {
         @JvmStatic
@@ -31,26 +29,30 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
     override fun initValues() {
         baseView.constHeaderClients.setOnClickListener (this)
         baseView.btnRegisterOrder.setOnClickListener(this)
+        baseView.btnFirstRegister.setOnClickListener(this)
         loadCustomer()
     }
 
     fun loadCustomer() {
         if (clientCount > 0) {
             customerViews(View.VISIBLE)
+            baseView.clFirstLogin.visibility = View.GONE
             baseView.tvCustomer.text = client?.name
-            baseView.tvCountOrder.text = String.format("%d pedidos por mês", client?.orders?.size ?: "0")
+            baseView.tvCountOrder.text = String.format("%d pedidos por mês", client?.orders?.size ?: 0)
             baseView.tvPriceOrder.text = String.format("%s no mês", client?.totalPriceFromSelectedCustomer() ?: "0")
         } else {
             customerViews(View.GONE)
-            baseView.tvCustomer.text = getString(R.string.fragment_clients_register_customer)
+            baseView.clFirstLogin.visibility = View.VISIBLE
         }
     }
 
     private fun customerViews (visible: Int) {
+        baseView.constHeaderClients.visibility = visible
         baseView.constInformation.visibility = visible
         baseView.btnRegisterOrder.visibility = visible
         baseView.ivDrop.visibility = visible
         baseView.divider.visibility = visible
+
     }
 
 
@@ -59,15 +61,13 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
             R.id.btnRegisterOrder -> {
 
             }
+            R.id.btnFirstRegister -> {
+                CustomerDialog {
+                    loadCustomer()
+                }.show(activity?.supportFragmentManager, "CustomerDialog")
+            }
             R.id.constHeaderClients -> {
-                if(clientCount > 0) {
-                    ShowCustomersDialog(this::loadCustomer).show(activity?.supportFragmentManager, "ShowCustomerDialog")
-                } else {
-                    CustomerDialog {
-                        Toast.makeText(activity, "Cliente Registrado", Toast.LENGTH_SHORT).show()
-                        loadCustomer()
-                    }.show(activity?.supportFragmentManager, "CustomerDialog")
-                }
+                ShowCustomersDialog(this::loadCustomer).show(activity?.supportFragmentManager, "ShowCustomerDialog")
             }
         }
     }

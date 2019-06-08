@@ -19,7 +19,7 @@ class SpendingAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        inflater.inflate(R.layout.row_spending, viewGroup, false).also {
+        inflater.inflate(R.layout.row_spending, viewGroup, false).let {
             return ItemViewHolder(it)
         }
     }

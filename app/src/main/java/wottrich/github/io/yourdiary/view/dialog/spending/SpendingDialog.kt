@@ -20,9 +20,9 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
 
     private val viewModel: SpendingDialogViewModel by lazy { SpendingDialogViewModel() }
 
-    private var priceObserver by Delegates.observable("") { property, oldValue, newValue ->
-        Toast.makeText(activity, "Change to $newValue", Toast.LENGTH_SHORT).show()
-    }
+    //private var priceObserver by Delegates.observable("") { property, oldValue, newValue ->
+    //Toast.makeText(activity, "Change to $newValue", Toast.LENGTH_SHORT).show()
+    //}
 
     override fun initValues() {
         this.parent = baseView.constDialog
@@ -51,7 +51,7 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
                 baseView.etPrice.setText(CurrencyUtils.formatToLocale(s.toString(), locale), TextView.BufferType.EDITABLE)
                 baseView.etPrice.setSelection(baseView.etPrice.text.length)
                 baseView.etPrice.addTextChangedListener(this)
-                priceObserver = baseView.etPrice.text.toString()
+                //priceObserver = baseView.etPrice.text.toString()
                 validButton()
             }
         })
