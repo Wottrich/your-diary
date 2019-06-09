@@ -14,9 +14,7 @@ import wottrich.github.io.yourdiary.model.Spending
 @SuppressLint("StaticFieldLeak")
 open class SpendingFragment : BaseFragment(R.layout.fragment_spending), View.OnClickListener {
 
-    private val boxSpendingList: List<Spending> by lazy {
-        boxList<Spending>()
-    }
+    private val boxSpendingList: List<Spending> get() = boxList()
 
     private val spendingAdapter: SpendingAdapter by lazy {
         SpendingAdapter(boxSpendingList.asReversed(), requireActivity())
@@ -49,6 +47,7 @@ open class SpendingFragment : BaseFragment(R.layout.fragment_spending), View.OnC
             R.id.ivAdd -> {
                 SpendingDialog {
                     spendingAdapter.updateList()
+                    verifyEmptyList()
                 }.show(activity?.supportFragmentManager, "SpendingDialog")
             }
         }

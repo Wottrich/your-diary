@@ -51,7 +51,7 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
         baseView.constInformation.visibility = visible
         baseView.btnRegisterOrder.visibility = visible
         baseView.ivDrop.visibility = visible
-        baseView.divider.visibility = visible
+        //baseView.divider.visibility = visible
 
     }
 

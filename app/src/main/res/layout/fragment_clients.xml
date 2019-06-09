@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/slight_black"
+    android:background="@color/arenic"
     tools:context=".view.fragments.ClientsFragment">
 
     <android.support.design.widget.CoordinatorLayout
@@ -32,128 +32,156 @@
                 android:orientation="vertical"
                 app:expandedTitleMarginEnd="55dp"
                 app:expandedTitleMarginStart="55dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleGravity="top"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                <android.support.constraint.ConstraintLayout
+                <android.support.v7.widget.Toolbar
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="4dp"
+                    app:layout_collapseMode="pin"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:contentInsetLeft="0dp"
+                    android:contentInsetStart="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    android:contentInsetRight="0dp"
+                    android:contentInsetEnd="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetEnd="0dp">
 
                     <android.support.constraint.ConstraintLayout
-                        android:visibility="gone"
-                        android:background="@color/arenic"
-                        android:id="@+id/clFirstLogin"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.constraint.ConstraintLayout
+                            app:layout_collapseMode="pin"
+                            android:visibility="visible"
+                            android:background="@color/arenic"
+                            android:id="@+id/clFirstLogin"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <Button
+                                android:text="@string/fragment_clients_register_customer"
+                                android:id="@+id/btnFirstRegister"
+                                style="@style/Button.Yellow"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                            android:background="@color/slight_black"
+                            app:layout_collapseMode="pin"
+                            android:id="@+id/constHeaderClients"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:layout_marginTop="-1dp"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/clFirstLogin">
+
+                            <TextView
+                                android:id="@+id/tvCustomer"
+                                style="@style/Label.WebOrange"
+                                android:layout_width="0dp"
+                                android:layout_height="26dp"
+                                android:text="@string/fragment_clients_register_customer"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/ivDrop"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/ivDrop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/baseline_arrow_drop_down_black_36"
+                                android:tint="@color/white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_marginTop="1dp"
+                            android:background="@color/slight_black"
+                            app:layout_collapseMode="parallax"
+                            app:layout_collapseParallaxMultiplier="0.5"
+                            android:id="@+id/constInformation"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/constHeaderClients">
+
+                            <TextView
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/tvCountOrder"
+                                style="@style/Label.VividBlue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/tvPriceOrder"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="15 pedidos no mês" />
+
+                            <TextView
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/tvPriceOrder"
+                                style="@style/Label.VividBlue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tvCountOrder"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="R$150,00 no mês" />
+
+                        </android.support.constraint.ConstraintLayout>
 
                         <Button
-                            android:text="@string/fragment_clients_register_customer"
-                            android:id="@+id/btnFirstRegister"
-                            style="@style/Button.Yellow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="10dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layout_marginTop="1dp"
+                            app:layout_collapseMode="parallax"
+                            app:layout_collapseParallaxMultiplier="0.5"
+                            android:id="@+id/btnRegisterOrder"
+                            style="@style/Button"
+                            android:background="@color/slight_black"
+                            android:text="@string/fragment_clients_register_order"
+                            android:textAllCaps="false"
+                            android:textColor="@color/vivid_blue"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@id/constInformation" />
 
                     </android.support.constraint.ConstraintLayout>
 
-                    <android.support.constraint.ConstraintLayout
-                        android:id="@+id/constHeaderClients"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:visibility="visible"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/clFirstLogin">
-
-                        <TextView
-                            android:id="@+id/tvCustomer"
-                            style="@style/Label.WebOrange"
-                            android:layout_width="0dp"
-                            android:layout_height="26dp"
-                            android:text="@string/fragment_clients_register_customer"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/ivDrop"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageView
-                            android:id="@+id/ivDrop"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/baseline_arrow_drop_down_black_36"
-                            android:tint="@color/white"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                </android.support.v7.widget.Toolbar>
 
 
-                    </android.support.constraint.ConstraintLayout>
-
-                    <View
-                        android:id="@+id/divider"
-                        style="@style/Divider"
-                        android:background="@color/arenic"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/constHeaderClients" />
-
-                    <android.support.constraint.ConstraintLayout
-                        android:id="@+id/constInformation"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/divider">
-
-                        <TextView
-                            android:id="@+id/tvCountOrder"
-                            style="@style/Label.VividBlue"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/tvPriceOrder"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="15 pedidos no mês" />
-
-                        <TextView
-                            android:id="@+id/tvPriceOrder"
-                            style="@style/Label.VividBlue"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/tvCountOrder"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="R$150,00 no mês" />
-
-                    </android.support.constraint.ConstraintLayout>
-
-                    <Button
-                        android:id="@+id/btnRegisterOrder"
-                        style="@style/Button"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/shape_button_background_transparent_border_arenic"
-                        android:text="@string/fragment_clients_register_order"
-                        android:textAllCaps="false"
-                        android:textColor="@color/vivid_blue"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/constInformation" />
-
-                </android.support.constraint.ConstraintLayout>
 
             </android.support.design.widget.CollapsingToolbarLayout>
 

@@ -25,7 +25,7 @@
     <string name="dialog_spending_register_success">Registrado com sucesso</string>
     
     <!--Dialog Customer-->
-    <string name="dialog_customer_title">Cliente</string>
+    <string name="dialog_customer_title">Lista de Clientes</string>
     <string name="dialog_customer_client">Nome</string>
     <string name="dialog_customer_client_hint">Nome do Cliente</string>
     <!--</editor-folder>-->

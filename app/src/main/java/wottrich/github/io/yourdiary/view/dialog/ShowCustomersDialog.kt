@@ -15,7 +15,7 @@ class ShowCustomersDialog(var onSelectedCustomer: () -> Unit) : BaseDialog(R.lay
     }
 
     override fun initValues() {
-        customerAdapter.color = activity?.getDrawable(R.color.dark_white)
+        customerAdapter.color = activity?.getDrawable(R.color.transparent_white)
         customerAdapter.onClick = this
         baseView.rvCustomers.adapter = customerAdapter
         baseView.ivClose.setOnClickListener(this)

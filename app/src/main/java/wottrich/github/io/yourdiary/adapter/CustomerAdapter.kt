@@ -35,7 +35,7 @@ class CustomerAdapter(
         if (customer.selected && color != null) {
             holder.itemView.background = color
         } else {
-            holder.itemView.background = context?.getDrawable(R.color.white)
+            holder.itemView.background = context?.getDrawable(R.color.transparent)
         }
 
         holder.itemView.setOnClickListener {
