@@ -34,6 +34,8 @@
     <color name="feldgrau">#4E6E58</color>
     <color name="shiny_shamrock">#49A078</color>
     <color name="arenic">#374049</color>
+    <color name="arenic_1">#495159</color>
+    <color name="arenic_2">#5B626A</color>
     <!--A2CA7F-->
     <color name="venetian_red">#C60D0D</color>
 </resources>

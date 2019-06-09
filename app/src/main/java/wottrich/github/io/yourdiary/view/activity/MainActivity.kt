@@ -5,7 +5,11 @@ import android.support.v4.view.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ViewPagerAdapter
+import wottrich.github.io.yourdiary.extensions.box
+import wottrich.github.io.yourdiary.extensions.put
 import wottrich.github.io.yourdiary.generics.BaseActivity
+import wottrich.github.io.yourdiary.model.Customer
+import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.view.dialog.CustomerDialog
 
 class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener {

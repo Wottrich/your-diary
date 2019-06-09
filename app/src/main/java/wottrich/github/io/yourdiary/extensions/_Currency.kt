@@ -78,6 +78,11 @@ fun Double.addSymbol (l: Locale = locale) : String {
     return ""
 }
 
+fun Double.format () : String {
+    val format = NumberFormat.getCurrencyInstance(locale)
+    return format.format(this)
+}
+
 fun removeAllAndFormat(text: String, l: Locale) : Double {
     val format: DecimalFormat = decimalFormat(l) ?: throw Throwable("Error to add value")
     val symbols = symbolsFormat(format)

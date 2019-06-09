@@ -32,7 +32,7 @@ class SpendingAdapter(
             val spending = spendingList[this.adapterPosition]
             this.itemView.let { view ->
                 view.tvTitle.text = spending.title
-                view.tvPrice.text = spending.price?.addSymbol()
+                view.tvPrice.text = spending.price?.format()
                 view.tvDate.text = spending.date?.getDateString()
                 view.tvDescription.text = spending.description
                 view.constDesc.visibility = if (!spending.selected) View.GONE else View.VISIBLE

@@ -26,8 +26,12 @@
     
     <!--Dialog Customer-->
     <string name="dialog_customer_title">Lista de Clientes</string>
+    <string name="dialog_customer_register">Registrar cliente</string>
     <string name="dialog_customer_client">Nome</string>
     <string name="dialog_customer_client_hint">Nome do Cliente</string>
+
+    <!--Dialog Order-->
+    <string name="dialog_order_title">Registrar Pedido</string>
     <!--</editor-folder>-->
 
 </resources>

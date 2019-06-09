@@ -3,6 +3,7 @@ package wottrich.github.io.yourdiary.model
 import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
+import io.objectbox.relation.ToMany
 import wottrich.github.io.yourdiary.extensions.boxList
 import wottrich.github.io.yourdiary.extensions.put
 
@@ -18,7 +19,7 @@ open class Customer() {
     }
 
     @Backlink(to = "customer")
-    lateinit var orders: List<Order>
+    var orders: ToMany<Order>? = null
 
     companion object {
         fun selectedCustomer () : Customer? {
