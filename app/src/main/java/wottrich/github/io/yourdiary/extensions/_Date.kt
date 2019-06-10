@@ -19,8 +19,8 @@ fun String.getDateFrom( pattern: String): Date {
     }
 }
 
-fun Date.getDateString (pattern: String = "dd/MM/yyyy"): String {
-    return SimpleDateFormat(pattern, Locale("pt", "BR")).format(this)
+fun Date.getDateString (pattern: String = "dd/MM/yyyy", locale: Locale = _locale): String {
+    return SimpleDateFormat(pattern, locale).format(this)
 }
 
 fun OnCalendarPicker.showPicker(context: Context) : DatePickerDialog {

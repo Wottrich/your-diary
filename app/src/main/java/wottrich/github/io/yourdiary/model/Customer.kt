@@ -19,7 +19,7 @@ open class Customer() {
     }
 
     @Backlink(to = "customer")
-    var orders: ToMany<Order>? = null
+    lateinit var orders: ToMany<Order>
 
     companion object {
         fun selectedCustomer () : Customer? {

@@ -48,7 +48,7 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 baseView.etPrice.removeTextChangedListener(this)
-                baseView.etPrice.setText(CurrencyUtils.formatToLocale(s.toString(), locale), TextView.BufferType.EDITABLE)
+                baseView.etPrice.setText(CurrencyUtils.formatToLocale(s.toString(), _locale), TextView.BufferType.EDITABLE)
                 baseView.etPrice.setSelection(baseView.etPrice.text.length)
                 baseView.etPrice.addTextChangedListener(this)
                 //priceObserver = baseView.etPrice.text.toString()
@@ -63,7 +63,7 @@ class SpendingDialog (var onSpending: () -> Unit) : BaseDialog (R.layout.dialog_
                 put(Spending(
                     baseView.etTitle.text.toString(),
                     baseView.etDescription.text.toString(),
-                    convertToDouble(baseView.etPrice.text.toString(), locale),
+                    convertToDouble(baseView.etPrice.text.toString(), _locale),
                     viewModel.date
                 ))
 

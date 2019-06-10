@@ -7,7 +7,7 @@ import java.text.NumberFormat
 import java.util.*
 
 
-var locale = Locale("pt", "BR")
+var _locale = Locale("pt", "BR")
 
 fun convertToDouble(value: String, l: Locale): Double {
     val format = NumberFormat.getCurrencyInstance(l) as DecimalFormat
@@ -69,7 +69,7 @@ fun symbol(symbols: DecimalFormatSymbols) : String {
     return symbol
 }
 
-fun Double.addSymbol (l: Locale = locale) : String {
+fun Double.addSymbol (l: Locale = _locale) : String {
     decimalFormat(l)?.also {
         val symbols = symbolsFormat(it)
         val symbol = symbol(symbols)
@@ -79,7 +79,7 @@ fun Double.addSymbol (l: Locale = locale) : String {
 }
 
 fun Double.format () : String {
-    val format = NumberFormat.getCurrencyInstance(locale)
+    val format = NumberFormat.getCurrencyInstance(_locale)
     return format.format(this)
 }
 

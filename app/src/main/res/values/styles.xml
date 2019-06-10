@@ -26,6 +26,10 @@
         <item name="android:textColor">@color/light_blue</item>
     </style>
 
+    <style name="LabelTitle.WebOrange">
+        <item name="android:textColor">@color/web_orange</item>
+    </style>
+
     <style name="Label">
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>

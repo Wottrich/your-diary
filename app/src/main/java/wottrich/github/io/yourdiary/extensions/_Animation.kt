@@ -2,6 +2,13 @@ package wottrich.github.io.yourdiary.extensions
 
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
+import android.view.animation.LinearInterpolator
+import android.support.v4.view.ViewCompat.animate
+import android.R.attr.translationX
+import android.R.attr.translationY
+import android.view.View
+import android.view.ViewPropertyAnimator
+
 
 abstract class AnimationMin : Animation.AnimationListener {
     override fun onAnimationRepeat(animation: Animation?) = Unit

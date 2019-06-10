@@ -11,6 +11,7 @@ import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.view.dialog.CustomerDialog
+import java.util.*
 
 class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener {
 
@@ -19,6 +20,9 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
     }
 
     override fun initValues () {
+
+        //toTest()
+
         vpFragment.adapter = viewPagerAdapter
 
         tabLayout.setupWithViewPager(vpFragment)
@@ -31,6 +35,28 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         tabLayout.getTabAt(0)?.text = "Gastos"
         tabLayout.getTabAt(1)?.icon = getDrawable(R.drawable.baseline_business_center_white_36)
         tabLayout.getTabAt(1)?.text = "Clientes"
+    }
+
+    fun toTest () {
+
+        val newCustumer = Customer("Wottrich")
+        put(newCustumer)
+        val customer = box<Customer>().get(newCustumer.id)
+        val order = Order("Order1", 15.0, Date(), "Varias coisas")
+        val order2 = Order("Order 2", 12.0, Date(), "15 crepiocas")
+        val order3 = Order("Order 3", 12.0, Date(), "10 crepiocas")
+        customer.orders.add(order)
+        customer.orders.add(order2)
+        customer.orders.add(order3)
+        put(customer)
+        val orders = box<Customer>().get(newCustumer.id).orders
+
+        for (itemOrder in orders) {
+            println(itemOrder.description)
+            println(itemOrder.customer.targetId)
+        }
+
+        return
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
