@@ -23,7 +23,7 @@
     <string name="dialog_spending_date_hint">05/04/2009</string>
     <string name="dialog_spending_btn">Register</string>
     <string name="dialog_spending_register_success">Registrado com sucesso</string>
-    
+
     <!--Dialog Customer-->
     <string name="dialog_customer_title">Lista de Clientes</string>
     <string name="dialog_customer_register">Registrar cliente</string>
@@ -32,6 +32,15 @@
 
     <!--Dialog Order-->
     <string name="dialog_order_title">Registrar Pedido</string>
+    <!--</editor-folder>-->
+
+    <!--<editor-folder defaultstate="Collapsed" desc="Activities">-->
+    <!--Register Order-->
+    <string name="activity_register_order_title">Título</string>
+    <string name="activity_register_order_amount">Valor do pedido</string>
+    <string name="activity_register_order_date">Data do pedido</string>
+    <string name="activity_register_order_description">Descrição</string>
+
     <!--</editor-folder>-->
 
 </resources>
