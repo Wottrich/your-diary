@@ -22,5 +22,9 @@ class Order() {
         this.description = description
     }
 
+}
 
+enum class OrderType(val type: String) {
+    NEW("new"),
+    EDIT("edit")
 }

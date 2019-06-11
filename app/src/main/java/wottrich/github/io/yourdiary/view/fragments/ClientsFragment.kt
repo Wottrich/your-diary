@@ -1,6 +1,7 @@
 package wottrich.github.io.yourdiary.view.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_clients.view.*
@@ -8,10 +9,14 @@ import kotlinx.android.synthetic.main.fragment_clients.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.OrderAdapter
 import wottrich.github.io.yourdiary.extensions.boxList
+import wottrich.github.io.yourdiary.extensions.orderId
+import wottrich.github.io.yourdiary.extensions.orderType
 import wottrich.github.io.yourdiary.extensions.totalPriceFromSelectedCustomer
 import wottrich.github.io.yourdiary.generics.BaseFragment
 import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.Order
+import wottrich.github.io.yourdiary.model.OrderType
+import wottrich.github.io.yourdiary.view.activity.order.RegisterOrderActivity
 import wottrich.github.io.yourdiary.view.dialog.CustomerDialog
 import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
 
@@ -64,7 +69,15 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
     }
 
     private fun onClickOrder (order: Order?) {
-
+        if (order != null) {
+            val intent = Intent(activity, RegisterOrderActivity::class.java).apply {
+                this orderType OrderType.EDIT
+                this orderId order.id
+            }
+            activity?.startActivity(intent)
+        } else {
+            Toast.makeText(activity, "Error to get order id", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
