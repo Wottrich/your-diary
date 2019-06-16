@@ -1,5 +1,7 @@
 package wottrich.github.io.yourdiary.view.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -10,6 +12,7 @@ import wottrich.github.io.yourdiary.extensions.put
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.Order
+import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import wottrich.github.io.yourdiary.view.dialog.CustomerDialog
 import java.util.*
 
@@ -61,9 +64,12 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
         if (tab?.position == 1) {
-            CustomerDialog{
-                viewPagerAdapter.clientFragment.loadCustomer()
-            }.show(this.supportFragmentManager, "CustomerDialog")
+            KeyboardUtils.showKeyboard(this, vpFragment)
+            vpFragment.postDelayed({
+                CustomerDialog {
+                    viewPagerAdapter.clientFragment.loadCustomer()
+                }.show(this.supportFragmentManager, "CustomerDialog")
+            }, 60)
         }
     }
 
@@ -83,8 +89,26 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
             }
             1 ->  {
                 tabLayout.getTabAt(1)?.text = "Adicionar Cliente"
-                viewPagerAdapter.clientFragment.loadCustomer()
+                //viewPagerAdapter.clientFragment.loadCustomer()
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (requestCode == UPDATE_ORDER_LIST && resultCode == Activity.RESULT_OK) {
+            viewPagerAdapter.clientFragment.loadCustomer()
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onDestroy() {
+        KeyboardUtils.hideKeyboard(this)
+        super.onDestroy()
+    }
+
+    companion object {
+        const val UPDATE_ORDER_LIST = 100
     }
 }

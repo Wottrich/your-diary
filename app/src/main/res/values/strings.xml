@@ -7,8 +7,8 @@
     <string name="fragment_spending_empty_list">Nenhum gasto registrado</string>
 
     <!--Fragment Clients-->
-    <string name="fragment_clients_register_order">Registrar Pedido</string>
     <string name="fragment_clients_register_customer">Clique aqui para registrar seu primeiro cliente</string>
+    <string name="fragment_clients_new_order">Novo pedido...</string>
     <!--</editor-folder>-->
 
     <!--<editor-folder defaultstate="Collapsed" desc="Dialogs">-->

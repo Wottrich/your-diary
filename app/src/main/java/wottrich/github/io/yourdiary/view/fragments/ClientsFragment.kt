@@ -8,14 +8,12 @@ import kotlinx.android.synthetic.main.fragment_clients.view.*
 
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.OrderAdapter
-import wottrich.github.io.yourdiary.extensions.boxList
-import wottrich.github.io.yourdiary.extensions.orderId
-import wottrich.github.io.yourdiary.extensions.orderType
-import wottrich.github.io.yourdiary.extensions.totalPriceFromSelectedCustomer
+import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseFragment
 import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.model.OrderType
+import wottrich.github.io.yourdiary.view.activity.MainActivity
 import wottrich.github.io.yourdiary.view.activity.order.RegisterOrderActivity
 import wottrich.github.io.yourdiary.view.dialog.CustomerDialog
 import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
@@ -39,7 +37,7 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
 
     override fun initValues() {
         baseView.constHeaderClients.setOnClickListener (this)
-        baseView.btnRegisterOrder.setOnClickListener(this)
+        baseView.constNewOrder.setOnClickListener(this)
         baseView.btnFirstRegister.setOnClickListener(this)
         loadCustomer()
     }
@@ -49,7 +47,7 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
             customerViews(View.VISIBLE)
             baseView.clFirstLogin.visibility = View.GONE
             baseView.tvCustomer.text = client?.name
-            baseView.tvCountOrder.text = String.format("%d pedidos por mês", client?.orders?.size ?: 0)
+            baseView.tvCountOrder.text = String.format("%d pedidos no mês", client?.orders?.size ?: 0)
             baseView.tvPriceOrder.text = String.format("%s no mês", client?.totalPriceFromSelectedCustomer() ?: "0")
             baseView.rvOrders.adapter = orderAdapter
             orderAdapter.updateList()
@@ -62,10 +60,8 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
     private fun customerViews (visible: Int) {
         baseView.constHeaderClients.visibility = visible
         baseView.constInformation.visibility = visible
-        baseView.btnRegisterOrder.visibility = visible
+        baseView.constNewOrder.visibility = visible
         baseView.ivDrop.visibility = visible
-        //baseView.divider.visibility = visible
-
     }
 
     private fun onClickOrder (order: Order?) {
@@ -74,7 +70,7 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
                 this orderType OrderType.EDIT
                 this orderId order.id
             }
-            activity?.startActivity(intent)
+            activity?.startActivityForResult(intent, MainActivity.UPDATE_ORDER_LIST)
         } else {
             Toast.makeText(activity, "Error to get order id", Toast.LENGTH_SHORT).show()
         }
@@ -83,8 +79,12 @@ open class ClientsFragment : BaseFragment(R.layout.fragment_clients), View.OnCli
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btnRegisterOrder -> {
-
+            R.id.constNewOrder -> {
+                val intent = Intent(activity, RegisterOrderActivity::class.java).apply {
+                    this orderType OrderType.NEW
+                    this userId client?.id
+                }
+                activity?.startActivityForResult(intent, MainActivity.UPDATE_ORDER_LIST)
             }
             R.id.btnFirstRegister -> {
                 CustomerDialog {

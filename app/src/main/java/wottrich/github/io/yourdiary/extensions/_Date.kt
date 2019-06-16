@@ -11,7 +11,7 @@ const val actualDay = Calendar.DAY_OF_MONTH
 const val actualMonth = Calendar.MONTH
 const val actualYear = Calendar.YEAR
 
-fun String.getDateFrom( pattern: String): Date {
+fun String.getDate(pattern: String = "dd/MM/yyyy"): Date {
     try {
         return SimpleDateFormat(pattern, Locale.getDefault()).parse(this)
     } catch (d: ParseException) {
@@ -28,10 +28,9 @@ fun OnCalendarPicker.showPicker(context: Context) : DatePickerDialog {
             context,
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 val monthCorrect = if (month.toString().length == 1) "0$month" else month.toString()
-                this.onDate("$dayOfMonth/$monthCorrect/$year".getDateFrom("dd/MM/yyyy"), "$dayOfMonth/$monthCorrect/$year")
+                this.onDate("$dayOfMonth/$monthCorrect/$year".getDate(), "$dayOfMonth/$monthCorrect/$year")
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
     ).let { picker ->
-        //picker.datePicker.minDate = Date().time
         return picker
     }
 }

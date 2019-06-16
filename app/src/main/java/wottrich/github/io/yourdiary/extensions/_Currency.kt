@@ -44,7 +44,7 @@ fun getLocale(locale: Locale) = locale.country
 
 
 fun cleanText(text: String): String {
-    return text.replace("[,.\\s]", "")
+    return text.replace("[,.\\s]".toRegex(), "")
 }
 
 fun String.removeDot () : String {

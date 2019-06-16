@@ -1,17 +1,17 @@
 package wottrich.github.io.yourdiary.view.dialog
 
 import android.annotation.SuppressLint
+
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.dialog_customer.view.*
 import wottrich.github.io.yourdiary.R
-import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.isNotNullOrEmpty
-import wottrich.github.io.yourdiary.extensions.put
 import wottrich.github.io.yourdiary.generics.BaseDialog
 import wottrich.github.io.yourdiary.model.Customer
+import wottrich.github.io.yourdiary.utils.KeyboardUtils
 
 @SuppressLint("ValidFragment")
 class CustomerDialog(var onCustomer: () -> Unit) : BaseDialog(R.layout.dialog_customer), View.OnClickListener {
@@ -44,6 +44,7 @@ class CustomerDialog(var onCustomer: () -> Unit) : BaseDialog(R.layout.dialog_cu
                 dismiss()
             }
             R.id.ivClose -> {
+                KeyboardUtils.hideKeyboard(requireActivity())
                 dismissAnimation()
             }
         }

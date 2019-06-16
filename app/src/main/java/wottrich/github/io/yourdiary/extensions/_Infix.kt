@@ -10,9 +10,13 @@ infix fun EditText.setText (text: String?) {
 }
 
 infix fun Intent.orderType (orderType: OrderType) {
-    this.putExtra("orderType", orderType.type)
+    this.putExtra("orderType", orderType)
 }
 
 infix fun Intent.orderId (orderId: Long) {
     this.putExtra("orderId", orderId)
+}
+
+infix fun Intent.userId (userId: Long?) {
+    this.putExtra("userId", userId)
 }

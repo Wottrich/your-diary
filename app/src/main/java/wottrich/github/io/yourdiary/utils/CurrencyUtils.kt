@@ -6,7 +6,7 @@ import java.util.*
 class CurrencyUtils {
 
     companion object {
-        fun formatToLocale(text: String, locale: Locale?) : String {
+        fun formatToLocale(text: String, locale: Locale? = _locale) : String {
             val l = locale ?: return ""
             if (l.country == "" || l.language == "") return ""
 
@@ -18,7 +18,8 @@ class CurrencyUtils {
 
             val removeSymbol = removeSymbol(text, symbol)
             val clean2 = removeSymbol.replace(".", "").replace(",", "")
-            val clean = cleanText(clean2)
+            val clean3 = cleanText(clean2)
+            val clean = clean3.replace("[\\s]".toRegex(), "")
 
             val parsed = if (!clean.isEmpty()) clean.toDouble() else 0.00
 
