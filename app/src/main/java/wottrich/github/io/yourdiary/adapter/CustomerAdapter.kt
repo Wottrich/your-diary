@@ -30,7 +30,7 @@ class CustomerAdapter(
         val view = (holder as CustomerViewHolder).itemView
         val customer = customer[holder.adapterPosition]
         view.tvNameCustomer.text = customer.name
-        view.tvCountOrder.text = String.format("%d Pedidos", customer.orders?.size ?: 0)
+        view.tvCountOrder.text = String.format("%d Pedidos", customer.orders.size)
         view.tvPriceOrder.text = customer.totalPriceFromSelectedCustomer()
         if (customer.selected && color != null) {
             holder.itemView.background = color

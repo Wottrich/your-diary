@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
+import android.view.Menu
 import kotlinx.android.synthetic.main.activity_main.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ViewPagerAdapter

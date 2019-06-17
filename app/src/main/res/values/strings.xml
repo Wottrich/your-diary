@@ -34,12 +34,21 @@
     <string name="dialog_order_title">Registrar Pedido</string>
     <!--</editor-folder>-->
 
-    <!--<editor-folder defaultstate="Collapsed" desc="Activities">-->
+    <!--<editor-folder defaultstate="collapsed" desc="Activities">-->
     <!--Register Order-->
     <string name="activity_register_order_title">Título</string>
     <string name="activity_register_order_amount">Valor do pedido</string>
     <string name="activity_register_order_date">Data do pedido</string>
     <string name="activity_register_order_description">Descrição</string>
+
+    <!--</editor-folder>-->
+
+    <!--<editor-folder defaultstate="Collapsed" desc="Menus">-->
+    <!--Customer Options Menu-->
+    <string name="customer_options_change_customer">Selecionar outro cliente</string>
+    <string name="customer_options_more_options">Mais opções</string>
+    <string name="customer_options_time_line">Time line</string>
+    <string name="customer_options_settings">Configurações</string>
 
     <!--</editor-folder>-->
 

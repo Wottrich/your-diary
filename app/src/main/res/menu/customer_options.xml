@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itTimeLine"
+        android:icon="@drawable/ic_timeline_dark_white_2_24dp"
+        android:title="@string/customer_options_time_line"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/itMoreOptions"
+        android:icon="@drawable/ic_more_vert_dark_white_2_24dp"
+        android:title="@string/customer_options_more_options"
+        app:showAsAction="ifRoom">
+        <menu>
+
+            <item
+                android:id="@+id/itChangeCustomer"
+                android:title="@string/customer_options_change_customer"
+                app:showAsAction="ifRoom" />
+
+            <item
+                android:id="@+id/itSettings"
+                android:title="@string/customer_options_settings"
+                app:showAsAction="ifRoom" />
+
+        </menu>
+    </item>
+
+
+</menu>
