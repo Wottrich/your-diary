@@ -69,7 +69,7 @@ class RegisterOrderActivity : BaseActivity(R.layout.activity_register_order), Vi
         priceChange()
         btnDate.setOnClickListener(this)
         toolbar.setNavigationOnClickListener {
-            KeyboardUtils.hideKeyboard(this)
+            KeyboardUtils.hideKeyboard(this, root)
             viewModel.saveData()
             setResult(Activity.RESULT_OK)
             finish()
@@ -89,7 +89,7 @@ class RegisterOrderActivity : BaseActivity(R.layout.activity_register_order), Vi
     }
 
     override fun onBackPressed() {
-        KeyboardUtils.hideKeyboard(this)
+        KeyboardUtils.hideKeyboard(this, root)
         viewModel.saveData()
         setResult(Activity.RESULT_OK)
         super.onBackPressed()

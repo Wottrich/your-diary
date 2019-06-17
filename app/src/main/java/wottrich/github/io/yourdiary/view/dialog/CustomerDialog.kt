@@ -44,7 +44,8 @@ class CustomerDialog(var onCustomer: () -> Unit) : BaseDialog(R.layout.dialog_cu
                 dismiss()
             }
             R.id.ivClose -> {
-                KeyboardUtils.hideKeyboard(requireActivity())
+                KeyboardUtils.hideKeyboard(requireActivity(), baseView)
+                baseView.postDelayed(this::dismiss, 10)
                 dismissAnimation()
             }
         }

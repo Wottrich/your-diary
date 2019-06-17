@@ -105,7 +105,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
     }
 
     override fun onDestroy() {
-        KeyboardUtils.hideKeyboard(this)
+        KeyboardUtils.hideKeyboard(this, root)
         super.onDestroy()
     }
 

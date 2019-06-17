@@ -2,6 +2,7 @@ package wottrich.github.io.yourdiary.view.dialog
 
 import android.annotation.SuppressLint
 import android.view.View
+import kotlinx.android.synthetic.main.dialog_customer.*
 import kotlinx.android.synthetic.main.show_customers_dialog.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.CustomerAdapter
@@ -26,8 +27,8 @@ class ShowCustomersDialog(var onSelectedCustomer: () -> Unit) : BaseDialog(R.lay
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.ivClose -> {
-                KeyboardUtils.hideKeyboard(requireActivity())
-                dismiss()
+                KeyboardUtils.hideKeyboard(requireActivity(), baseView)
+                baseView.postDelayed(this::dismiss, 10)
             }
             else -> {
                 onSelectedCustomer()
