@@ -95,20 +95,4 @@ class RegisterOrderActivity : BaseActivity(R.layout.activity_register_order), Vi
         super.onBackPressed()
     }
 
-    /*
-    object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) = Unit
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                baseView.etPrice.removeTextChangedListener(this)
-                baseView.etPrice.setText(CurrencyUtils.formatToLocale(s.toString(), _locale), TextView.BufferType.EDITABLE)
-                baseView.etPrice.setSelection(baseView.etPrice.text.length)
-                baseView.etPrice.addTextChangedListener(this)
-                //priceObserver = baseView.etPrice.text.toString()
-                validButton()
-            }
-        }
-    */
-
 }

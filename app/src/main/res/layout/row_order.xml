@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/rootOrder"
         android:foreground="?attr/selectableItemBackground"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

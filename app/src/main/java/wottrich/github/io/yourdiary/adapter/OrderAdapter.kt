@@ -14,7 +14,12 @@ import wottrich.github.io.yourdiary.extensions.getDateString
 import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.Order
 
-class OrderAdapter(private var _orders: List<Order>?, var context: Context, val onClickOrder: (order: Order?) -> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class OrderAdapter(
+    private var _orders: List<Order>?,
+    var context: Context,
+    val onClickOrder: (order: Order?, position: Int) -> Unit,
+    val onLongClickOrder: (order: Order?, position: Int) -> Unit
+): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val inflate: LayoutInflater = LayoutInflater.from(context)
 
@@ -36,8 +41,19 @@ class OrderAdapter(private var _orders: List<Order>?, var context: Context, val 
                 view.tvDescription.text = order.description
                 view.tvDescription.visibility = if (order.description.isEmpty()) View.GONE else View.VISIBLE
 
+                if (order.isSelected) {
+                    view.rootOrder.background = context.getDrawable(R.drawable.shape_row_order_selected)
+                } else {
+                    view.rootOrder.background = context.getDrawable(R.drawable.shape_row_order)
+                }
+
                 view.setOnClickListener {
-                    onClickOrder(_orders?.get(this.adapterPosition))
+                    onClickOrder(_orders?.get(this.adapterPosition), this.adapterPosition)
+                }
+
+                view.setOnLongClickListener{
+                    onLongClickOrder(_orders?.get(this.adapterPosition), this.adapterPosition)
+                    true
                 }
             }
         }

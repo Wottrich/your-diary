@@ -28,5 +28,11 @@
         </menu>
     </item>
 
+    <item
+        android:id="@+id/itDelete"
+        android:icon="@drawable/ic_delete_dark_white_2_24dp"
+        android:title="@string/customer_options_time_line"
+        app:showAsAction="ifRoom" />
+
 
 </menu>

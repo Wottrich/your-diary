@@ -34,7 +34,7 @@ class RegisterOrderViewModel(var userId: Long, orderId: Long, var type: OrderTyp
                 put(order)
             }
             OrderType.NEW -> {
-                if (order != null) {
+                if (order != null && (order?.description!!.isNotEmpty() || (order?.title != null && order?.title!!.isNotEmpty()))) {
                     val customer = box<Customer>().get(userId)
                     customer.orders.add(order!!)
                     put(customer)

@@ -15,6 +15,9 @@ class Order() {
 
     lateinit var customer: ToOne<Customer>
 
+    @Transient
+    var isSelected: Boolean = false
+
     constructor(title: String, price: Double, date: Date, description: String) : this() {
         this.title = title
         this.price = price
