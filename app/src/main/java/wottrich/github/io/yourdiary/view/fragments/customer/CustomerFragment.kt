@@ -123,17 +123,19 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         _toolbar.menu.getItem(2).isVisible = !_toolbar.menu.getItem(2).isVisible
     }
 
-
+    fun cleanSelectedItems () {
+        if (viewModel.onLongClickableMode) {
+            selectedItem()
+            viewModel.ordersSelected.clear()
+            this.orderAdapter.updateList()
+        }
+    }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.toolbar -> {
                 if (viewModel.clientCount > 0) {
-                    if (viewModel.onLongClickableMode) {
-                        selectedItem()
-                        viewModel.ordersSelected.clear()
-                        this.orderAdapter.updateList()
-                    }
+                    cleanSelectedItems()
                     val intent = Intent(activity, RegisterOrderActivity::class.java).apply {
                         this orderType OrderType.NEW
                         this userId viewModel.client?.id

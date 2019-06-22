@@ -123,7 +123,14 @@
                     android:background="@drawable/shape_toolbar">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:textAlignment="center"
+                        style="@style/RobotoWhite"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="Status do mes\nEm desenvolvimento"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content" />
 
                 </android.support.constraint.ConstraintLayout>

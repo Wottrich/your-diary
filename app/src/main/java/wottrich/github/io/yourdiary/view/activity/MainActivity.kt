@@ -65,6 +65,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
         if (tab?.position == 1) {
+            viewPagerAdapter.clientFragment.cleanSelectedItems()
             KeyboardUtils.showKeyboard(this, vpFragment)
             vpFragment.postDelayed({
                 CustomerDialog {
