@@ -17,6 +17,7 @@ import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.model.OrderType
 import wottrich.github.io.yourdiary.view.activity.MainActivity
 import wottrich.github.io.yourdiary.view.activity.order.RegisterOrderActivity
+import wottrich.github.io.yourdiary.view.dialog.MonthPickerDialog
 import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
 import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
 import java.util.*
@@ -45,6 +46,7 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         baseView.rvOrders.adapter = orderAdapter
         configMenu()
         loadCustomer()
+        listeners()
     }
 
     fun loadCustomer() {
@@ -78,6 +80,10 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         _toolbar.menu.getItem(2).isVisible = false
         _toolbar.setOnMenuItemClickListener(this)
         _toolbar.setOnClickListener(this)
+    }
+
+    private fun listeners () {
+        baseView.clInfo.setOnClickListener(this)
     }
 
     private fun onClickOrder (order: Order?, position: Int) {
@@ -155,6 +161,11 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
                         CustomerType.NEW
                     ).show(activity?.supportFragmentManager, "CustomerDialog")
                 }
+            }
+            R.id.clInfo -> {
+                MonthPickerDialog{ selectedMonth ->
+                    Toast.makeText(activity, getString(selectedMonth.nameMonth), Toast.LENGTH_SHORT).show()
+                }.show(activity?.supportFragmentManager, "MonthPickerDialog")
             }
         }
     }

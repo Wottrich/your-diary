@@ -36,6 +36,10 @@
 
     <!--Dialog Order-->
     <string name="dialog_order_title">Registrar Pedido</string>
+
+    <!--Dialog Month-->
+    <string name="dialog_month_title">Selecione um mês</string>
+    <string name="dialog_all_months">Sem filtro</string>
     <!--</editor-folder>-->
 
     <!--<editor-folder defaultstate="collapsed" desc="Activities">-->
@@ -55,5 +59,20 @@
     <string name="customer_options_settings">Configurações</string>
 
     <!--</editor-folder>-->
+
+    <!--Month-->
+    <string name="month_january">Janeiro</string>
+    <string name="month_february">Fevereiro</string>
+    <string name="month_march">Março</string>
+    <string name="month_april">Abril</string>
+    <string name="month_may">Maio</string>
+    <string name="month_june">Junho</string>
+    <string name="month_july">Julho</string>
+    <string name="month_august">Agosto</string>
+    <string name="month_september">Setembro</string>
+    <string name="month_october">Outubro</string>
+    <string name="month_november">Novembro</string>
+    <string name="month_december">Dezembro</string>
+    <string name="month_empty">Sem filtro</string>
 
 </resources>
