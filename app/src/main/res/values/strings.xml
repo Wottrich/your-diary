@@ -21,14 +21,18 @@
     <string name="dialog_spending_price_hint">R$0,00</string>
     <string name="dialog_spending_date">Data:</string>
     <string name="dialog_spending_date_hint">05/04/2009</string>
-    <string name="dialog_spending_btn">Register</string>
+    <string name="dialog_spending_btn">Registrar</string>
+    <string name="dialog_spending_btn_delete">Deletar</string>
     <string name="dialog_spending_register_success">Registrado com sucesso</string>
 
     <!--Dialog Customer-->
     <string name="dialog_customer_title">Lista de Clientes</string>
     <string name="dialog_customer_register">Registrar cliente</string>
+    <string name="dialog_customer_edit_customer">Editar Cliente</string>
+    <string name="dialog_customer_edit_save">Salvar</string>
     <string name="dialog_customer_client">Nome</string>
     <string name="dialog_customer_client_hint">Nome do Cliente</string>
+    <string name="dialog_customer_error_delete">Erro ao deletar cliente, por favor tente novamente mais tarde!</string>
 
     <!--Dialog Order-->
     <string name="dialog_order_title">Registrar Pedido</string>

@@ -4,6 +4,7 @@ import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.relation.ToMany
+import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.boxList
 import wottrich.github.io.yourdiary.extensions.put
 
@@ -32,6 +33,14 @@ open class Customer() {
             put(customer)
         }
 
+        fun deleteCustomer (id: Long) {
+            box<Customer>().remove(id)
+            boxList<Customer>().takeIf { it.isNotEmpty() }?.let {
+                it[0].selected = true
+                put(it[0])
+            }
+        }
+
         fun changeCustomer(customer: Customer) {
             val selectedCustomer = selectedCustomer()
             selectedCustomer?.selected = false
@@ -44,4 +53,9 @@ open class Customer() {
         }
     }
 
+}
+
+enum class CustomerType {
+    NEW,
+    EDIT
 }

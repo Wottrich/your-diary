@@ -12,11 +12,12 @@ import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.OrderAdapter
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseFragment
+import wottrich.github.io.yourdiary.model.CustomerType
 import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.model.OrderType
 import wottrich.github.io.yourdiary.view.activity.MainActivity
 import wottrich.github.io.yourdiary.view.activity.order.RegisterOrderActivity
-import wottrich.github.io.yourdiary.view.dialog.CustomerDialog
+import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
 import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
 import java.util.*
 
@@ -49,13 +50,15 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
     fun loadCustomer() {
         baseView.clMoreInfo.visibility = View.GONE
         if (viewModel.clientCount > 0) {
+            _toolbar.title = viewModel.client?.name
             _toolbar.subtitle = "Novo pedido..."
             updateInformation()
-            _toolbar.title = viewModel.client?.name
+            showMenu(true)
             orderAdapter.updateList()
         } else {
             _toolbar.title = "Novo Cliente"
             _toolbar.subtitle = null
+            showMenu(false)
         }
     }
 
@@ -63,6 +66,11 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         baseView.tvActualMonth.text = Calendar.getInstance().actualMonth()
         baseView.tvCountOrder.text = String.format("%d %s", viewModel.client?.orders?.size ?: 0, if(viewModel.client?.orders?.size == 1) "pedido" else "pedidos");
         baseView.tvPriceOrder.text = viewModel.client.totalPriceFromSelectedCustomer()
+    }
+
+    private fun showMenu (show: Boolean) {
+        _toolbar.menu.getItem(0).isVisible = show
+        _toolbar.menu.getItem(1).isVisible = show
     }
 
     private fun configMenu () {
@@ -142,7 +150,10 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
                     }
                     activity?.startActivityForResult(intent, MainActivity.UPDATE_ORDER_LIST)
                 } else {
-                    CustomerDialog(this::loadCustomer).show(activity?.supportFragmentManager, "CustomerDialog")
+                    CustomerDialog(
+                        this::loadCustomer,
+                        CustomerType.NEW
+                    ).show(activity?.supportFragmentManager, "CustomerDialog")
                 }
             }
         }
@@ -168,6 +179,14 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
                     selectedItem()
                     updateInformation()
                 }
+                true
+            }
+            R.id.itSettings -> {
+                CustomerDialog(
+                    this::loadCustomer,
+                    CustomerType.EDIT,
+                    viewModel.client?.id ?: -1
+                ).show(activity?.supportFragmentManager, "CustomerDialog")
                 true
             }
             else -> false
