@@ -28,7 +28,7 @@ open class SpendingFragment : BaseFragment(R.layout.fragment_spending), View.OnC
     override fun initValues() {
         baseView.rvSpending.adapter = spendingAdapter
         baseView.rvSpending.setHasFixedSize(true)
-        baseView.ivAdd.setOnClickListener(this)
+        //baseView.ivAdd.setOnClickListener(this)
         verifyEmptyList()
     }
 
@@ -38,19 +38,19 @@ open class SpendingFragment : BaseFragment(R.layout.fragment_spending), View.OnC
         verifyEmptyList()
     }
 
-    fun verifyEmptyList() {
-        baseView.tvEmptyList.visibility = if (boxSpendingList.isEmpty()) View.VISIBLE else View.GONE
+    private fun verifyEmptyList() {
+        //baseView.tvEmptyList.visibility = if (boxSpendingList.isEmpty()) View.VISIBLE else View.GONE
     }
 
     override fun onClick(v: View?) {
-        when (v?.id) {
+       /* when (v?.id) {
             R.id.ivAdd -> {
                 SpendingDialog {
                     spendingAdapter.updateList()
                     verifyEmptyList()
                 }.show(activity?.supportFragmentManager, "SpendingDialog")
             }
-        }
+        }*/
 
     }
 }

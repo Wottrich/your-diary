@@ -3,7 +3,7 @@
 
     <!--<editor-folder defaultstate="Collapsed" desc="Fragments">-->
     <!--Fragment Spending-->
-    <string name="fragment_spending_title">gastos</string>
+    <string name="fragment_spending_title">GASTOS</string>
     <string name="fragment_spending_empty_list">Nenhum gasto registrado</string>
 
     <!--Fragment Clients-->
