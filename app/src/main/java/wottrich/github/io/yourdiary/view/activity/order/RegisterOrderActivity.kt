@@ -27,7 +27,9 @@ class RegisterOrderActivity : BaseActivity(R.layout.activity_register_order), Vi
 
     override fun initValues() {
         etTitle setText viewModel.order?.title
-        etPrice setText viewModel.order?.price?.format()
+        if (viewModel.type == OrderType.EDIT) {
+            etPrice setText viewModel.order?.price?.format()
+        }
         etDescription setText viewModel.order?.description
         btnDate.text = viewModel.order?.date?.getDateString()
         addListeners()
@@ -43,7 +45,10 @@ class RegisterOrderActivity : BaseActivity(R.layout.activity_register_order), Vi
                 etPrice setText CurrencyUtils.formatToLocale(s.toString())
                 etPrice.setSelection(etPrice.text.length)
                 etPrice.addTextChangedListener(this)
-                viewModel.changePrice(convertToDouble(etPrice.text.toString(), _locale))
+                if (etPrice.text.isNotEmpty())
+                    viewModel.changePrice(convertToDouble(etPrice.text.toString(), _locale))
+                else
+                    viewModel.changePrice(0.0)
             }
 
         })

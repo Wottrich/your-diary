@@ -43,12 +43,12 @@ abstract class BaseDialog(private val layoutView: Int) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
-        val attrs = dialog.window?.attributes
-        attrs?.width = ViewGroup.LayoutParams.MATCH_PARENT
-        attrs?.height = ViewGroup.LayoutParams.MATCH_PARENT
-        attrs?.dimAmount = 0f
+        //val attrs = dialog.window?.attributes
+        //attrs?.width = ViewGroup.LayoutParams.MATCH_PARENT
+        //attrs?.height = ViewGroup.LayoutParams.MATCH_PARENT
+        //attrs?.dimAmount = 0f
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+        //dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
         return dialog
     }
 

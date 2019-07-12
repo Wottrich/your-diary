@@ -45,7 +45,7 @@
     <!--<editor-folder defaultstate="collapsed" desc="Activities">-->
     <!--Register Order-->
     <string name="activity_register_order_title">Título</string>
-    <string name="activity_register_order_amount">Valor do pedido</string>
+    <string name="activity_register_order_amount">R$ 0,00</string>
     <string name="activity_register_order_date">Data do pedido</string>
     <string name="activity_register_order_description">Descrição</string>
 

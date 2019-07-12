@@ -87,8 +87,7 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etTitle"
-                tools:text="R$ 2.000,00" />
+                app:layout_constraintTop_toBottomOf="@id/etTitle" />
 
             <Button
                 android:id="@+id/btnDate"

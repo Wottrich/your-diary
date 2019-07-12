@@ -21,7 +21,10 @@ class CurrencyUtils {
             val clean3 = cleanText(clean2)
             val clean = clean3.replace("[\\s]".toRegex(), "")
 
-            val parsed = if (!clean.isEmpty()) clean.toDouble() else 0.00
+            val parsed = if (clean.isNotEmpty()) clean.toDouble() else 0.00
+
+            if (parsed == 0.0)
+                return ""
 
             format.decimalFormatSymbols = symbols
             val formatFinal = format.format(parsed / 100).replace("\\s", "")
