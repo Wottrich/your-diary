@@ -25,18 +25,13 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
         } else {
             val user = boxList<User>().first()
             hasLockScreen = user.lockApp
-            if (user.lockApp) {
-                startActivityForResult(intentLockActivity(), RETURN_FINGERPRINT)
-            } else {
-                startMyActivity(MainActivity::class.java)
-            }
+
+            if (user.lockApp) startActivityForResult(intentLockActivity(), RETURN_FINGERPRINT)
+            else startMyActivity(MainActivity::class.java)
+
         }
 
-        if (hasLockScreen) {
-            btnRetry.visibility = View.VISIBLE
-        } else {
-            btnRetry.visibility = View.GONE
-        }
+        btnRetry.visibility = if (hasLockScreen) View.VISIBLE else View.GONE
 
         btnRetry.setOnClickListener {
             startActivityForResult(intentLockActivity(), RETURN_FINGERPRINT)

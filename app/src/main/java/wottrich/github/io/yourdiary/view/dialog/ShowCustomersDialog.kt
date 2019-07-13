@@ -1,6 +1,7 @@
 package wottrich.github.io.yourdiary.view.dialog
 
 import android.annotation.SuppressLint
+import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.dialog_customer.*
 import kotlinx.android.synthetic.main.show_customers_dialog.view.*
@@ -20,6 +21,8 @@ class ShowCustomersDialog(var onSelectedCustomer: () -> Unit) : BaseDialog(R.lay
         customerAdapter.color = activity?.getDrawable(R.color.transparent_white)
         customerAdapter.onClick = this
         baseView.rvCustomers.adapter = customerAdapter
+        val manager = GridLayoutManager(activity, 2)
+        baseView.rvCustomers.layoutManager = manager
         baseView.ivClose.setOnClickListener(this)
     }
 

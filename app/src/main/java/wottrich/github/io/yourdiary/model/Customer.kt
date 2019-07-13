@@ -47,7 +47,8 @@ open class Customer() {
             put(user)
         }
 
-        fun changeCustomer(customer: Customer) {
+        fun newCustomer (customer: Customer) {
+
             val selectedCustomer = selectedCustomer()
             selectedCustomer?.selected = false
             customer.selected = true
@@ -60,6 +61,17 @@ open class Customer() {
                 put(selectedCustomer)
                 put(user)
             }
+
+        }
+
+        fun changeCustomer(customer: Customer) {
+            val selectedCustomer = selectedCustomer()
+            selectedCustomer?.selected = false
+            customer.selected = true
+            if (selectedCustomer != null) {
+                put(selectedCustomer)
+            }
+            put(customer)
         }
     }
 

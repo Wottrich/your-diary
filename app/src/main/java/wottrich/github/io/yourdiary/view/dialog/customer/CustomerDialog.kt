@@ -66,7 +66,7 @@ class CustomerDialog(var onCustomer: () -> Unit, var type: CustomerType, var id:
         when(v?.id) {
             R.id.btnRegisterClient -> {
                 if (viewModel.type == CustomerType.NEW) {
-                    Customer.changeCustomer(Customer(baseView.etClientName.text.toString()))
+                    Customer.newCustomer(Customer(baseView.etClientName.text.toString()))
                     Toast.makeText(activity, getString(R.string.dialog_spending_register_success), Toast.LENGTH_SHORT).show()
                     onCustomer()
                     KeyboardUtils.hideKeyboard(requireActivity(), baseView)

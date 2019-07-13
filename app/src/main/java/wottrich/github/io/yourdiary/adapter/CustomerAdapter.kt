@@ -9,16 +9,18 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.row_customer.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.extensions.boxList
+import wottrich.github.io.yourdiary.extensions.getUser
 import wottrich.github.io.yourdiary.extensions.put
 import wottrich.github.io.yourdiary.extensions.totalPriceFromSelectedCustomer
 import wottrich.github.io.yourdiary.model.Customer
+import wottrich.github.io.yourdiary.model.User
 
 class CustomerAdapter(
     private var context: Context?,
     private var inflater: LayoutInflater = LayoutInflater.from(context)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var customer = boxList<Customer>()
+    private var customer = getUser().customers
     var color: Drawable? = null
     var onClick: View.OnClickListener? = null
 
@@ -47,7 +49,7 @@ class CustomerAdapter(
     override fun getItemCount(): Int = customer.size
 
     fun updateList() {
-        customer = boxList()
+        customer = getUser().customers
         notifyDataSetChanged()
     }
 

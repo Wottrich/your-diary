@@ -70,13 +70,16 @@
             android:id="@+id/rvCustomers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
             app:reverseLayout="false"
-            tools:itemCount="13"
+            tools:itemCount="4"
+            tools:orientation="horizontal"
+            tools:scrollbars="horizontal"
+            tools:spanCount="2"
             tools:listitem="@layout/row_customer" />
 
 
