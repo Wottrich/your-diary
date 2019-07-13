@@ -125,7 +125,7 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         //_toolbar.menu.getItem(2).isVisible = !_toolbar.menu.getItem(2).isVisible
     }
 
-    fun cleanSelectedItems () {
+    private fun cleanSelectedItems () {
         if (viewModel.onLongClickableMode) {
             selectedItem()
             viewModel.ordersSelected.clear()
