@@ -7,11 +7,11 @@ import android.support.v4.view.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ViewPagerAdapter
+import wottrich.github.io.yourdiary.enumerators.CustomerType
 import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.put
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.Customer
-import wottrich.github.io.yourdiary.model.CustomerType
 import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
@@ -97,8 +97,11 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        if (requestCode == UPDATE_ORDER_LIST && resultCode == Activity.RESULT_OK) {
-            viewPagerAdapter.clientFragment.loadCustomer()
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                UPDATE_ORDER_LIST -> viewPagerAdapter.clientFragment.loadCustomer()
+                UPDATE_SPENDING_LIST -> viewPagerAdapter.spendingFragment.reload()
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data)
@@ -111,5 +114,6 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
     companion object {
         const val UPDATE_ORDER_LIST = 100
+        const val UPDATE_SPENDING_LIST = 200
     }
 }

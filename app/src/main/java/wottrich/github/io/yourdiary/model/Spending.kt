@@ -2,15 +2,28 @@ package wottrich.github.io.yourdiary.model
 
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
+import io.objectbox.relation.ToOne
 import java.util.Date
 
 @Entity
-data class Spending(
-    var title: String?,
-    var description: String?,
-    var price: Double?,
-    var date: Date?
-) {
+class Spending() {
     @Id var id: Long = 0
-    var selected: Boolean = false
+
+    var title: String? = null
+    var description: String? = null
+    var price: Double? = null
+    var date: Date? = Date()
+
+    @Transient
+    var isSelected: Boolean = false
+
+    lateinit var user: ToOne<User>
+
+    constructor(title: String?, description: String?, price: Double?, date: Date?) : this() {
+        this.title = title
+        this.description = description
+        this.price = price
+        this.date = date
+    }
+
 }

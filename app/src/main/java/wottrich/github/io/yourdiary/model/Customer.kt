@@ -4,6 +4,7 @@ import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.relation.ToMany
+import io.objectbox.relation.ToOne
 import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.boxList
 import wottrich.github.io.yourdiary.extensions.put
@@ -21,6 +22,8 @@ open class Customer() {
 
     @Backlink(to = "customer")
     lateinit var orders: ToMany<Order>
+
+    lateinit var user: ToOne<User>
 
     companion object {
         fun selectedCustomer () : Customer? {
@@ -53,9 +56,4 @@ open class Customer() {
         }
     }
 
-}
-
-enum class CustomerType {
-    NEW,
-    EDIT
 }

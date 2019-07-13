@@ -6,7 +6,7 @@ import java.util.*
 class CurrencyUtils {
 
     companion object {
-        fun formatToLocale(text: String, locale: Locale? = _locale) : String {
+        fun formatToLocale(text: String, locale: Locale? = _locale, withoutSymbol: Boolean = false) : String {
             val l = locale ?: return ""
             if (l.country == "" || l.language == "") return ""
 
@@ -29,7 +29,7 @@ class CurrencyUtils {
             format.decimalFormatSymbols = symbols
             val formatFinal = format.format(parsed / 100).replace("\\s", "")
 
-            return "$symbol $formatFinal"
+            return if (withoutSymbol) formatFinal else "$symbol $formatFinal"
         }
     }
 }

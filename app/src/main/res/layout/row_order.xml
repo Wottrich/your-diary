@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toStartOf="@id/tvDateOrder"
+            app:layout_constraintEnd_toStartOf="@id/tvDate"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -43,7 +43,7 @@
                 tools:text="Camisetas do time lá da pqp de sao sépe da merda" />
 
             <TextView
-                android:id="@+id/tvPriceOrder"
+                android:id="@+id/tvPrice"
                 style="@style/Label.ShinyShamrock"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
 
 
         <TextView
-            android:id="@+id/tvDateOrder"
+            android:id="@+id/tvDate"
             style="@style/LabelTitle.WebOrange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

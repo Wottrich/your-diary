@@ -5,13 +5,9 @@
   "entities": [
     {
       "id": "1:4600733006649829773",
-      "lastPropertyId": "6:8506007363318894358",
+      "lastPropertyId": "7:5959293967297824845",
       "name": "Spending",
       "properties": [
-        {
-          "id": "1:4911001239107446922",
-          "name": "selected"
-        },
         {
           "id": "2:8558612845585906656",
           "name": "id"
@@ -31,6 +27,11 @@
         {
           "id": "6:8506007363318894358",
           "name": "date"
+        },
+        {
+          "id": "7:5959293967297824845",
+          "indexId": "3:909088105651420896",
+          "name": "userId"
         }
       ],
       "relations": []
@@ -70,7 +71,7 @@
     },
     {
       "id": "3:671806623694616141",
-      "lastPropertyId": "3:4035313461690297533",
+      "lastPropertyId": "4:7581547040941234152",
       "name": "Customer",
       "properties": [
         {
@@ -84,20 +85,55 @@
         {
           "id": "3:4035313461690297533",
           "name": "selected"
+        },
+        {
+          "id": "4:7581547040941234152",
+          "indexId": "2:5796559713598491148",
+          "name": "userId"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:5542775092241602988",
+      "lastPropertyId": "5:4239806254448942808",
+      "name": "User",
+      "properties": [
+        {
+          "id": "1:1386708268369467131",
+          "name": "id"
+        },
+        {
+          "id": "2:8673594900437058234",
+          "name": "name"
+        },
+        {
+          "id": "3:6666789498459704565",
+          "name": "age"
+        },
+        {
+          "id": "4:2983494955696955758",
+          "name": "income"
+        },
+        {
+          "id": "5:4239806254448942808",
+          "name": "lockApp"
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "3:671806623694616141",
-  "lastIndexId": "1:1335114940852908081",
+  "lastEntityId": "4:5542775092241602988",
+  "lastIndexId": "3:909088105651420896",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    4911001239107446922
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

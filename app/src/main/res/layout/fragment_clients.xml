@@ -46,6 +46,7 @@
                 app:titleTextColor="@color/white" />
 
             <android.support.constraint.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/clMoreInfo"
                 app:layout_scrollFlags="snapMargins"
                 android:layout_width="match_parent"
@@ -137,16 +138,14 @@
 
             </android.support.constraint.ConstraintLayout>
 
-
-
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvOrders"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/arenic"
             android:layout_marginBottom="10dp"
+            android:background="@color/arenic"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

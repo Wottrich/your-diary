@@ -22,14 +22,21 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:elevation="0dp">
+            app:elevation="0dp">
 
             <android.support.v7.widget.Toolbar
+                app:layout_scrollFlags="scroll|enterAlways|snap"
                 android:id="@+id/toolbar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title="@string/fragment_spending_title"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/shape_toolbar"/>
+                android:background="@drawable/shape_toolbar_spending"/>
+
+            <View
+                android:background="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -45,7 +52,8 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:reverseLayout="false"
             tools:itemCount="13"
-            tools:listitem="@layout/row_spending" />
+            android:layout_marginBottom="10dp"
+            tools:listitem="@layout/row_order" />
 
     </android.support.design.widget.CoordinatorLayout>
 

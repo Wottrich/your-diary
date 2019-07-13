@@ -26,8 +26,3 @@ class Order() {
     }
 
 }
-
-enum class OrderType(val type: String) {
-    NEW("new"),
-    EDIT("edit")
-}

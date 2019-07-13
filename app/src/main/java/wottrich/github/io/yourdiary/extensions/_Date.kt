@@ -93,10 +93,12 @@ fun OnCalendarPicker.showPicker(context: Context): DatePickerDialog {
     DatePickerDialog(
         context,
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            val monthCorrect = if (month.toString().length == 1) "0$month" else month.toString()
+            val realMonth = month + 1
+            val monthCorrect = if (realMonth.toString().length == 1) "0$realMonth" else realMonth.toString()
+            val dayCorrect = if (dayOfMonth.toString().length == 1) "0$dayOfMonth" else dayOfMonth.toString()
             this.onDate(
-                "$dayOfMonth/$monthCorrect/$year".getDate(),
-                "$dayOfMonth/$monthCorrect/$year"
+                "$dayCorrect/$monthCorrect/$year".getDate(),
+                "$dayCorrect/$monthCorrect/$year"
             )
         },
         Calendar.getInstance().get(Calendar.YEAR),
