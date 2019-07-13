@@ -5,7 +5,7 @@
     <item
         android:id="@+id/itOk"
         android:icon="@drawable/check_ok_32dp"
-        android:title="@string/customer_options_time_line"
+        android:title="@string/ok_option"
         app:showAsAction="ifRoom" />
 
 

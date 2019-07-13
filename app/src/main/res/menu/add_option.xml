@@ -5,7 +5,7 @@
     <item
         android:id="@+id/itAdd"
         android:icon="@drawable/add_white_32dp"
-        android:title="@string/customer_options_time_line"
+        android:title="@string/add_option"
         app:showAsAction="ifRoom" />
 
 </menu>

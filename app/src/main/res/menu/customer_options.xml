@@ -25,6 +25,11 @@
                 android:title="@string/customer_options_settings"
                 app:showAsAction="ifRoom" />
 
+            <item
+                android:id="@+id/itNewCustomer"
+                android:title="@string/customer_options_add_customer"
+                app:showAsAction="ifRoom" />
+
         </menu>
     </item>
 

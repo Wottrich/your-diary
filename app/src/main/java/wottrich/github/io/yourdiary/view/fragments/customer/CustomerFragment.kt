@@ -57,6 +57,7 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         } else {
             _toolbar.title = "Novo Cliente"
             _toolbar.subtitle = null
+            orderAdapter.updateList()
             showMenu(false)
         }
     }
