@@ -5,14 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/arenic"
-    android:animateLayoutChanges="true"
     tools:context=".view.fragments.customer.CustomerFragment">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:animateLayoutChanges="true"
-        android:animationCache="true"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,11 +17,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.AppBarLayout
-            android:animateLayoutChanges="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:fitsSystemWindows="true"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:elevation="0dp">
 
@@ -32,111 +27,11 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_margin="10dp"
                 android:background="@drawable/shape_toolbar"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="10dp"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:subtitle="Novo Pedido..."
-                app:subtitleTextColor="@color/dark_white"
-                app:title="Cliente Nome"
-                app:titleTextColor="@color/white" />
-
-            <android.support.constraint.ConstraintLayout
-                android:visibility="gone"
-                android:id="@+id/clMoreInfo"
-                app:layout_scrollFlags="snapMargins"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.constraint.ConstraintLayout
-                    android:foreground="?attr/selectableItemBackground"
-                    app:layout_constraintEnd_toStartOf="@id/cl"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:id="@+id/clInfo"
-                    android:animateLayoutChanges="true"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/shape_toolbar">
-
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:id="@+id/tvActualMonth"
-                        android:textSize="22sp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        style="@style/RobotoWhite"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        tools:text="Julho" />
-
-                    <TextView
-                        android:id="@+id/tvCountOrder"
-                        android:layout_marginTop="5dp"
-                        android:textAlignment="center"
-                        style="@style/Label.WebOrange"
-                        tools:text="13 Pedidos"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvActualMonth"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginBottom="5dp"
-                        android:id="@+id/tvPriceOrder"
-                        android:layout_marginTop="5dp"
-                        android:textAlignment="center"
-                        style="@style/Label.ShinyShamrock"
-                        tools:text="R$ 300,00"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvCountOrder"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
-
-
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
-                    android:foreground="?attr/selectableItemBackground"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/clInfo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:animateLayoutChanges="true"
-                    android:id="@+id/cl"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/shape_toolbar">
-
-                    <TextView
-                        android:textAlignment="center"
-                        style="@style/RobotoWhite"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:text="Status do mes\nEm desenvolvimento"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
-
-                </android.support.constraint.ConstraintLayout>
-
-            </android.support.constraint.ConstraintLayout>
+                app:title="@string/fragment_spending_title" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -144,10 +39,13 @@
             android:id="@+id/rvOrders"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/arenic"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:reverseLayout="false"
+            tools:itemCount="13"
+            tools:listitem="@layout/row_order"  />
 
     </android.support.design.widget.CoordinatorLayout>
 

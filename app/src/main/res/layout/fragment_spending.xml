@@ -8,51 +8,48 @@
     tools:context=".view.fragments.SpendingFragment">
 
     <android.support.design.widget.CoordinatorLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:fitsSystemWindows="true"
         android:layout_width="0dp"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:fitsSystemWindows="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.AppBarLayout
-            android:background="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:fitsSystemWindows="true"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:elevation="0dp">
 
             <android.support.v7.widget.Toolbar
-                app:layout_scrollFlags="scroll|enterAlways|snap"
                 android:id="@+id/toolbar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="@string/fragment_spending_title"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/shape_toolbar_spending"/>
+                android:background="@drawable/shape_toolbar_spending"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="@string/fragment_spending_title" />
 
             <View
-                android:background="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"/>
+                android:layout_height="1dp"
+                android:background="@color/black" />
 
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="1dp"
             android:id="@+id/rvSpending"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:reverseLayout="false"
             tools:itemCount="13"
-            android:layout_marginBottom="10dp"
             tools:listitem="@layout/row_order" />
 
     </android.support.design.widget.CoordinatorLayout>

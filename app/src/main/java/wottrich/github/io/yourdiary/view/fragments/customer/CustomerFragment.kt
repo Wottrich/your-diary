@@ -50,11 +50,10 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
     }
 
     fun loadCustomer() {
-        baseView.clMoreInfo.visibility = View.GONE
+        //baseView.clMoreInfo.visibility = View.GONE
         if (viewModel.clientCount > 0) {
             _toolbar.title = viewModel.client?.name
             _toolbar.subtitle = "Novo pedido..."
-            updateInformation()
             showMenu(true)
             orderAdapter.updateList()
         } else {
@@ -65,9 +64,9 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
     }
 
     private fun updateInformation () {
-        baseView.tvActualMonth.text = Calendar.getInstance().actualMonth()
-        baseView.tvCountOrder.text = String.format("%d %s", viewModel.client?.orders?.size ?: 0, if(viewModel.client?.orders?.size == 1) "pedido" else "pedidos");
-        baseView.tvPriceOrder.text = viewModel.client.totalPriceFromSelectedCustomer()
+        //baseView.tvActualMonth.text = Calendar.getInstance().actualMonth()
+        //baseView.tvCountOrder.text = String.format("%d %s", viewModel.client?.orders?.size ?: 0, if(viewModel.client?.orders?.size == 1) "pedido" else "pedidos");
+        //baseView.tvPriceOrder.text = viewModel.client.totalPriceFromSelectedCustomer()
     }
 
     private fun showMenu (show: Boolean) {
@@ -83,7 +82,7 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
     }
 
     private fun listeners () {
-        baseView.clInfo.setOnClickListener(this)
+        //baseView.clInfo.setOnClickListener(this)
     }
 
     private fun onClickOrder (order: Order?, position: Int) {
@@ -162,11 +161,11 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
                     ).show(activity?.supportFragmentManager, "CustomerDialog")
                 }
             }
-            R.id.clInfo -> {
+            /*R.id.clInfo -> {
                 MonthPickerDialog{ selectedMonth ->
                     Toast.makeText(activity, getString(selectedMonth.nameMonth), Toast.LENGTH_SHORT).show()
                 }.show(activity?.supportFragmentManager, "MonthPickerDialog")
-            }
+            }*/
         }
     }
 

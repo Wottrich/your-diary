@@ -1,15 +1,10 @@
 package wottrich.github.io.yourdiary.view.activity.firstAccess
 
-import android.annotation.TargetApi
 import android.app.Activity
-import android.app.KeyguardManager
 import android.content.Intent
-import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.CompoundButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_user_register.*
 import wottrich.github.io.yourdiary.R
@@ -18,7 +13,7 @@ import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import wottrich.github.io.yourdiary.view.activity.MainActivity
 
-class UserRegisterActivity : BaseActivity(R.layout.activity_user_register), View.OnClickListener, KeyguardManager.OnKeyguardExitResult {
+class UserRegisterActivity : BaseActivity(R.layout.activity_user_register), View.OnClickListener {
 
     val RETURN_FINGERPRINT = 300
 
@@ -73,7 +68,7 @@ class UserRegisterActivity : BaseActivity(R.layout.activity_user_register), View
             }
         })
 
-        cbLockApp.setOnCheckedChangeListener { buttonView, isChecked ->
+        cbLockApp.setOnCheckedChangeListener { _, isChecked ->
             viewModel.user.lockApp = isChecked
         }
 
@@ -175,10 +170,6 @@ class UserRegisterActivity : BaseActivity(R.layout.activity_user_register), View
         if (viewModel.canReturn) {
             reloadView()
         } else super.onBackPressed()
-    }
-
-    override fun onKeyguardExitResult(success: Boolean) {
-        print("success")
     }
 
 }
