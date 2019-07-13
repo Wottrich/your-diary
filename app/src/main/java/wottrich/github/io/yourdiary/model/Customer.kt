@@ -4,8 +4,10 @@ import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.relation.ToMany
+import io.objectbox.relation.ToOne
 import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.boxList
+import wottrich.github.io.yourdiary.extensions.getUser
 import wottrich.github.io.yourdiary.extensions.put
 
 @Entity
@@ -22,9 +24,11 @@ open class Customer() {
     @Backlink(to = "customer")
     lateinit var orders: ToMany<Order>
 
+    lateinit var user: ToOne<User>
+
     companion object {
         fun selectedCustomer () : Customer? {
-            return boxList<Customer>().find { it.selected }
+            return getUser().customers.find { it.selected }
         }
 
         fun deselectCustomer () {
@@ -34,28 +38,29 @@ open class Customer() {
         }
 
         fun deleteCustomer (id: Long) {
-            box<Customer>().remove(id)
-            boxList<Customer>().takeIf { it.isNotEmpty() }?.let {
+            val user = getUser()
+            user.customers.removeById(id)
+            user.customers.takeIf { it.isNotEmpty() }?.let {
                 it[0].selected = true
                 put(it[0])
             }
+            put(user)
         }
 
         fun changeCustomer(customer: Customer) {
             val selectedCustomer = selectedCustomer()
             selectedCustomer?.selected = false
             customer.selected = true
+            val user = getUser()
             if (selectedCustomer == null) {
-                put(customer)
+                user.customers.add(customer)
+                put(user)
             } else {
-                put(selectedCustomer, customer)
+                user.customers.add(customer)
+                put(selectedCustomer)
+                put(user)
             }
         }
     }
 
-}
-
-enum class CustomerType {
-    NEW,
-    EDIT
 }

@@ -36,8 +36,8 @@ class OrderAdapter(
             this.itemView.let { view ->
                 view.tvTitle.text = order.title
                 view.tvTitle.visibility = if (order.title.isEmpty()) View.GONE else View.VISIBLE
-                view.tvPriceOrder.text = order.price.format()
-                view.tvDateOrder.text = order.date.getDateString()
+                view.tvPrice.text = order.price.format()
+                view.tvDate.text = order.date.getDateString()
                 view.tvDescription.text = order.description
                 view.tvDescription.visibility = if (order.description.isEmpty()) View.GONE else View.VISIBLE
 

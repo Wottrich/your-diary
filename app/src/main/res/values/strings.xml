@@ -3,7 +3,7 @@
 
     <!--<editor-folder defaultstate="Collapsed" desc="Fragments">-->
     <!--Fragment Spending-->
-    <string name="fragment_spending_title">gastos</string>
+    <string name="fragment_spending_title">Gastos</string>
     <string name="fragment_spending_empty_list">Nenhum gasto registrado</string>
 
     <!--Fragment Clients-->
@@ -48,6 +48,25 @@
     <string name="activity_register_order_amount">R$ 0,00</string>
     <string name="activity_register_order_date">Data do pedido</string>
     <string name="activity_register_order_description">Descrição</string>
+
+    <!--User Register-->
+    <string name="activity_user_register_welcome">Bem-vindo!</string>
+    <string name="activity_user_register_welcome_message">Novo por aqui?</string>
+    <string name="activity_user_register_why_income">Por qual môtimo?</string>
+    <string name="activity_user_register_because_income">Com sua renda podemos fazer previsões mais detalhadas sobre o seu mês.</string>
+    <string name="activity_user_register_insert_data">Insira seus dados para\nnós te conhecermos melhor =)</string>
+    <string name="activity_user_register_name_hint">Digite seu Nome</string>
+    <string name="activity_user_register_age_hint">Digite sua Idade</string>
+    <string name="activity_user_register_income_hint">Digite sua Renda</string>
+    <string name="activity_user_register_btn_continue">Continuar</string>
+    <string name="activity_user_register_btn_finish">Finalizar</string>
+    <string name="activity_user_register_fill_all_fields">Preencha todos os campos para continuar</string>
+    <string name="activity_user_register_age_0">Sua Idade tem que ser maior que 0</string>
+    <string name="activity_user_register_income_0">Sua Renda tem que ser maior que 0</string>
+    <string name="activity_user_register_error">Verifique os dados e tente novamente</string>
+
+    <!--Splash-->
+    <string name="activity_splash_retry">Tentar novamente</string>
 
     <!--</editor-folder>-->
 

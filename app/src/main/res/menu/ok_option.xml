@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itOk"
+        android:icon="@drawable/check_ok_32dp"
+        android:title="@string/customer_options_time_line"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
