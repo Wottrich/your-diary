@@ -2,6 +2,7 @@ package wottrich.github.io.yourdiary.view.activity.register
 
 import wottrich.github.io.yourdiary.enumerators.RegisterType
 import wottrich.github.io.yourdiary.extensions.box
+import wottrich.github.io.yourdiary.extensions.getUser
 import wottrich.github.io.yourdiary.extensions.put
 import wottrich.github.io.yourdiary.model.*
 import java.util.*
@@ -74,13 +75,15 @@ class RegisterViewModel() {
                 if (isSpending) put(spending) else put(order)
             }
             RegisterType.NEW -> {
+                val user = getUser()
                 if (isSpending) {
                     if (spending != null && (spending?.description != null && spending?.description!!.isNotEmpty() || (spending?.title != null && spending?.title!!.isNotEmpty()))) {
-                        put(spending)
+                        user.spendingList.add(spending!!)
+                        put(user)
                     }
                 } else {
                     if (order != null && (order?.description!!.isNotEmpty() || (order?.title != null && order?.title!!.isNotEmpty()))) {
-                        val customer = box<Customer>().get(userId)
+                        val customer = user.customers.getById(userId)//box<Customer>().get(userId)
                         customer.orders.add(order!!)
                         put(customer)
                     }

@@ -24,12 +24,13 @@
             app:elevation="0dp">
 
             <android.support.v7.widget.Toolbar
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@drawable/shape_toolbar"
-                android:layout_margin="10dp"
-                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:layout_scrollFlags="scroll|snap"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title="@string/fragment_spending_title" />
 
@@ -39,8 +40,6 @@
             android:id="@+id/rvOrders"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="10dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:reverseLayout="false"

@@ -46,11 +46,9 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         baseView.rvOrders.adapter = orderAdapter
         configMenu()
         loadCustomer()
-        listeners()
     }
 
     fun loadCustomer() {
-        //baseView.clMoreInfo.visibility = View.GONE
         if (viewModel.clientCount > 0) {
             _toolbar.title = viewModel.client?.name
             _toolbar.subtitle = "Novo pedido..."
@@ -63,12 +61,6 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         }
     }
 
-    private fun updateInformation () {
-        //baseView.tvActualMonth.text = Calendar.getInstance().actualMonth()
-        //baseView.tvCountOrder.text = String.format("%d %s", viewModel.client?.orders?.size ?: 0, if(viewModel.client?.orders?.size == 1) "pedido" else "pedidos");
-        //baseView.tvPriceOrder.text = viewModel.client.totalPriceFromSelectedCustomer()
-    }
-
     private fun showMenu (show: Boolean) {
         _toolbar.menu.getItem(0).isVisible = show
         //_toolbar.menu.getItem(1).isVisible = show
@@ -79,10 +71,6 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         _toolbar.menu.getItem(1).isVisible = false
         _toolbar.setOnMenuItemClickListener(this)
         _toolbar.setOnClickListener(this)
-    }
-
-    private fun listeners () {
-        //baseView.clInfo.setOnClickListener(this)
     }
 
     private fun onClickOrder (order: Order?, position: Int) {
@@ -161,11 +149,6 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
                     ).show(activity?.supportFragmentManager, "CustomerDialog")
                 }
             }
-            /*R.id.clInfo -> {
-                MonthPickerDialog{ selectedMonth ->
-                    Toast.makeText(activity, getString(selectedMonth.nameMonth), Toast.LENGTH_SHORT).show()
-                }.show(activity?.supportFragmentManager, "MonthPickerDialog")
-            }*/
         }
     }
 
@@ -175,19 +158,10 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
                 ShowCustomersDialog(this::loadCustomer).show(activity?.supportFragmentManager, "ShowCustomerDialog")
                 true
             }
-            /*R.id.itTimeLine -> {
-                if (baseView.clMoreInfo.visibility == View.GONE) {
-                    baseView.clMoreInfo.visibility = View.VISIBLE
-                } else {
-                    baseView.clMoreInfo.visibility = View.GONE
-                }
-                true
-            }*/
             R.id.itDelete -> {
                 viewModel.deleteSelectedOrders {
                     this.orderAdapter.updateList()
                     selectedItem()
-                    updateInformation()
                 }
                 true
             }
