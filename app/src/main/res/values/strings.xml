@@ -48,6 +48,9 @@
     <string name="activity_register_order_amount">R$ 0,00</string>
     <string name="activity_register_order_date">Data do pedido</string>
     <string name="activity_register_order_description">Descrição</string>
+    <string name="activity_register_order">Novo Pedido!</string>
+    <string name="activity_register_spending">Gastos</string>
+    <string name="activity_register_arrow_back">Voltar</string>
 
     <!--User Register-->
     <string name="activity_user_register_welcome">Bem-vindo!</string>

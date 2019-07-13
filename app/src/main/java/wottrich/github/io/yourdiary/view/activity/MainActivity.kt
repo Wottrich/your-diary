@@ -63,16 +63,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         return
     }
 
-    override fun onTabReselected(tab: TabLayout.Tab?) {
-        if (tab?.position == 1) {
-            viewPagerAdapter.clientFragment.cleanSelectedItems()
-            KeyboardUtils.showKeyboard(this, vpFragment)
-            vpFragment.postDelayed({
-                CustomerDialog (viewPagerAdapter.clientFragment::loadCustomer, CustomerType.NEW)
-                    .show(this.supportFragmentManager, "CustomerDialog")
-            }, 60)
-        }
-    }
+    override fun onTabReselected(tab: TabLayout.Tab?) = Unit
 
     override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
 
@@ -82,18 +73,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
 
-    override fun onPageSelected(position: Int) {
-        when (position) {
-            0 -> {
-                tabLayout.getTabAt(1)?.text = "Clientes"
-                viewPagerAdapter.spendingFragment.reload()
-            }
-            1 ->  {
-                tabLayout.getTabAt(1)?.text = "Adicionar Cliente"
-                //viewPagerAdapter.clientFragment.loadCustomer()
-            }
-        }
-    }
+    override fun onPageSelected(position: Int) = Unit
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 

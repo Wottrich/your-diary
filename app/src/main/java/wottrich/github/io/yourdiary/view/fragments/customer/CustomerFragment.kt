@@ -174,6 +174,13 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
                 ).show(activity?.supportFragmentManager, "CustomerDialog")
                 true
             }
+            R.id.itNewCustomer -> {
+                CustomerDialog(
+                    this::loadCustomer,
+                    CustomerType.NEW
+                ).show(activity?.supportFragmentManager, "CustomerDialog")
+                true
+            }
             else -> false
         }
     }

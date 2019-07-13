@@ -20,7 +20,7 @@ class RegisterViewModel() {
     private var userId: Long = -1
 
     //validates
-    private var isSpending: Boolean = false
+    var isSpending: Boolean = false
     var type: RegisterType = RegisterType.NEW
 
     // Order Constructor

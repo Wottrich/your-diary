@@ -43,6 +43,10 @@ class RegisterActivity : BaseActivity(R.layout.activity_register_order), View.On
         }
         etDescription setText viewModel.getDescription()
         btnDate.text = viewModel.getDate().getDateString()
+
+        if (viewModel.isSpending) toolbar.setTitle(R.string.activity_register_spending)
+        else toolbar.setTitle(R.string.activity_register_order)
+
         addListeners()
     }
 
