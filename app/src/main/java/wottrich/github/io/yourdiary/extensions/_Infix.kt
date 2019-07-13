@@ -2,15 +2,11 @@ package wottrich.github.io.yourdiary.extensions
 
 import android.content.Intent
 import android.widget.EditText
-import wottrich.github.io.yourdiary.model.Order
-import wottrich.github.io.yourdiary.model.OrderType
+import wottrich.github.io.yourdiary.enumerators.RegisterType
+import wottrich.github.io.yourdiary.model.Spending
 
-infix fun EditText.setText (text: String?) {
-    this.setText(text)
-}
-
-infix fun Intent.orderType (orderType: OrderType) {
-    this.putExtra("orderType", orderType)
+infix fun Intent.registerType (registerType: RegisterType) {
+    this.putExtra("registerType", registerType)
 }
 
 infix fun Intent.orderId (orderId: Long) {
@@ -19,4 +15,12 @@ infix fun Intent.orderId (orderId: Long) {
 
 infix fun Intent.userId (userId: Long?) {
     this.putExtra("userId", userId)
+}
+
+infix fun Intent.spendingId (spendingId: Long?) {
+    this.putExtra("spendingId", spendingId)
+}
+
+infix fun Intent.isSpending (isSpending: Boolean) {
+    this.putExtra("isSpending", isSpending)
 }

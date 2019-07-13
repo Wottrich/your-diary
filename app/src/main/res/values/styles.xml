@@ -80,6 +80,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="RobotoWebOrange" parent="CustomLabel.Roboto">
+        <item name="android:textColor">@color/web_orange</item>
+    </style>
+
     <style name="RobotoBoldWhite" parent="CustomLabel.RobotoBold">
         <item name="android:textColor">@color/white</item>
     </style>
