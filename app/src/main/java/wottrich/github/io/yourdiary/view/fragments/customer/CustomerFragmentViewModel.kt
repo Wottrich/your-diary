@@ -7,12 +7,12 @@ import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.model.User
 
-class CustomerFragmentViewModel(val user: User) {
+class CustomerFragmentViewModel {
 
     var onLongClickableMode: Boolean = false
     var ordersSelected: MutableList<Order> = mutableListOf()
 
-    //val user: User get() = getUser()
+    val user: User get() = getUser()
 
     val clientCount: Int get() = user.customers.size
 

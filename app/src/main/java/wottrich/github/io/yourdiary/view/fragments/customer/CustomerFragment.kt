@@ -22,11 +22,17 @@ import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
 import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
 
 @SuppressLint("StaticFieldLeak", "ValidFragment")
-open class CustomerFragment(val user: User) : BaseFragment(R.layout.fragment_clients), View.OnClickListener,
+open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
 
+    lateinit var user: User
+
     private val viewModel: CustomerFragmentViewModel by lazy {
-        CustomerFragmentViewModel(user)
+        CustomerFragmentViewModel()
+    }
+
+    constructor(user: User) : this() {
+        this.user = user
     }
 
     private lateinit var _toolbar: Toolbar
@@ -35,7 +41,7 @@ open class CustomerFragment(val user: User) : BaseFragment(R.layout.fragment_cli
         OrderAdapter(viewModel.orders, requireActivity(), this::onClickOrder, this::onLongClickOrder)
     }
 
-    companion object : CustomerFragment(user) {
+    companion object {
         @JvmStatic
         fun newInstance(user: User) = CustomerFragment(user)
     }
