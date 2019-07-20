@@ -19,7 +19,7 @@ object KeyboardUtils {
         }
     }
 
-    fun showKeyboard (activity: Activity, viewGroup: ViewGroup) {
+    fun showKeyboard (activity: Activity, viewGroup: View) {
         val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
 
         imm.toggleSoftInputFromWindow(
