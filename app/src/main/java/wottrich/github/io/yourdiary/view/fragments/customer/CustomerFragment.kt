@@ -16,6 +16,7 @@ import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseFragment
 import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.model.User
+import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import wottrich.github.io.yourdiary.view.activity.main.MainActivity
 import wottrich.github.io.yourdiary.view.activity.register.RegisterActivity
 import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
@@ -149,10 +150,13 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
                     }
                     activity?.startActivityForResult(intent, MainActivity.UPDATE_ORDER_LIST)
                 } else {
-                    CustomerDialog(
-                        this::loadCustomer,
-                        CustomerType.NEW
-                    ).show(activity?.supportFragmentManager, "CustomerDialog")
+                    KeyboardUtils.showKeyboard(requireActivity(), baseView)
+                    baseView.postDelayed({
+                        CustomerDialog(
+                            this::loadCustomer,
+                            CustomerType.NEW
+                        ).show(activity?.supportFragmentManager, "CustomerDialog")
+                    }, 100)
                 }
             }
         }
@@ -173,19 +177,25 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
                 true
             }
             R.id.itSettings -> {
-                CustomerDialog(
-                    this::loadCustomer,
-                    CustomerType.EDIT,
-                    viewModel.client?.id ?: -1
-                ).show(activity?.supportFragmentManager, "CustomerDialog")
+                KeyboardUtils.showKeyboard(requireActivity(), baseView)
+                baseView.postDelayed({
+                    CustomerDialog(
+                        this::loadCustomer,
+                        CustomerType.EDIT,
+                        viewModel.client?.id ?: -1
+                    ).show(activity?.supportFragmentManager, "CustomerDialog")
+                },100)
                 true
             }
             R.id.itNewCustomer -> {
                 cleanSelectedItems()
-                CustomerDialog(
-                    this::loadCustomer,
-                    CustomerType.NEW
-                ).show(activity?.supportFragmentManager, "CustomerDialog")
+                KeyboardUtils.showKeyboard(requireActivity(), baseView)
+                baseView.postDelayed({
+                    CustomerDialog(
+                        this::loadCustomer,
+                        CustomerType.NEW
+                    ).show(activity?.supportFragmentManager, "CustomerDialog")
+                }, 100)
                 true
             }
             else -> false
