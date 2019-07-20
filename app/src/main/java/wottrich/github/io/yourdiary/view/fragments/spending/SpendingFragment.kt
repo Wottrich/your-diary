@@ -24,7 +24,7 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
 
     lateinit var user: User
 
-    private val viewModel: SpendingFragmentViewModel by lazy {
+    val viewModel: SpendingFragmentViewModel by lazy {
         SpendingFragmentViewModel()
     }
 
@@ -113,6 +113,13 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
         viewModel.onLongClickEnable = viewModel.selectedSpending.isNotEmpty()
 
         spendingAdapter.notifyItemChanged(position)
+    }
+
+    fun cleanSelectedItems () {
+        if (viewModel.selectedSpending.isNotEmpty()) {
+            viewModel.selectedSpending.clear()
+            spendingAdapter.updateList()
+        }
     }
 
     override fun onClick(v: View?) {}
