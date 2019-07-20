@@ -91,9 +91,6 @@ class RegisterActivity : BaseActivity(R.layout.activity_register_order), View.On
         priceChange()
         btnDate.setOnClickListener(this)
         toolbar.setNavigationOnClickListener {
-            KeyboardUtils.hideKeyboard(this, root)
-            viewModel.saveData()
-            setResult(Activity.RESULT_OK)
             finish()
         }
         toolbar.inflateMenu(R.menu.ok_option)
@@ -128,11 +125,6 @@ class RegisterActivity : BaseActivity(R.layout.activity_register_order), View.On
     override fun onDate(date: Date, dateString: String) {
         viewModel.changeDate(date)
         btnDate.text = dateString
-    }
-
-    override fun onBackPressed() {
-        saveAndExit()
-        super.onBackPressed()
     }
 
 }
