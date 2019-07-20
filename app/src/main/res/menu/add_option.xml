@@ -5,7 +5,13 @@
     <item
         android:id="@+id/itAdd"
         android:icon="@drawable/add_white_32dp"
-        android:title="@string/add_option"
+        android:title="@string/spending_add_option"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/itDelete"
+        android:icon="@drawable/ic_delete_dark_white_2_24dp"
+        android:title="@string/spending_delete_option"
         app:showAsAction="ifRoom" />
 
 </menu>

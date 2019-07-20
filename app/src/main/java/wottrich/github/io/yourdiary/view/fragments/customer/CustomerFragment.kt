@@ -27,7 +27,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
 
     lateinit var user: User
 
-    private val viewModel: CustomerFragmentViewModel by lazy {
+    val viewModel: CustomerFragmentViewModel by lazy {
         CustomerFragmentViewModel()
     }
 
@@ -124,16 +124,16 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
     }
 
     private fun selectedItem() {
-        viewModel.onLongClickableMode = !viewModel.onLongClickableMode
-        _toolbar.menu.getItem(0).isVisible = !_toolbar.menu.getItem(0).isVisible
-        _toolbar.menu.getItem(1).isVisible = !_toolbar.menu.getItem(1).isVisible
+        val visible = viewModel.onLongClickableMode
+        _toolbar.menu.getItem(0).isVisible = !visible
+        _toolbar.menu.getItem(1).isVisible = visible
         //_toolbar.menu.getItem(2).isVisible = !_toolbar.menu.getItem(2).isVisible
     }
 
-    private fun cleanSelectedItems () {
+    fun cleanSelectedItems () {
         if (viewModel.onLongClickableMode) {
-            selectedItem()
             viewModel.ordersSelected.clear()
+            selectedItem()
             this.orderAdapter.updateList()
         }
     }
@@ -166,6 +166,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
             }
             R.id.itDelete -> {
                 viewModel.deleteSelectedOrders {
+                    viewModel.ordersSelected.clear()
                     this.orderAdapter.updateList()
                     selectedItem()
                 }
@@ -180,6 +181,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
                 true
             }
             R.id.itNewCustomer -> {
+                cleanSelectedItems()
                 CustomerDialog(
                     this::loadCustomer,
                     CustomerType.NEW

@@ -7,4 +7,7 @@ class MainViewModel {
 
     var user: User = getUser()
 
+    var isSpendingTab = true
+    var isCustomerTab = false
+
 }

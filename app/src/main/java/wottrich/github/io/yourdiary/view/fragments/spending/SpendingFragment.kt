@@ -24,7 +24,7 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
 
     lateinit var user: User
 
-    private val viewModel: SpendingFragmentViewModel by lazy {
+    val viewModel: SpendingFragmentViewModel by lazy {
         SpendingFragmentViewModel()
     }
 
@@ -50,12 +50,77 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
         baseView.rvSpending.adapter = spendingAdapter
         baseView.rvSpending.setHasFixedSize(true)
         baseView.toolbar.inflateMenu(R.menu.add_option)
+        baseView.toolbar.menu.getItem(1).isVisible = false
         baseView.toolbar.setOnMenuItemClickListener(this)
     }
 
     open fun reload() {
         spendingAdapter.updateList()
     }
+
+    private fun onClickSpending (spending: Spending?, position: Int) {
+        if (!viewModel.onLongClickEnable) {
+            if (spending != null) {
+                val intent = Intent(activity, RegisterActivity::class.java).apply {
+                    this spendingId spending.id
+                    this registerType RegisterType.EDIT
+                    this isSpending true
+                }
+                activity?.startActivityForResult(intent, MainActivity.UPDATE_SPENDING_LIST)
+            } else {
+                Toast.makeText(activity, "Error to get spending id", Toast.LENGTH_SHORT).show()
+            }
+        } else if (spending != null) {
+            controlSelectedList(spending, position)
+        } else {
+            Toast.makeText(activity, "Error to get order id", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun onLongClickSpending (spending: Spending?, position: Int) {
+        spending ?: return
+        controlSelectedList(spending, position)
+    }
+
+    private fun controlSelectedList (spending: Spending, position: Int) {
+        if (viewModel.selectedSpending.isEmpty()) {
+            spending.isSelected = true
+            viewModel.selectedSpending.add(spending)
+            menuSelectedItem()
+        } else {
+            val hasInList = viewModel.selectedSpending.find { it.id == spending.id } != null
+            if (hasInList) {
+                spending.isSelected = false
+                viewModel.selectedSpending.remove(spending)
+                menuSelectedItem()
+            } else {
+                spending.isSelected = true
+                viewModel.selectedSpending.add(spending)
+            }
+        }
+
+        spendingAdapter.notifyItemChanged(position)
+    }
+
+    private fun menuSelectedItem () {
+        if (viewModel.selectedSpending.isNotEmpty()) {
+            baseView.toolbar.menu.getItem(0).isVisible = false
+            baseView.toolbar.menu.getItem(1).isVisible = true
+        } else {
+            baseView.toolbar.menu.getItem(0).isVisible = true
+            baseView.toolbar.menu.getItem(1).isVisible = false
+        }
+    }
+
+    fun cleanSelectedItems () {
+        if (viewModel.onLongClickEnable) {
+            viewModel.selectedSpending.clear()
+            spendingAdapter.updateList()
+        }
+        menuSelectedItem()
+    }
+
+    override fun onClick(v: View?) {}
 
     override fun onMenuItemClick(menuItem: MenuItem?): Boolean {
         return when (menuItem?.itemId) {
@@ -67,26 +132,15 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
                 activity?.startActivityForResult(intent, MainActivity.UPDATE_SPENDING_LIST)
                 true
             }
+            R.id.itDelete -> {
+                viewModel.deleteSelectedItems {
+                    viewModel.selectedSpending.clear()
+                    spendingAdapter.updateList()
+                    menuSelectedItem()
+                }
+                true
+            }
             else -> false
         }
     }
-
-    private fun onClickSpending (spending: Spending?, position: Int?) {
-        if (spending != null) {
-            val intent = Intent(activity, RegisterActivity::class.java).apply {
-                this spendingId spending.id
-                this registerType RegisterType.EDIT
-                this isSpending true
-            }
-            activity?.startActivityForResult(intent, MainActivity.UPDATE_SPENDING_LIST)
-        } else {
-            Toast.makeText(activity, "Error to get spending id", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun onLongClickSpending (spending: Spending?, position: Int?) {
-
-    }
-
-    override fun onClick(v: View?) {}
 }

@@ -9,8 +9,9 @@ import wottrich.github.io.yourdiary.model.User
 
 class CustomerFragmentViewModel {
 
-    var onLongClickableMode: Boolean = false
     var ordersSelected: MutableList<Order> = mutableListOf()
+    val onLongClickableMode: Boolean
+        get() = ordersSelected.isNotEmpty()
 
     val user: User get() = getUser()
 

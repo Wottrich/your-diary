@@ -75,7 +75,15 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
 
-    override fun onPageSelected(position: Int) = Unit
+    override fun onPageSelected(position: Int) {
+        if (position == 0) {
+            viewModel.isSpendingTab = true
+            viewModel.isCustomerTab = false
+        } else {
+            viewModel.isCustomerTab = true
+            viewModel.isSpendingTab = false
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
@@ -87,6 +95,16 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         }
 
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onBackPressed() {
+        if (viewModel.isSpendingTab && viewPagerAdapter.spendingFragment.viewModel.selectedSpending.isNotEmpty()) {
+            viewPagerAdapter.spendingFragment.cleanSelectedItems()
+            return
+        } else if (viewModel.isCustomerTab && viewPagerAdapter.clientFragment.viewModel.ordersSelected.isNotEmpty()) {
+            viewPagerAdapter.clientFragment.cleanSelectedItems()
+            return
+        } else super.onBackPressed()
     }
 
     override fun onDestroy() {
