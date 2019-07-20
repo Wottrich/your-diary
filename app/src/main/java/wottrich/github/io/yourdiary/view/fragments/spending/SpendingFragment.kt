@@ -71,21 +71,48 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
         }
     }
 
-    private fun onClickSpending (spending: Spending?, position: Int?) {
-        if (spending != null) {
-            val intent = Intent(activity, RegisterActivity::class.java).apply {
-                this spendingId spending.id
-                this registerType RegisterType.EDIT
-                this isSpending true
+    private fun onClickSpending (spending: Spending?, position: Int) {
+        if (!viewModel.onLongClickEnable) {
+            if (spending != null) {
+                val intent = Intent(activity, RegisterActivity::class.java).apply {
+                    this spendingId spending.id
+                    this registerType RegisterType.EDIT
+                    this isSpending true
+                }
+                activity?.startActivityForResult(intent, MainActivity.UPDATE_SPENDING_LIST)
+            } else {
+                Toast.makeText(activity, "Error to get spending id", Toast.LENGTH_SHORT).show()
             }
-            activity?.startActivityForResult(intent, MainActivity.UPDATE_SPENDING_LIST)
+        } else if (spending != null) {
+            controlSelectedList(spending, position)
         } else {
-            Toast.makeText(activity, "Error to get spending id", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Error to get order id", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun onLongClickSpending (spending: Spending?, position: Int?) {
+    private fun onLongClickSpending (spending: Spending?, position: Int) {
+        spending ?: return
+        controlSelectedList(spending, position)
+    }
 
+    private fun controlSelectedList (spending: Spending, position: Int) {
+        if (viewModel.selectedSpending.isEmpty()) {
+            spending.isSelected = true
+            viewModel.selectedSpending.add(spending)
+        } else {
+            val hasInList = viewModel.selectedSpending.find { it.id == spending.id } != null
+            if (hasInList) {
+                spending.isSelected = false
+                viewModel.selectedSpending.remove(spending)
+            } else {
+                spending.isSelected = true
+                viewModel.selectedSpending.add(spending)
+            }
+        }
+
+        viewModel.onLongClickEnable = viewModel.selectedSpending.isNotEmpty()
+
+        spendingAdapter.notifyItemChanged(position)
     }
 
     override fun onClick(v: View?) {}

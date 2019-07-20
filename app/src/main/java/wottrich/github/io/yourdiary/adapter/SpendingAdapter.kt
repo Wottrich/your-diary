@@ -14,8 +14,8 @@ class SpendingAdapter(
         private var spendingList: List<Spending>,
         private var context: Context,
         private var inflater: LayoutInflater = LayoutInflater.from(context),
-        private var onClickSpending: (spending: Spending?, position: Int?) -> Unit,
-        private var onLongClickSpending: (spending: Spending?, position: Int?) -> Unit
+        private var onClickSpending: (spending: Spending?, position: Int) -> Unit,
+        private var onLongClickSpending: (spending: Spending?, position: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

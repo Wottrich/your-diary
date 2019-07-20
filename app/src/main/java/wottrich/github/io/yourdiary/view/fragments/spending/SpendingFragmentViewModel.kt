@@ -9,6 +9,8 @@ class SpendingFragmentViewModel {
     val user: User = getUser()
 
     val boxSpendingList: List<Spending> get() = user.spendingList
+
+    var onLongClickEnable: Boolean = false
     var selectedSpending: MutableList<Spending> = mutableListOf()
 
 }
