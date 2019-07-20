@@ -52,6 +52,7 @@
     <string name="activity_register_order">Novo Pedido!</string>
     <string name="activity_register_spending">Gastos</string>
     <string name="activity_register_arrow_back">Voltar</string>
+    <string name="activity_register_name_description_empty">Defina um titulo ou uma mensagem para o seu pedido</string>
 
     <!--User Register-->
     <string name="activity_user_register_welcome">Bem-vindo!</string>

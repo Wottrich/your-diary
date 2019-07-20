@@ -1,8 +1,11 @@
 package wottrich.github.io.yourdiary.view.activity.register
 
+import android.content.Context
+import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.enumerators.RegisterType
 import wottrich.github.io.yourdiary.extensions.box
 import wottrich.github.io.yourdiary.extensions.getUser
+import wottrich.github.io.yourdiary.extensions.isNotNullOrEmpty
 import wottrich.github.io.yourdiary.extensions.put
 import wottrich.github.io.yourdiary.model.*
 import java.util.*
@@ -69,23 +72,39 @@ class RegisterViewModel() {
         }
     }
 
-    fun saveData() {
+    fun saveData(result: (message: Int?, success: Boolean) -> Unit) {
         when (type) {
             RegisterType.EDIT -> {
-                if (isSpending) put(spending) else put(order)
+                if (isSpending) {
+                    if (spending?.title.isNotNullOrEmpty() || spending?.description.isNotNullOrEmpty()) {
+                        put(spending)
+                        result(null, true)
+                    } else {
+                        result(R.string.activity_register_name_description_empty, false)
+                    }
+                } else {
+                    if (order?.title.isNotNullOrEmpty() || order?.description.isNotNullOrEmpty()) {
+                        put(order)
+                        result(null, true)
+                    } else {
+                        result(R.string.activity_register_name_description_empty, false)
+                    }
+                }
             }
             RegisterType.NEW -> {
                 val user = getUser()
                 if (isSpending) {
-                    if (spending != null && (spending?.description != null && spending?.description!!.isNotEmpty() || (spending?.title != null && spending?.title!!.isNotEmpty()))) {
+                    if (spending != null && (spending?.description.isNotNullOrEmpty() || spending?.title.isNotNullOrEmpty())) {
                         user.spendingList.add(spending!!)
                         put(user)
+                        result(null, true)
                     }
                 } else {
-                    if (order != null && (order?.description!!.isNotEmpty() || (order?.title != null && order?.title!!.isNotEmpty()))) {
+                    if (order != null && (order?.description.isNotNullOrEmpty() || order?.title.isNotNullOrEmpty())) {
                         val customer = user.customers.getById(userId)//box<Customer>().get(userId)
                         customer.orders.add(order!!)
                         put(customer)
+                        result(null, true)
                     }
                 }
             }

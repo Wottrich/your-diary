@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_register_order.*
 import kotlinx.android.synthetic.main.activity_register_order.btnDate
 import kotlinx.android.synthetic.main.activity_register_order.etTitle
@@ -99,9 +100,14 @@ class RegisterActivity : BaseActivity(R.layout.activity_register_order), View.On
 
     private fun saveAndExit() {
         KeyboardUtils.hideKeyboard(this, root)
-        viewModel.saveData()
-        setResult(Activity.RESULT_OK)
-        finish()
+        viewModel.saveData { message, success ->
+            if (success) {
+                setResult(Activity.RESULT_OK)
+                finish()
+            } else if (!success && message != null) {
+                Toast.makeText(this, getString(message), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onClick(v: View?) {
