@@ -15,19 +15,18 @@ import wottrich.github.io.yourdiary.enumerators.RegisterType
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseFragment
 import wottrich.github.io.yourdiary.model.Order
-import wottrich.github.io.yourdiary.view.activity.MainActivity
+import wottrich.github.io.yourdiary.model.User
+import wottrich.github.io.yourdiary.view.activity.main.MainActivity
 import wottrich.github.io.yourdiary.view.activity.register.RegisterActivity
-import wottrich.github.io.yourdiary.view.dialog.MonthPickerDialog
 import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
 import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
-import java.util.*
 
-@SuppressLint("StaticFieldLeak")
-open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnClickListener,
+@SuppressLint("StaticFieldLeak", "ValidFragment")
+open class CustomerFragment(val user: User) : BaseFragment(R.layout.fragment_clients), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
 
     private val viewModel: CustomerFragmentViewModel by lazy {
-        CustomerFragmentViewModel()
+        CustomerFragmentViewModel(user)
     }
 
     private lateinit var _toolbar: Toolbar
@@ -36,9 +35,9 @@ open class CustomerFragment : BaseFragment(R.layout.fragment_clients), View.OnCl
         OrderAdapter(viewModel.orders, requireActivity(), this::onClickOrder, this::onLongClickOrder)
     }
 
-    companion object : CustomerFragment() {
+    companion object : CustomerFragment(user) {
         @JvmStatic
-        fun newInstance() = CustomerFragment()
+        fun newInstance(user: User) = CustomerFragment(user)
     }
 
     override fun initValues() {

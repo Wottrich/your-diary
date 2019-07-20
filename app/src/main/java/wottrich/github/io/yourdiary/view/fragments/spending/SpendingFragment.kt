@@ -1,4 +1,4 @@
-package wottrich.github.io.yourdiary.view.fragments
+package wottrich.github.io.yourdiary.view.fragments.spending
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,27 +14,30 @@ import wottrich.github.io.yourdiary.enumerators.RegisterType
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseFragment
 import wottrich.github.io.yourdiary.model.Spending
-import wottrich.github.io.yourdiary.view.activity.MainActivity
+import wottrich.github.io.yourdiary.model.User
+import wottrich.github.io.yourdiary.view.activity.main.MainActivity
 import wottrich.github.io.yourdiary.view.activity.register.RegisterActivity
 
-@SuppressLint("StaticFieldLeak")
-open class SpendingFragment : BaseFragment(R.layout.fragment_spending), View.OnClickListener,
+@SuppressLint("StaticFieldLeak", "ValidFragment")
+open class SpendingFragment(var user: User) : BaseFragment(R.layout.fragment_spending), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
 
-    private val boxSpendingList: List<Spending> get() = boxList()
+    private val viewModel: SpendingFragmentViewModel by lazy {
+        SpendingFragmentViewModel(user)
+    }
 
     private val spendingAdapter: SpendingAdapter by lazy {
         SpendingAdapter(
-            boxSpendingList.asReversed(),
+            viewModel.boxSpendingList.asReversed(),
             requireActivity(),
             onClickSpending = this::onClickSpending,
             onLongClickSpending = this::onLongClickSpending
         )
     }
 
-    companion object : SpendingFragment() {
+    companion object : SpendingFragment(user) {
         @JvmStatic
-        fun newInstance() = SpendingFragment()
+        fun newInstance(user: User) = SpendingFragment(user)
     }
 
     override fun initValues() {
