@@ -28,11 +28,14 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
             hasLockScreen = user.lockApp
 
             if (user.lockApp) startActivityForResult(intentLockActivity(), RETURN_FINGERPRINT)
-            else startMyActivity(MainActivity::class.java)
+            else {
+                startMyActivity(MainActivity::class.java)
+                finish()
+            }
 
         }
 
-        btnRetry.visibility = if (hasLockScreen) View.VISIBLE else View.GONE
+        btnRetry.visibility = View.GONE
 
         btnRetry.setOnClickListener {
             startActivityForResult(intentLockActivity(), RETURN_FINGERPRINT)
@@ -43,13 +46,18 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                RETURN_FINGERPRINT -> {
+
+        when (requestCode) {
+            RETURN_FINGERPRINT -> {
+                if (resultCode == Activity.RESULT_OK) {
                     startMyActivity(MainActivity::class.java)
+                    finish()
+                } else {
+                    btnRetry.visibility = View.VISIBLE
                 }
             }
         }
+
 
         super.onActivityResult(requestCode, resultCode, data)
     }

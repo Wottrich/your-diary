@@ -10,6 +10,12 @@ fun Context.intentLockActivity (message: String = "") : Intent {
     return key.createConfirmDeviceCredentialIntent("Security Lock", message)
 }
 
-infix fun Context.startMyActivity (clazz : Class<*>) {
+fun Context.startMyActivity (clazz : Class<*>) {
+    this.startActivity(Intent(this, clazz))
+}
+
+fun Context.startMyActivity (clazz : Class<*>, prepareIntent: (Intent) -> Intent) {
+    val intent = prepareIntent.invoke(Intent())
+    intent.setClass(this, clazz)
     this.startActivity(Intent(this, clazz))
 }
