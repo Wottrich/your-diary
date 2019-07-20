@@ -12,6 +12,7 @@ import wottrich.github.io.yourdiary.extensions.startMyActivity
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.view.activity.firstAccess.UserRegisterActivity
+import wottrich.github.io.yourdiary.view.activity.main.MainActivity
 
 class SplashActivity : BaseActivity(R.layout.activity_splash) {
 

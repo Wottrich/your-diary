@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/arenic"
-    tools:context=".view.fragments.SpendingFragment">
+    tools:context=".view.fragments.spending.SpendingFragment">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="0dp"

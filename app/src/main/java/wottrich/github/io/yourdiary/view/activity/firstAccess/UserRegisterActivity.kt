@@ -11,7 +11,7 @@ import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
-import wottrich.github.io.yourdiary.view.activity.MainActivity
+import wottrich.github.io.yourdiary.view.activity.main.MainActivity
 
 class UserRegisterActivity : BaseActivity(R.layout.activity_user_register), View.OnClickListener {
 
