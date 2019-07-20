@@ -3,15 +3,14 @@ package wottrich.github.io.yourdiary.view.dialog
 import android.annotation.SuppressLint
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
-import kotlinx.android.synthetic.main.dialog_customer.*
-import kotlinx.android.synthetic.main.show_customers_dialog.view.*
+import kotlinx.android.synthetic.main.dialog_show_customers.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.CustomerAdapter
 import wottrich.github.io.yourdiary.generics.BaseDialog
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
 
 @SuppressLint("ValidFragment")
-class ShowCustomersDialog(var onSelectedCustomer: () -> Unit) : BaseDialog(R.layout.show_customers_dialog), View.OnClickListener {
+class ShowCustomersDialog(var onSelectedCustomer: () -> Unit) : BaseDialog(R.layout.dialog_show_customers), View.OnClickListener {
 
     private val customerAdapter by lazy {
         CustomerAdapter(activity?.applicationContext)
