@@ -50,25 +50,12 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
         baseView.rvSpending.adapter = spendingAdapter
         baseView.rvSpending.setHasFixedSize(true)
         baseView.toolbar.inflateMenu(R.menu.add_option)
+        baseView.toolbar.menu.getItem(1).isVisible = false
         baseView.toolbar.setOnMenuItemClickListener(this)
     }
 
     open fun reload() {
         spendingAdapter.updateList()
-    }
-
-    override fun onMenuItemClick(menuItem: MenuItem?): Boolean {
-        return when (menuItem?.itemId) {
-            R.id.itAdd -> {
-                val intent = Intent(activity, RegisterActivity::class.java).apply {
-                    this registerType  RegisterType.NEW
-                    this isSpending true
-                }
-                activity?.startActivityForResult(intent, MainActivity.UPDATE_SPENDING_LIST)
-                true
-            }
-            else -> false
-        }
     }
 
     private fun onClickSpending (spending: Spending?, position: Int) {
@@ -99,28 +86,61 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
         if (viewModel.selectedSpending.isEmpty()) {
             spending.isSelected = true
             viewModel.selectedSpending.add(spending)
+            menuSelectedItem()
         } else {
             val hasInList = viewModel.selectedSpending.find { it.id == spending.id } != null
             if (hasInList) {
                 spending.isSelected = false
                 viewModel.selectedSpending.remove(spending)
+                menuSelectedItem()
             } else {
                 spending.isSelected = true
                 viewModel.selectedSpending.add(spending)
             }
         }
 
-        viewModel.onLongClickEnable = viewModel.selectedSpending.isNotEmpty()
-
         spendingAdapter.notifyItemChanged(position)
     }
 
-    fun cleanSelectedItems () {
+    private fun menuSelectedItem () {
         if (viewModel.selectedSpending.isNotEmpty()) {
-            viewModel.selectedSpending.clear()
-            spendingAdapter.updateList()
+            baseView.toolbar.menu.getItem(0).isVisible = false
+            baseView.toolbar.menu.getItem(1).isVisible = true
+        } else {
+            baseView.toolbar.menu.getItem(0).isVisible = true
+            baseView.toolbar.menu.getItem(1).isVisible = false
         }
     }
 
+    fun cleanSelectedItems () {
+        if (viewModel.onLongClickEnable) {
+            viewModel.selectedSpending.clear()
+            spendingAdapter.updateList()
+        }
+        menuSelectedItem()
+    }
+
     override fun onClick(v: View?) {}
+
+    override fun onMenuItemClick(menuItem: MenuItem?): Boolean {
+        return when (menuItem?.itemId) {
+            R.id.itAdd -> {
+                val intent = Intent(activity, RegisterActivity::class.java).apply {
+                    this registerType  RegisterType.NEW
+                    this isSpending true
+                }
+                activity?.startActivityForResult(intent, MainActivity.UPDATE_SPENDING_LIST)
+                true
+            }
+            R.id.itDelete -> {
+                viewModel.deleteSelectedItems {
+                    viewModel.selectedSpending.clear()
+                    spendingAdapter.updateList()
+                    menuSelectedItem()
+                }
+                true
+            }
+            else -> false
+        }
+    }
 }

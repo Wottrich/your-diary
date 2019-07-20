@@ -80,9 +80,11 @@
     <string name="customer_options_time_line">Time line</string>
     <string name="customer_options_settings">Configurações</string>
     <string name="customer_options_add_customer">Novo Cliente</string>
+    <string name="customer_options_delete">Deleta os Items Selecionados</string>
 
     <!--Add Menu-->
-    <string name="add_option">Adicionar</string>
+    <string name="spending_add_option">Adicionar</string>
+    <string name="spending_delete_option">Deletar</string>
 
     <!--Ok Menu-->
     <string name="ok_option">OK</string>
