@@ -32,6 +32,7 @@
     <string name="dialog_customer_edit_save">Salvar</string>
     <string name="dialog_customer_client">Nome</string>
     <string name="dialog_customer_client_hint">Nome do Cliente</string>
+    <string name="dialog_customer_name_empty">O nome do cliente não pode estar vazio!</string>
     <string name="dialog_customer_error_delete">Erro ao deletar cliente, por favor tente novamente mais tarde!</string>
 
     <!--Dialog Order-->
