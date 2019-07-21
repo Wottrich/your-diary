@@ -17,10 +17,17 @@ open class ViewPagerAdapter(fm: FragmentManager, val user: User) : FragmentPager
         CustomerFragment.newInstance(user)
     }
 
+    val clientFragment2: CustomerFragment by lazy {
+        CustomerFragment.newInstance(user)
+    }
+
+    //val profile
+
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> spendingFragment
-            else -> clientFragment
+            1 -> clientFragment
+            else -> clientFragment2
         }
     }
 

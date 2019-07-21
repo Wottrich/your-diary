@@ -6,7 +6,11 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_clients.view.*
 import kotlinx.android.synthetic.main.fragment_spending.view.*
+import kotlinx.android.synthetic.main.fragment_spending.view.lotEmptyList
+import kotlinx.android.synthetic.main.fragment_spending.view.toolbar
+import kotlinx.android.synthetic.main.fragment_spending.view.tvEmptyList
 
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.SpendingAdapter
@@ -57,14 +61,18 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
 
     private fun emptyList () {
         if (viewModel.boxSpendingList.isEmpty()) {
-            //baseView.lotEmptyList.playAnimation()
+            baseView.lotEmptyList.playAnimation()
             baseView.lotEmptyList.visibility = View.VISIBLE
             baseView.tvEmptyList.visibility = View.VISIBLE
         } else {
-            //baseView.lotEmptyList.cancelAnimation()
+            baseView.lotEmptyList.cancelAnimation()
             baseView.lotEmptyList.visibility = View.GONE
             baseView.tvEmptyList.visibility = View.GONE
         }
+    }
+
+    fun playAnimation (play: Boolean) {
+        if (play) baseView.lotEmptyList.playAnimation() else baseView.lotEmptyList.cancelAnimation()
     }
 
     open fun reload() {

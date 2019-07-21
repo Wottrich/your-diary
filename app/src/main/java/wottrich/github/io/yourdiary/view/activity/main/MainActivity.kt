@@ -34,13 +34,18 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         tabLayout.setupWithViewPager(vpFragment)
         tabLayout.addOnTabSelectedListener(this)
 
-        vpFragment.offscreenPageLimit = 2
+        vpFragment.offscreenPageLimit = 3
         vpFragment.addOnPageChangeListener(this)
 
         tabLayout.getTabAt(0)?.icon = getDrawable(R.drawable.baseline_attach_money_white_36)
         tabLayout.getTabAt(0)?.text = "Gastos"
         tabLayout.getTabAt(1)?.icon = getDrawable(R.drawable.baseline_business_center_white_36)
         tabLayout.getTabAt(1)?.text = "Clientes"
+
+        /*val tab: TabLayout.Tab = TabLayout.Tab()
+        tab.icon = getDrawable(R.drawable.sharp_perm_identity_white_36)
+        tab.contentDescription = "Perfil"
+        tabLayout.addTab(tab)*/
     }
 
     fun toTest () {
@@ -79,9 +84,15 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         if (position == 0) {
             viewModel.isSpendingTab = true
             viewModel.isCustomerTab = false
-        } else {
+            viewPagerAdapter.spendingFragment.playAnimation(true)
+            viewPagerAdapter.clientFragment.playAnimation(false)
+        } else if (position == 1){
             viewModel.isCustomerTab = true
             viewModel.isSpendingTab = false
+            viewPagerAdapter.spendingFragment.playAnimation(false)
+            viewPagerAdapter.clientFragment.playAnimation(true)
+        } else if (position == 2) {
+
         }
     }
 

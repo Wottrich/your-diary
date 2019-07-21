@@ -68,6 +68,10 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
         }
     }
 
+    fun playAnimation (play: Boolean) {
+        if (play) baseView.lotEmptyList.playAnimation() else baseView.lotEmptyList.cancelAnimation()
+    }
+
     fun loadCustomer() {
         if (viewModel.clientCount > 0) {
             _toolbar.title = viewModel.client?.name
