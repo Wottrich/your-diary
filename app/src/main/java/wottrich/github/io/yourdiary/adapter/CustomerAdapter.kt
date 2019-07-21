@@ -21,7 +21,6 @@ class CustomerAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var customer = getUser().customers
-    var color: Drawable? = null
     var onClick: View.OnClickListener? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -34,8 +33,8 @@ class CustomerAdapter(
         view.tvNameCustomer.text = customer.name
         view.tvCountOrder.text = String.format("%d Pedidos", customer.orders.size)
         view.tvPriceOrder.text = customer.totalPriceFromSelectedCustomer()
-        if (customer.selected && color != null) {
-            holder.itemView.background = color
+        if (customer.selected) {
+            holder.itemView.background = context?.getDrawable(R.drawable.shape_row_customer_selected)
         } else {
             holder.itemView.background = context?.getDrawable(R.color.transparent)
         }

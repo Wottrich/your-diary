@@ -3,53 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="1dp">
 
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/tvNameCustomer"
-        style="@style/LabelTitle.LightBlue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="10dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@id/tvCountOrder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Café mania" />
-
-    <TextView
-        android:id="@+id/tvCountOrder"
-        style="@style/Label.WebOrange"
+        style="@style/RobotoBoldWhite"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="10dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@id/tvPriceOrder"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNameCustomer"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Café mania" />
+
+    <TextView
+        android:id="@+id/tvCountOrder"
+        style="@style/RobotoBoldWebOrange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="0 pedidos" />
 
     <TextView
+        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/tvPriceOrder"
-        style="@style/Label.ShinyShamrock"
+        style="@style/RobotoBoldShinyShamrock"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCountOrder"
+        app:layout_constraintTop_toBottomOf="@id/tvNameCustomer"
         tools:text="R$ 100,50" />
 
     <View
+
         style="@style/Divider"
         android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

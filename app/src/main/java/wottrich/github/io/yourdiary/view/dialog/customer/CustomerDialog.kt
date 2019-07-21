@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.dialog_customer_new.view.*
+import kotlinx.android.synthetic.main.dialog_customer.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.enumerators.CustomerType
 import wottrich.github.io.yourdiary.extensions.put
@@ -15,7 +15,7 @@ import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
 
 @SuppressLint("ValidFragment")
-class CustomerDialog(var onCustomer: () -> Unit, var type: CustomerType, var id: Long = -1) : BaseDialog(R.layout.dialog_customer_new), View.OnClickListener,
+class CustomerDialog(var onCustomer: () -> Unit, var type: CustomerType, var id: Long = -1) : BaseDialog(R.layout.dialog_customer), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
 
     private val viewModel: CustomerDialogViewModel by lazy {
@@ -80,9 +80,6 @@ class CustomerDialog(var onCustomer: () -> Unit, var type: CustomerType, var id:
 
     override fun onClick(v: View?) {
         when(v?.id) {
-            R.id.btnRegisterClient -> {
-                saveUser()
-            }
             R.id.btnDeleteClient -> {
                 viewModel.takeIf { id != -1L }?.id?.let {
                     KeyboardUtils.hideKeyboard(requireActivity(), baseView)
