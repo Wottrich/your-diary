@@ -7,7 +7,8 @@ import wottrich.github.io.yourdiary.model.User
 
 class SpendingFragmentViewModel {
 
-    val user: User = getUser()
+    val user: User
+        get() = getUser()
 
     val boxSpendingList: List<Spending> get() = user.spendingList
 

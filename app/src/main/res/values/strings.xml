@@ -4,11 +4,12 @@
     <!--<editor-folder defaultstate="Collapsed" desc="Fragments">-->
     <!--Fragment Spending-->
     <string name="fragment_spending_title">Gastos</string>
-    <string name="fragment_spending_empty_list">Nenhum gasto registrado</string>
+    <string name="fragment_spending_empty_list">Nenhum gasto registrado.</string>
 
     <!--Fragment Clients-->
     <string name="fragment_clients_register_customer">Clique aqui para registrar seu primeiro cliente</string>
     <string name="fragment_clients_new_order">Novo pedido...</string>
+    <string name="fragment_clients_empty_order_list">Nenhum pedido registrado.</string>
     <!--</editor-folder>-->
 
     <!--<editor-folder defaultstate="Collapsed" desc="Dialogs">-->

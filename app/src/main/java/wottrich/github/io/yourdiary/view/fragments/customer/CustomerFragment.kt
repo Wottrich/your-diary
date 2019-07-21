@@ -6,7 +6,9 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_clients.*
 import kotlinx.android.synthetic.main.fragment_clients.view.*
+import kotlinx.android.synthetic.main.fragment_clients.view.lotEmptyList
 
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.OrderAdapter
@@ -54,6 +56,18 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
         loadCustomer()
     }
 
+    private fun emptyList () {
+        if (viewModel.orders.isEmpty()) {
+            baseView.lotEmptyList.playAnimation()
+            baseView.lotEmptyList.visibility = View.VISIBLE
+            baseView.tvEmptyList.visibility = View.VISIBLE
+        } else {
+            baseView.lotEmptyList.cancelAnimation()
+            baseView.lotEmptyList.visibility = View.GONE
+            baseView.tvEmptyList.visibility = View.GONE
+        }
+    }
+
     fun loadCustomer() {
         if (viewModel.clientCount > 0) {
             _toolbar.title = viewModel.client?.name
@@ -66,6 +80,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
             orderAdapter.updateList()
             showMenu(false)
         }
+        emptyList()
     }
 
     private fun showMenu (show: Boolean) {
@@ -137,6 +152,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
             selectedItem()
             this.orderAdapter.updateList()
         }
+        emptyList()
     }
 
     override fun onClick(v: View?) {
@@ -173,6 +189,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
                     viewModel.ordersSelected.clear()
                     this.orderAdapter.updateList()
                     selectedItem()
+                    emptyList()
                 }
                 true
             }

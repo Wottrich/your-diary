@@ -52,10 +52,24 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
         baseView.toolbar.inflateMenu(R.menu.add_option)
         baseView.toolbar.menu.getItem(1).isVisible = false
         baseView.toolbar.setOnMenuItemClickListener(this)
+        emptyList()
+    }
+
+    private fun emptyList () {
+        if (viewModel.boxSpendingList.isEmpty()) {
+            //baseView.lotEmptyList.playAnimation()
+            baseView.lotEmptyList.visibility = View.VISIBLE
+            baseView.tvEmptyList.visibility = View.VISIBLE
+        } else {
+            //baseView.lotEmptyList.cancelAnimation()
+            baseView.lotEmptyList.visibility = View.GONE
+            baseView.tvEmptyList.visibility = View.GONE
+        }
     }
 
     open fun reload() {
         spendingAdapter.updateList()
+        emptyList()
     }
 
     private fun onClickSpending (spending: Spending?, position: Int) {
@@ -118,6 +132,7 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
             spendingAdapter.updateList()
         }
         menuSelectedItem()
+        emptyList()
     }
 
     override fun onClick(v: View?) {}
@@ -137,6 +152,7 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
                     viewModel.selectedSpending.clear()
                     spendingAdapter.updateList()
                     menuSelectedItem()
+                    emptyList()
                 }
                 true
             }

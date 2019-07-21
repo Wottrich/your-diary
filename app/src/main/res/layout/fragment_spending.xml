@@ -49,9 +49,35 @@
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:reverseLayout="false"
-            tools:itemCount="13"
+            tools:itemCount="0"
             tools:listitem="@layout/row_order" />
 
     </android.support.design.widget.CoordinatorLayout>
+    
+    <com.airbnb.lottie.LottieAnimationView
+        android:visibility="gone"
+        android:id="@+id/lotEmptyList"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/empty_spending"/>
+
+    <TextView
+        android:id="@+id/tvEmptyList"
+        android:textAlignment="center"
+        android:text="@string/fragment_spending_empty_list"
+        style="@style/RobotoBoldWhite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lotEmptyList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
 
 </android.support.constraint.ConstraintLayout>
