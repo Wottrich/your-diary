@@ -41,11 +41,8 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         tabLayout.getTabAt(0)?.text = "Gastos"
         tabLayout.getTabAt(1)?.icon = getDrawable(R.drawable.baseline_business_center_white_36)
         tabLayout.getTabAt(1)?.text = "Clientes"
-
-        /*val tab: TabLayout.Tab = TabLayout.Tab()
-        tab.icon = getDrawable(R.drawable.sharp_perm_identity_white_36)
-        tab.contentDescription = "Perfil"
-        tabLayout.addTab(tab)*/
+        tabLayout.getTabAt(2)?.icon = getDrawable(R.drawable.sharp_perm_identity_white_36)
+        tabLayout.getTabAt(2)?.text = "Perfil"
     }
 
     fun toTest () {
@@ -80,27 +77,23 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
 
+    /**
+     * Control what tab was select and control play/stop animations
+     * @param position: 1 - Spending | 2 - Customer | 3 - Profile
+     */
     override fun onPageSelected(position: Int) {
-        if (position == 0) {
-            viewModel.isSpendingTab = true
-            viewModel.isCustomerTab = false
-            viewPagerAdapter.spendingFragment.playAnimation(true)
-            viewPagerAdapter.clientFragment.playAnimation(false)
-        } else if (position == 1){
-            viewModel.isCustomerTab = true
-            viewModel.isSpendingTab = false
-            viewPagerAdapter.spendingFragment.playAnimation(false)
-            viewPagerAdapter.clientFragment.playAnimation(true)
-        } else if (position == 2) {
-
-        }
+        viewModel.isSpendingTab =  position == 0
+        viewModel.isCustomerTab =  position == 1
+        viewModel.isProfileTab   =  position == 2
+        viewPagerAdapter.spendingFragment.playAnimation(position == 0)
+        viewPagerAdapter.customerFragment.playAnimation(position == 1)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                UPDATE_ORDER_LIST -> viewPagerAdapter.clientFragment.loadCustomer()
+                UPDATE_ORDER_LIST -> viewPagerAdapter.customerFragment.loadCustomer()
                 UPDATE_SPENDING_LIST -> viewPagerAdapter.spendingFragment.reload()
             }
         }
@@ -112,8 +105,8 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         if (viewModel.isSpendingTab && viewPagerAdapter.spendingFragment.viewModel.selectedSpending.isNotEmpty()) {
             viewPagerAdapter.spendingFragment.cleanSelectedItems()
             return
-        } else if (viewModel.isCustomerTab && viewPagerAdapter.clientFragment.viewModel.ordersSelected.isNotEmpty()) {
-            viewPagerAdapter.clientFragment.cleanSelectedItems()
+        } else if (viewModel.isCustomerTab && viewPagerAdapter.customerFragment.viewModel.ordersSelected.isNotEmpty()) {
+            viewPagerAdapter.customerFragment.cleanSelectedItems()
             return
         } else super.onBackPressed()
     }
