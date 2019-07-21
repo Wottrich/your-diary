@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.row_customer.view.*
 import wottrich.github.io.yourdiary.R
-import wottrich.github.io.yourdiary.extensions.boxList
-import wottrich.github.io.yourdiary.extensions.getUser
-import wottrich.github.io.yourdiary.extensions.put
-import wottrich.github.io.yourdiary.extensions.totalPriceFromSelectedCustomer
+import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.User
 
@@ -33,6 +30,7 @@ class CustomerAdapter(
         view.tvNameCustomer.text = customer.name
         view.tvCountOrder.text = String.format("%d Pedidos", customer.orders.size)
         view.tvPriceOrder.text = customer.totalPriceFromSelectedCustomer()
+        view.tvDateLastOrder.text = customer.lastDateOrder()
         if (customer.selected) {
             holder.itemView.background = context?.getDrawable(R.drawable.shape_row_customer_selected)
         } else {
