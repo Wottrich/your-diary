@@ -34,6 +34,10 @@
     <string name="dialog_customer_client_hint">Nome do Cliente</string>
     <string name="dialog_customer_name_empty">O nome do cliente não pode estar vazio!</string>
     <string name="dialog_customer_error_delete">Erro ao deletar cliente, por favor tente novamente mais tarde!</string>
+    <string name="dialog_customer_delete_question">Está ação excluirá o cliente para sempre junto com seus pedidos.\nGostaria de continuar?</string>
+    <string name="dialog_customer_btn_yes">Sim</string>
+    <string name="dialog_customer_btn_no">Não</string>
+
 
     <!--Dialog Order-->
     <string name="dialog_order_title">Registrar Pedido</string>

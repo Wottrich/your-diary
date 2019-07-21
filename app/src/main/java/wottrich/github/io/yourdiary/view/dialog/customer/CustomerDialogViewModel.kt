@@ -6,6 +6,8 @@ import wottrich.github.io.yourdiary.model.Customer
 
 class CustomerDialogViewModel(var type: CustomerType?, var id: Long?) {
 
+    var deleteClicked = false
+
     val customer: Customer? = boxList<Customer>().find { it.id == id }
 
 }

@@ -38,6 +38,11 @@ class CustomerDialog(var onCustomer: () -> Unit, var type: CustomerType, var id:
         }
         toolbar.setOnMenuItemClickListener(this)
 
+        baseView.btnYes.setOnClickListener(this)
+        baseView.btnNo.setOnClickListener(this)
+
+        baseView.clConfirmDelete.visibility = View.GONE
+
         configureScreen()
     }
 
@@ -78,9 +83,25 @@ class CustomerDialog(var onCustomer: () -> Unit, var type: CustomerType, var id:
         }
     }
 
+    private fun controlDeleteSection () {
+
+        if (viewModel.deleteClicked) {
+            baseView.clNormalContainer.visibility = View.GONE
+            baseView.clConfirmDelete.visibility = View.VISIBLE
+        } else {
+            baseView.clNormalContainer.visibility = View.VISIBLE
+            baseView.clConfirmDelete.visibility = View.GONE
+        }
+
+    }
+
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnDeleteClient -> {
+                viewModel.deleteClicked = true
+                controlDeleteSection()
+            }
+            R.id.btnYes -> {
                 viewModel.takeIf { id != -1L }?.id?.let {
                     KeyboardUtils.hideKeyboard(requireActivity(), baseView)
                     Customer.deleteCustomer(it)
@@ -89,6 +110,10 @@ class CustomerDialog(var onCustomer: () -> Unit, var type: CustomerType, var id:
                     return
                 }
                 Toast.makeText(activity, getString(R.string.dialog_customer_error_delete), Toast.LENGTH_SHORT).show()
+            }
+            R.id.btnNo -> {
+                viewModel.deleteClicked = false
+                controlDeleteSection()
             }
         }
     }

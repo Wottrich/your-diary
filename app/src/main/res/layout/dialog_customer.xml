@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/transparent_black"
     android:fillViewport="true"
+    android:animateLayoutChanges="true"
     tools:context=".view.dialog.customer.CustomerDialog">
 
     <android.support.constraint.ConstraintLayout
@@ -13,6 +14,7 @@
         android:layout_height="match_parent">
 
         <android.support.constraint.ConstraintLayout
+            android:animateLayoutChanges="true"
             android:id="@+id/constDialog"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -21,6 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
 
             <android.support.v7.widget.Toolbar
                 app:title="@string/dialog_customer_register"
@@ -34,6 +37,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navigationIcon="@drawable/ic_arrow_white_down_32dp" />
 
+            <android.support.constraint.ConstraintLayout
+                android:animateLayoutChanges="true"
+                android:id="@+id/clNormalContainer"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/title"
                 style="@style/RobotoWhite"
@@ -44,7 +58,7 @@
                 android:text="@string/dialog_customer_client"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <EditText
                 android:id="@+id/etClientName"
@@ -58,7 +72,7 @@
                 tools:ignore="Autofill" />
 
             <Button
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_marginTop="15dp"
                 android:id="@+id/btnDeleteClient"
                 style="@style/Button.Delete"
@@ -69,6 +83,63 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etClientName" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:animateLayoutChanges="true"
+                android:id="@+id/clConfirmDelete"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    style="@style/RobotoBoldWhite"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/tvQuestion"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/dialog_customer_delete_question"
+                    android:textAlignment="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:visibility="visible"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/btnYes"
+                    style="@style/Button.Delete"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/dialog_customer_btn_yes"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnNo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvQuestion" />
+
+                <Button
+                    app:layout_constraintStart_toEndOf="@id/btnYes"
+                    android:visibility="visible"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/btnNo"
+                    style="@style/Button.WhiteRound"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/dialog_customer_btn_no"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvQuestion" />
+
+            </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
 
