@@ -2,6 +2,8 @@ package wottrich.github.io.yourdiary.view.dialog
 
 import android.annotation.SuppressLint
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import android.view.View
 import kotlinx.android.synthetic.main.dialog_show_customers.view.*
 import wottrich.github.io.yourdiary.R
@@ -16,25 +18,26 @@ class ShowCustomersDialog(var onSelectedCustomer: () -> Unit) : BaseDialog(R.lay
         CustomerAdapter(activity?.applicationContext)
     }
 
+    lateinit var toolbar: Toolbar
+
     override fun initValues() {
-        customerAdapter.color = activity?.getDrawable(R.color.transparent_white)
+        this.parent = baseView.llParent
         customerAdapter.onClick = this
         baseView.rvCustomers.adapter = customerAdapter
-        val manager = GridLayoutManager(activity, 2)
+        val manager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         baseView.rvCustomers.layoutManager = manager
-        baseView.ivClose.setOnClickListener(this)
+        toolbar = baseView.toolbar
+        toolbar.setNavigationOnClickListener {
+            this.dismissAnimation()
+        }
     }
 
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.ivClose -> {
-                KeyboardUtils.hideKeyboard(requireActivity(), baseView)
-                baseView.postDelayed(this::dismiss, 10)
-            }
             else -> {
                 onSelectedCustomer()
-                dismiss()
+                dismissAnimation()
             }
         }
     }
