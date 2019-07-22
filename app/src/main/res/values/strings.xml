@@ -10,6 +10,10 @@
     <string name="fragment_clients_register_customer">Clique aqui para registrar seu primeiro cliente</string>
     <string name="fragment_clients_new_order">Novo pedido...</string>
     <string name="fragment_clients_empty_order_list">Nenhum pedido registrado.</string>
+
+    <!--Fragment Profile-->
+    <string name="fragment_profile_info_income">Renda atual:</string>
+
     <!--</editor-folder>-->
 
     <!--<editor-folder defaultstate="Collapsed" desc="Dialogs">-->
@@ -95,6 +99,22 @@
 
     <!--Ok Menu-->
     <string name="ok_option">OK</string>
+
+    <!--</editor-folder>-->
+
+    <!--<editor-folder defaultstate="Collapsed" desc="Holders">-->
+
+    <!--GraphViewHolder-->
+    <string name="graph_view_holder_info">Gráfico do mês atual:</string>
+
+    <!--IncomeViewHolder-->
+    <string name="income_view_holder_info">Renda mensal</string>
+
+    <!--ExpectedIncomeViewHolder-->
+    <string name="expected_income_view_holder_actual_income">Atual:</string>
+    <string name="expected_income_view_holder_expected_income">Previsto:</string>
+    <string name="expected_income_view_holder_expected_income_empty">Nenhum rendimento previsto.\nClique aqui para adicionar</string>
+    <string name="expected_income_view_holder_income">Rendimentos</string>
 
     <!--</editor-folder>-->
 

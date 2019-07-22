@@ -87,6 +87,10 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         viewModel.isProfileTab   =  position == 2
         viewPagerAdapter.spendingFragment.playAnimation(position == 0)
         viewPagerAdapter.customerFragment.playAnimation(position == 1)
+
+        if (position == 2) {
+            viewPagerAdapter.profileFragment.reloadList()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

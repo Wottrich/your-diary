@@ -83,6 +83,11 @@ fun Double.format () : String {
     return format.format(this)
 }
 
+fun Float.format () : String {
+    val format = NumberFormat.getCurrencyInstance(_locale)
+    return format.format(this)
+}
+
 fun removeAllAndFormat(text: String, l: Locale) : Double {
     val format: DecimalFormat = decimalFormat(l) ?: throw Throwable("Error to add value")
     val symbols = symbolsFormat(format)

@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:fitsSystemWindows="true"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:elevation="0dp">
 
@@ -32,11 +31,6 @@
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title="@string/fragment_spending_title" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -53,31 +47,31 @@
             tools:listitem="@layout/row_order" />
 
     </android.support.design.widget.CoordinatorLayout>
-    
+
     <com.airbnb.lottie.LottieAnimationView
-        android:visibility="gone"
         android:id="@+id/lotEmptyList"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:layout_width="0dp"
         android:layout_height="250dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="false"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/empty_spending"/>
+        app:lottie_rawRes="@raw/empty_spending" />
 
     <TextView
         android:id="@+id/tvEmptyList"
-        android:textAlignment="center"
-        android:text="@string/fragment_spending_empty_list"
         style="@style/RobotoBoldWhite"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lotEmptyList"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_spending_empty_list"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lotEmptyList" />
 
 </android.support.constraint.ConstraintLayout>
