@@ -2,6 +2,7 @@ package wottrich.github.io.yourdiary.view.fragments.spending
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
@@ -60,7 +61,7 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
     }
 
     private fun emptyList () {
-        if (viewModel.boxSpendingList.isEmpty()) {
+        if (viewModel.boxSpendingList.isEmpty() && Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             baseView.lotEmptyList.playAnimation()
             baseView.lotEmptyList.visibility = View.VISIBLE
             baseView.tvEmptyList.visibility = View.VISIBLE
@@ -72,7 +73,12 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
     }
 
     fun playAnimation (play: Boolean) {
-        if (play) baseView.lotEmptyList.playAnimation() else baseView.lotEmptyList.cancelAnimation()
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            if (play) baseView.lotEmptyList.playAnimation() else baseView.lotEmptyList.cancelAnimation()
+        } else {
+            baseView.lotEmptyList.visibility = View.GONE
+            baseView.lotEmptyList.cancelAnimation()
+        }
     }
 
     open fun reload() {
