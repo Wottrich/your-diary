@@ -8,14 +8,14 @@ import wottrich.github.io.yourdiary.view.fragments.customer.CustomerFragment
 import wottrich.github.io.yourdiary.view.fragments.profile.ProfileFragment
 import wottrich.github.io.yourdiary.view.fragments.spending.SpendingFragment
 
-open class ViewPagerAdapter(fm: FragmentManager, val user: User) : FragmentPagerAdapter(fm) {
+open class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     val spendingFragment: SpendingFragment by lazy {
-        SpendingFragment.newInstance(user)
+        SpendingFragment.newInstance()
     }
 
     val customerFragment: CustomerFragment by lazy {
-        CustomerFragment.newInstance(user)
+        CustomerFragment.newInstance()
     }
 
     val profileFragment: ProfileFragment by lazy {

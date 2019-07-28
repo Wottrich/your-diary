@@ -24,17 +24,11 @@ import wottrich.github.io.yourdiary.view.activity.main.MainActivity
 import wottrich.github.io.yourdiary.view.activity.register.RegisterActivity
 
 @SuppressLint("StaticFieldLeak", "ValidFragment")
-open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.OnClickListener,
+open class SpendingFragment : BaseFragment(R.layout.fragment_spending), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
-
-    lateinit var user: User
 
     val viewModel: SpendingFragmentViewModel by lazy {
         SpendingFragmentViewModel()
-    }
-
-    constructor(user: User) : this () {
-        this.user =  user
     }
 
     private val spendingAdapter: SpendingAdapter by lazy {
@@ -48,7 +42,7 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
 
     companion object {
         @JvmStatic
-        fun newInstance(user: User) = SpendingFragment(user)
+        fun newInstance() = SpendingFragment()
     }
 
     override fun initValues() {

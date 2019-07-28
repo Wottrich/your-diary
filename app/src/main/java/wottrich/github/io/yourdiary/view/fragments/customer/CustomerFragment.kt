@@ -3,6 +3,7 @@ package wottrich.github.io.yourdiary.view.fragments.customer
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
+import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
@@ -30,14 +31,8 @@ import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
 open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
 
-    lateinit var user: User
-
     val viewModel: CustomerFragmentViewModel by lazy {
         CustomerFragmentViewModel()
-    }
-
-    constructor(user: User) : this() {
-        this.user = user
     }
 
     private lateinit var _toolbar: Toolbar
@@ -48,7 +43,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
 
     companion object {
         @JvmStatic
-        fun newInstance(user: User) = CustomerFragment(user)
+        fun newInstance() = CustomerFragment()
     }
 
     override fun initValues() {
@@ -230,6 +225,10 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
             }
             else -> false
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
 
 }

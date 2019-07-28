@@ -22,7 +22,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
     }
 
     private val viewPagerAdapter: ViewPagerAdapter by lazy {
-        ViewPagerAdapter(this.supportFragmentManager, viewModel.user)
+        ViewPagerAdapter(this.supportFragmentManager)
     }
 
     override fun initValues () {
@@ -89,7 +89,7 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
         viewPagerAdapter.customerFragment.playAnimation(position == 1)
 
         if (position == 2) {
-            viewPagerAdapter.profileFragment.reloadList()
+            viewPagerAdapter.profileFragment.reloadList(false)
         }
     }
 
@@ -97,8 +97,14 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelect
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                UPDATE_ORDER_LIST -> viewPagerAdapter.customerFragment.loadCustomer()
-                UPDATE_SPENDING_LIST -> viewPagerAdapter.spendingFragment.reload()
+                UPDATE_ORDER_LIST -> {
+                    viewPagerAdapter.profileFragment.reloadList(true)
+                    viewPagerAdapter.customerFragment.loadCustomer()
+                }
+                UPDATE_SPENDING_LIST -> {
+                    viewPagerAdapter.profileFragment.reloadList(true)
+                    viewPagerAdapter.spendingFragment.reload()
+                }
             }
         }
 

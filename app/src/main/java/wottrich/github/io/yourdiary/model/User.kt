@@ -3,8 +3,11 @@ package wottrich.github.io.yourdiary.model
 import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
-import io.objectbox.annotation.Transient
 import io.objectbox.relation.ToMany
+import wottrich.github.io.yourdiary.extensions.compareActualDate
+import wottrich.github.io.yourdiary.extensions.exMonth
+import wottrich.github.io.yourdiary.extensions.exYear
+import java.util.*
 
 @Entity
 class User() {
@@ -39,9 +42,13 @@ class User() {
     private fun loadAllSpending () : Float {
         var finalValue = 0.0f
 
-        for (speding in spendingList) {
-            val sum = speding.price?.toFloat() ?: 0f
-            finalValue += sum
+        for (spending in spendingList) {
+
+            if (spending.date != null && spending.date!!.compareActualDate(month = true, year = true)) {
+                val sum = spending.price?.toFloat() ?: 0f
+                finalValue += sum
+            }
+
         }
 
         return finalValue
@@ -53,8 +60,12 @@ class User() {
         for (customer in customers) {
 
             for (order in customer.orders) {
-                val sum = order.price.toFloat()
-                finalValue += sum
+
+                if (order.date.compareActualDate(month = true, year = true)) {
+                    val sum = order.price.toFloat()
+                    finalValue += sum
+                }
+
             }
 
         }

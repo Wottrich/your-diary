@@ -34,9 +34,9 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     }
 
-    fun reloadList () {
+    fun reloadList (updateNow: Boolean) {
         viewModel.canUpdate {
-            if (it) {
+            if (updateNow || it) {
                 profileAdapter.notifyItemChanged(1)
                 profileAdapter.notifyItemChanged(2)
                 profileAdapter.notifyItemChanged(3)

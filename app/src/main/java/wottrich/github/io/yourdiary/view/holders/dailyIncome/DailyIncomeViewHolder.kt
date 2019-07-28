@@ -16,13 +16,13 @@ class DailyIncomeViewHolder(var view: View) : BaseViewHolder(view) {
 
     private fun buildToday () {
         var totalDay = 0.0
-        val today = Date().reInit()
+        val today = Date().withoutTime()
 
         for (customer in user.customers) {
 
             for (order in customer.orders) {
 
-                val orderDate = order.date.reInit()
+                val orderDate = order.date.withoutTime()
 
                 if (orderDate == today) {
                     totalDay += order.price

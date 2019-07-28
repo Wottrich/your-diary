@@ -89,16 +89,52 @@ fun Date.getDateString(pattern: String = "dd/MM/yyyy", locale: Locale = _locale)
     return SimpleDateFormat(pattern, locale).format(this)
 }
 
-fun Date.getDay (): String {
+fun Date.exDay (): String {
     return SimpleDateFormat("dd", _locale).format(this)
 }
 
-fun Date.getMonth (): String {
+fun Date.exMonth (): String {
     return SimpleDateFormat("MM", _locale).format(this)
 }
 
-fun Date.getYear (): String {
+fun Date.exYear (): String {
     return SimpleDateFormat("yyyy", _locale).format(this)
+}
+
+/**
+ * day      =   false | true  | false | false | true  | true | false
+ * month    =   false | false | true  | false | true  | true | true
+ * year     =   false | false | false | true  | false | true | true
+ */
+fun Date.compareActualDate (day: Boolean = false, month: Boolean = false, year: Boolean = false): Boolean {
+    val dayDate = this.exDay()
+    val monthDate = this.exMonth()
+    val yearDate = this.exYear()
+
+    val actualDate = Date()
+    val actualDay = actualDate.exDay()
+    val actualMonth = actualDate.exMonth()
+    val actualYear = actualDate.exYear()
+
+    return if (day && month && year) {
+        dayDate == actualDay && monthDate == actualMonth && yearDate == actualYear
+    } else if (!day && month && year) {
+        monthDate == actualMonth && yearDate == actualYear
+    } else if (!day && !month && year) {
+        yearDate == actualYear
+    } else if (day && month && !year) {
+        dayDate == actualDay && monthDate == actualMonth
+    } else if (day && !month && !year) {
+        dayDate == actualDay
+    } else if (!day && month && !year) {
+        monthDate == actualMonth
+    } else if (day && !month && year) {
+        dayDate == actualDay && yearDate == actualYear
+    } else {
+        false
+    }
+
+
 }
 
 fun Date.getTomorrow (): Date {
@@ -124,6 +160,12 @@ fun Date.reInit(): Date {
     calendar.set(Calendar.SECOND, 0)
     calendar.set(Calendar.MILLISECOND, 0)
     return calendar.time
+}
+
+fun Date.withoutTime (): Date {
+
+    return this.getDateString().getDate()
+
 }
 
 fun OnCalendarPicker.showPicker(context: Context): DatePickerDialog {
