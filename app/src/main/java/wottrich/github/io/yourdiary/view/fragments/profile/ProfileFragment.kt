@@ -1,6 +1,6 @@
 package wottrich.github.io.yourdiary.view.fragments.profile
 
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import wottrich.github.io.yourdiary.R

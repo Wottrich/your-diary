@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="wottrich.github.io.yourdiary">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".CustomApplication"
         android:allowBackup="true"

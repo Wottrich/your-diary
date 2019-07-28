@@ -1,14 +1,14 @@
 package wottrich.github.io.yourdiary.adapter
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.view.fragments.customer.CustomerFragment
 import wottrich.github.io.yourdiary.view.fragments.profile.ProfileFragment
 import wottrich.github.io.yourdiary.view.fragments.spending.SpendingFragment
 
-open class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+open class ViewPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
 
     val spendingFragment: SpendingFragment by lazy {
         SpendingFragment.newInstance()
@@ -24,7 +24,7 @@ open class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     //val profile
 
-    override fun getItem(position: Int): Fragment {
+    override fun getItem(position: Int): androidx.fragment.app.Fragment {
         return when (position) {
             0 -> spendingFragment
             1 -> customerFragment

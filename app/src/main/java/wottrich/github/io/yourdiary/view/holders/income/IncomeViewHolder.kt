@@ -1,6 +1,6 @@
 package wottrich.github.io.yourdiary.view.holders.income
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.row_profile_income.view.*
 

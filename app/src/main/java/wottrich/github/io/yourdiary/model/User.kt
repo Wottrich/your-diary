@@ -13,6 +13,7 @@ import java.util.*
 class User() {
 
     @Id var id: Long = 0
+    var email: String? = null
     var name: String? = null
     var age: Int? = null
     var income: Double = 0.0

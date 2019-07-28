@@ -2,8 +2,8 @@ package wottrich.github.io.yourdiary.view.activity.main
 
 import android.app.Activity
 import android.content.Intent
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
+import com.google.android.material.tabs.TabLayout
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ViewPagerAdapter
@@ -15,7 +15,7 @@ import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import java.util.*
 
-class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener {
+class MainActivity : BaseActivity(R.layout.activity_main), TabLayout.OnTabSelectedListener, androidx.viewpager.widget.ViewPager.OnPageChangeListener {
 
     private val viewModel: MainViewModel by lazy {
         MainViewModel()

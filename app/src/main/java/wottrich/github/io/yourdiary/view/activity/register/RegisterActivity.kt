@@ -1,7 +1,7 @@
 package wottrich.github.io.yourdiary.view.activity.register
 
 import android.app.Activity
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem

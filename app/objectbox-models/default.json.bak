@@ -96,7 +96,7 @@
     },
     {
       "id": "4:5542775092241602988",
-      "lastPropertyId": "5:4239806254448942808",
+      "lastPropertyId": "6:9056915664124388021",
       "name": "User",
       "properties": [
         {
@@ -118,6 +118,10 @@
         {
           "id": "5:4239806254448942808",
           "name": "lockApp"
+        },
+        {
+          "id": "6:9056915664124388021",
+          "name": "expectedIncome"
         }
       ],
       "relations": []

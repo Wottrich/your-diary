@@ -6,7 +6,7 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
@@ -14,7 +14,7 @@ import wottrich.github.io.yourdiary.extensions.AnimationMin
 import wottrich.github.io.yourdiary.extensions.toTranslateBottomToTop
 import wottrich.github.io.yourdiary.extensions.toTranslateTopToBottom
 
-abstract class BaseDialog(private val layoutView: Int) : DialogFragment() {
+abstract class BaseDialog(private val layoutView: Int) : androidx.fragment.app.DialogFragment() {
 
     protected lateinit var baseView: View
     protected var parent: ViewGroup? = null

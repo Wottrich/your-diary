@@ -3,7 +3,7 @@ package wottrich.github.io.yourdiary.view.fragments.spending
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
