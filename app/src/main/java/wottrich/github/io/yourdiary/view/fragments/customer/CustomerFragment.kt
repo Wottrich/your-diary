@@ -2,6 +2,8 @@ package wottrich.github.io.yourdiary.view.fragments.customer
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
+import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_clients.*
 import kotlinx.android.synthetic.main.fragment_clients.view.*
 import kotlinx.android.synthetic.main.fragment_clients.view.lotEmptyList
+import wottrich.github.io.yourdiary.BuildConfig
 
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.OrderAdapter
@@ -28,14 +31,8 @@ import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
 open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
 
-    lateinit var user: User
-
     val viewModel: CustomerFragmentViewModel by lazy {
         CustomerFragmentViewModel()
-    }
-
-    constructor(user: User) : this() {
-        this.user = user
     }
 
     private lateinit var _toolbar: Toolbar
@@ -46,7 +43,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
 
     companion object {
         @JvmStatic
-        fun newInstance(user: User) = CustomerFragment(user)
+        fun newInstance() = CustomerFragment()
     }
 
     override fun initValues() {
@@ -57,7 +54,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
     }
 
     private fun emptyList () {
-        if (viewModel.orders.isEmpty()) {
+        if (viewModel.orders.isEmpty() && Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             baseView.lotEmptyList.playAnimation()
             baseView.lotEmptyList.visibility = View.VISIBLE
             baseView.tvEmptyList.visibility = View.VISIBLE
@@ -69,7 +66,14 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
     }
 
     fun playAnimation (play: Boolean) {
-        if (play) baseView.lotEmptyList.playAnimation() else baseView.lotEmptyList.cancelAnimation()
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            if (play && baseView.lotEmptyList.visibility == View.VISIBLE)
+                baseView.lotEmptyList.playAnimation()
+            else baseView.lotEmptyList.cancelAnimation()
+        } else {
+            baseView.lotEmptyList.visibility = View.GONE
+            baseView.lotEmptyList.cancelAnimation()
+        }
     }
 
     fun loadCustomer() {
@@ -221,6 +225,10 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
             }
             else -> false
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
 
 }

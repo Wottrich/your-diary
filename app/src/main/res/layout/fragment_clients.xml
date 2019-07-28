@@ -24,6 +24,7 @@
             app:elevation="0dp">
 
             <android.support.v7.widget.Toolbar
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
                 android:id="@+id/toolbar"
