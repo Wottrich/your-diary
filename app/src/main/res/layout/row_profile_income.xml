@@ -24,7 +24,7 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/linked_email_view_holder_email_null"
-            style="@style/RobotoBoldWhite"
+            style="@style/RobotoWhite"
             android:id="@+id/tvLinkedEmail"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

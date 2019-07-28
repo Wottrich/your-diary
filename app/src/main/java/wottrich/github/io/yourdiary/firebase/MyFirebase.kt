@@ -1,6 +1,6 @@
 package wottrich.github.io.yourdiary.firebase
 
-import com.google.firebase.auth.ActionCodeSettings
+import android.app.Activity
 import com.google.firebase.auth.FirebaseAuth
 
 object MyFirebase {
@@ -9,27 +9,12 @@ object MyFirebase {
         FirebaseAuth.getInstance()
     }
 
-    fun sendLinkToEmail (email: String, success: (String?) -> Unit) {
+    fun createAccount (activity: Activity, email: String, password: String, onSuccess: (Boolean) -> Unit) {
 
-        val actionCodeSettings = ActionCodeSettings.newBuilder()
-            .setUrl("google.com.br")
-            .setHandleCodeInApp(true)
-            .setAndroidPackageName("wottrich.github.io.yourdiary", true, "21")
-            .build()
-
-        auth.sendSignInLinkToEmail(email, actionCodeSettings).addOnCompleteListener {
-            if (it.isSuccessful) {
-                success("Um email de confirmação foi enviado para $email")
-            } else {
-                success(null)
-            }
+        val createFunction = auth.createUserWithEmailAndPassword(email, password)
+        createFunction.addOnCompleteListener(activity) { task ->
+            onSuccess(task.isSuccessful)
         }
-
-    }
-
-    fun createAccount () {
-
-        
 
     }
 

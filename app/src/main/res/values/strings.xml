@@ -80,6 +80,16 @@
     <string name="activity_user_register_income_0">Sua Renda tem que ser maior que 0</string>
     <string name="activity_user_register_error">Verifique os dados e tente novamente</string>
 
+    <!--SingIn-->
+    <string name="activity_sing_in_welcome">Vincular email…</string>
+    <string name="activity_sing_in_welcome_message">Olá %s!</string>
+    <string name="activity_sing_in_welcome_insert">Vamos sincronicar seus dados locais com seu email?</string>
+    <string name="activity_sing_in_welcome_insert_2">A principal vantagem é que você não irá perder seus dados caso exclua o aplicativo sem querer!!</string>
+    <string name="activity_sing_in_hint_email">Digite seu email</string>
+    <string name="activity_sing_in_hint_password">Digite uma senha*</string>
+    <string name="activity_sing_in_password">*Essa será a senha utilizada para entrar no aplicativo</string>
+    <string name="activity_sing_in_btn">Sincronizar</string>
+
     <!--Splash-->
     <string name="activity_splash_retry">Tentar novamente</string>
 

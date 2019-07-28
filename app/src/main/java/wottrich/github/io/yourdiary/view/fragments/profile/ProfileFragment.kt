@@ -1,11 +1,14 @@
 package wottrich.github.io.yourdiary.view.fragments.profile
 
+import android.content.Intent
 import androidx.appcompat.widget.Toolbar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ProfileAdapter
 import wottrich.github.io.yourdiary.generics.BaseFragment
+import wottrich.github.io.yourdiary.view.activity.singIn.SingInActivity
+import wottrich.github.io.yourdiary.view.activity.singIn.SingInViewModel
 
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
@@ -50,7 +53,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     }
 
     private fun onLinkedEmailClick () {
-        Toast.makeText(requireContext(), "Em desenvolvimento", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(requireActivity(), SingInActivity::class.java))
     }
 
 }
