@@ -12,6 +12,7 @@ abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     open fun initValues () {}
 
+    open fun initValues (onClick: () -> Unit) {}
 
     open fun initValues (user: User) {}
 

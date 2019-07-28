@@ -23,6 +23,7 @@ class ProfileAdapter(
     private val graphLayout = R.layout.row_profile_graph
     private val expectedIncomeLayout = R.layout.row_profile_expected_income
 
+    var onLinkedEmailClick: (() -> Unit)? = null
     var onExpectedIncomeClick: (() -> Unit)? = null
 
     private val hasValue: Boolean
@@ -59,7 +60,9 @@ class ProfileAdapter(
         when (getItemViewType(position)) {
             incomeLayout -> {
                 with(viewHolder as IncomeViewHolder) {
-                    initValues(user.income.format())
+                    initValues(user) {
+                        onLinkedEmailClick?.invoke()
+                    }
                 }
             }
             dailyIncomeLayout -> {

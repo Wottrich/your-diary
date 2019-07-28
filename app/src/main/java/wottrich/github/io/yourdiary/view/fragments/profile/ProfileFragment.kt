@@ -26,6 +26,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     override fun initValues() {
         profileAdapter.onExpectedIncomeClick = this::onExpectedIncomeClick
+        profileAdapter.onLinkedEmailClick = this::onLinkedEmailClick
         baseView.rvProfileInfo.adapter = profileAdapter
 
         toolbar = baseView.toolbar
@@ -45,6 +46,10 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     }
 
     private fun onExpectedIncomeClick () {
+        Toast.makeText(requireContext(), "Em desenvolvimento", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onLinkedEmailClick () {
         Toast.makeText(requireContext(), "Em desenvolvimento", Toast.LENGTH_SHORT).show()
     }
 

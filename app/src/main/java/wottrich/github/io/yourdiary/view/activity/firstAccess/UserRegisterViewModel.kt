@@ -12,6 +12,7 @@ class UserRegisterViewModel {
 
     fun saveNewUser (result: (Boolean) -> Unit) {
         if (user.name.isNotNullOrEmpty() && user.age != null && user.age!! > 0 && user.income > 0) {
+            put(user)
             result(true)
         } else result(false)
     }

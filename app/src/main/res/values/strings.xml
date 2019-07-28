@@ -114,10 +114,13 @@
     <!--DailyIncomeViewHolder-->
     <string name="daily_income_view_holder_info">Total do dia</string>
 
+    <!--LinkedEmailViewHolder-->
+    <string name="linked_email_view_holder_email_null">Clique aqui para vincular seu email!</string>
+
     <!--ExpectedIncomeViewHolder-->
     <string name="expected_income_view_holder_actual_income">Atual:</string>
     <string name="expected_income_view_holder_expected_income">Previsto:</string>
-    <string name="expected_income_view_holder_expected_income_empty">Nenhum rendimento previsto.\nClique aqui para adicionar</string>
+    <string name="expected_income_view_holder_expected_income_empty">Nenhum rendimento previsto.\nClique aqui para adicionar.</string>
     <string name="expected_income_view_holder_income">Rendimentos</string>
 
     <!--</editor-folder>-->
