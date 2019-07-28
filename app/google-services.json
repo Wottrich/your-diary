@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "803313782422",
+    "firebase_url": "https://diarywottrich.firebaseio.com",
+    "project_id": "diarywottrich",
+    "storage_bucket": "diarywottrich.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803313782422:android:a91883c5f3dcd02c",
+        "android_client_info": {
+          "package_name": "wottrich.github.io.yourdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803313782422-qqdl8l5l83u79c6uq4ofti3gvlbegbio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjJoLX8B4AIf9xBRyiY_WPlLDeRzOi9fA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803313782422-qqdl8l5l83u79c6uq4ofti3gvlbegbio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -38,9 +38,4 @@ class ProfileViewModel {
 
     }
 
-    fun updateSpending (result: (update: Boolean) -> Unit) {
-
-
-    }
-
 }
