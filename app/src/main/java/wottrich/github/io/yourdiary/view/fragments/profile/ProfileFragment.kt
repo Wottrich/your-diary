@@ -35,8 +35,13 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     }
 
     fun reloadList () {
-        profileAdapter.notifyItemChanged(1)
-        profileAdapter.notifyItemChanged(2)
+        viewModel.canUpdate {
+            if (it) {
+                profileAdapter.notifyItemChanged(1)
+                profileAdapter.notifyItemChanged(2)
+                profileAdapter.notifyItemChanged(3)
+            }
+        }
     }
 
     private fun onExpectedIncomeClick () {

@@ -110,6 +110,9 @@
     <!--IncomeViewHolder-->
     <string name="income_view_holder_info">Renda mensal</string>
 
+    <!--DailyIncomeViewHolder-->
+    <string name="daily_income_view_holder_info">Total do dia</string>
+
     <!--ExpectedIncomeViewHolder-->
     <string name="expected_income_view_holder_actual_income">Atual:</string>
     <string name="expected_income_view_holder_expected_income">Previsto:</string>

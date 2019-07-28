@@ -9,6 +9,7 @@ import wottrich.github.io.yourdiary.extensions.format
 import wottrich.github.io.yourdiary.extensions.getUser
 import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.view.holders.ExpectedIncomeViewHolder
+import wottrich.github.io.yourdiary.view.holders.dailyIncome.DailyIncomeViewHolder
 import wottrich.github.io.yourdiary.view.holders.income.IncomeViewHolder
 import wottrich.github.io.yourdiary.view.holders.graph.GraphViewHolder
 
@@ -17,13 +18,14 @@ class ProfileAdapter(
     var inflate: LayoutInflater = LayoutInflater.from(context)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val graphLayout = R.layout.row_profile_graph
     private val incomeLayout = R.layout.row_profile_income
+    private val dailyIncomeLayout = R.layout.row_profile_daily_income
+    private val graphLayout = R.layout.row_profile_graph
     private val expectedIncomeLayout = R.layout.row_profile_expected_income
 
     var onExpectedIncomeClick: (() -> Unit)? = null
 
-    val hasValue: Boolean
+    private val hasValue: Boolean
         get() = user.allCustomerValue != 0f || user.allSpendingValue != 0f
 
     private val user: User
@@ -33,19 +35,22 @@ class ProfileAdapter(
         val view = inflate.inflate(viewType, viewGroup, false)
         return when(viewType) {
             incomeLayout -> IncomeViewHolder(view)
+            dailyIncomeLayout -> DailyIncomeViewHolder(view)
             graphLayout -> GraphViewHolder(context, view)
             expectedIncomeLayout -> ExpectedIncomeViewHolder(context, view)
             else -> GraphViewHolder(context, view)
         }
     }
 
-    override fun getItemCount(): Int = if (hasValue) 3 else 2
+    override fun getItemCount(): Int = if (hasValue) 4 else 3
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
             0 -> incomeLayout
-            1 -> if (hasValue) graphLayout else expectedIncomeLayout
-            2 -> expectedIncomeLayout
+            1 -> dailyIncomeLayout
+            2 -> if (hasValue) graphLayout else expectedIncomeLayout
+            3 -> expectedIncomeLayout
+
             else -> super.getItemViewType(position)
         }
     }
@@ -55,6 +60,11 @@ class ProfileAdapter(
             incomeLayout -> {
                 with(viewHolder as IncomeViewHolder) {
                     initValues(user.income.format())
+                }
+            }
+            dailyIncomeLayout -> {
+                with(viewHolder as DailyIncomeViewHolder) {
+                    initValues()
                 }
             }
             graphLayout -> {

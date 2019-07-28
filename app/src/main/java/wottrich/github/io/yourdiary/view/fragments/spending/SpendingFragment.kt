@@ -74,7 +74,9 @@ open class SpendingFragment() : BaseFragment(R.layout.fragment_spending), View.O
 
     fun playAnimation (play: Boolean) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            if (play) baseView.lotEmptyList.playAnimation() else baseView.lotEmptyList.cancelAnimation()
+            if (play && baseView.lotEmptyList.visibility == View.VISIBLE)
+                baseView.lotEmptyList.playAnimation()
+            else baseView.lotEmptyList.cancelAnimation()
         } else {
             baseView.lotEmptyList.visibility = View.GONE
             baseView.lotEmptyList.cancelAnimation()

@@ -89,6 +89,43 @@ fun Date.getDateString(pattern: String = "dd/MM/yyyy", locale: Locale = _locale)
     return SimpleDateFormat(pattern, locale).format(this)
 }
 
+fun Date.getDay (): String {
+    return SimpleDateFormat("dd", _locale).format(this)
+}
+
+fun Date.getMonth (): String {
+    return SimpleDateFormat("MM", _locale).format(this)
+}
+
+fun Date.getYear (): String {
+    return SimpleDateFormat("yyyy", _locale).format(this)
+}
+
+fun Date.getTomorrow (): Date {
+    val calendar = Calendar.getInstance()
+    calendar.time = this
+    calendar.add(Calendar.DAY_OF_MONTH, 1)
+    return calendar.time
+}
+
+fun Date.getYesterday (): Date {
+    val calendar = Calendar.getInstance()
+    calendar.time = this
+    calendar.add(Calendar.DAY_OF_MONTH, -1)
+    return calendar.time
+}
+
+fun Date.reInit(): Date {
+    val calendar = Calendar.getInstance()
+    calendar.time = this
+    calendar.set(Calendar.HOUR_OF_DAY, 0)
+    calendar.set(Calendar.HOUR, 0)
+    calendar.set(Calendar.MINUTE, 0)
+    calendar.set(Calendar.SECOND, 0)
+    calendar.set(Calendar.MILLISECOND, 0)
+    return calendar.time
+}
+
 fun OnCalendarPicker.showPicker(context: Context): DatePickerDialog {
     DatePickerDialog(
         context,
