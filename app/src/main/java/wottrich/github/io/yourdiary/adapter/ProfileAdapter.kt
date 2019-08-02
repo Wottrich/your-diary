@@ -14,8 +14,8 @@ import wottrich.github.io.yourdiary.view.holders.income.IncomeViewHolder
 import wottrich.github.io.yourdiary.view.holders.graph.GraphViewHolder
 
 class ProfileAdapter(
-    var context: Context,
-    var inflate: LayoutInflater = LayoutInflater.from(context)
+    private var context: Context,
+    private var inflate: LayoutInflater = LayoutInflater.from(context)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val incomeLayout = R.layout.row_profile_income
