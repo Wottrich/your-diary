@@ -1,4 +1,4 @@
-package wottrich.github.io.yourdiary.view.activity.register
+package wottrich.github.io.yourdiary.view.activity.profile.register
 
 import android.app.Activity
 import androidx.appcompat.widget.Toolbar

@@ -11,7 +11,6 @@ import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
-import wottrich.github.io.yourdiary.view.activity.main.MainActivity
 import wottrich.github.io.yourdiary.view.activity.profile.ProfileActivity
 
 class UserRegisterActivity : BaseActivity(R.layout.activity_user_register), View.OnClickListener {
@@ -135,7 +134,7 @@ class UserRegisterActivity : BaseActivity(R.layout.activity_user_register), View
                     } else {
                         viewModel.saveNewUser {
                             if (it) {
-                                startActivity(Intent(this, MainActivity::class.java))
+                                startActivity(Intent(this, ProfileActivity::class.java))
                             } else {
                                 Toast.makeText(this, getString(R.string.activity_user_register_error), Toast.LENGTH_SHORT).show()
                             }

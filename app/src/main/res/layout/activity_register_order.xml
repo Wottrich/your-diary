@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/arenic_1"
-    tools:context=".view.activity.register.RegisterActivity"
+    tools:context=".view.activity.profile.register.RegisterActivity"
     android:id="@+id/root">
 
     <com.google.android.material.appbar.AppBarLayout

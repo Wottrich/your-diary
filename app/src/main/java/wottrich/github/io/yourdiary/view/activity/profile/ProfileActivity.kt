@@ -8,7 +8,10 @@ import androidx.appcompat.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_profile.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ProfileAdapter
+import wottrich.github.io.yourdiary.extensions.startMyActivity
 import wottrich.github.io.yourdiary.generics.BaseActivity
+import wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity
+import wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity
 import wottrich.github.io.yourdiary.view.activity.singIn.SingInActivity
 
 class ProfileActivity : BaseActivity(R.layout.activity_profile) {
@@ -27,6 +30,8 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
 
         profileAdapter.onExpectedIncomeClick = this::onExpectedIncomeClick
         profileAdapter.onLinkedEmailClick = this::onLinkedEmailClick
+        profileAdapter.onCustomerClick = this::onCustomerClick
+        profileAdapter.onSpendClick = this::onSpendClick
         rvProfileInfo.adapter = profileAdapter
 
         mToolbar = toolbar
@@ -50,7 +55,15 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
     }
 
     private fun onLinkedEmailClick () {
-        startActivity(Intent(this, SingInActivity::class.java))
+        startMyActivity(SingInActivity::class.java)
+    }
+
+    private fun onCustomerClick () {
+        startMyActivity(CustomerActivity::class.java)
+    }
+
+    private fun onSpendClick () {
+        startMyActivity(SpendActivity::class.java)
     }
 
 }

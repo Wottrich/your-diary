@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.profile.ProfileActivity"></activity>
+        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity"></activity>
+        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity" />
+        <activity android:name=".view.activity.profile.ProfileActivity" />
         <activity android:name=".view.activity.singIn.SingInActivity" />
         <activity
             android:name=".view.activity.SplashActivity"
@@ -29,7 +31,7 @@
             android:name=".view.activity.firstAccess.UserRegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.register.RegisterActivity"
+            android:name="wottrich.github.io.yourdiary.view.activity.profile.register.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.main.MainActivity"

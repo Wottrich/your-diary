@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.extensions.format
 import wottrich.github.io.yourdiary.extensions.getUser
+import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.view.holders.ExpectedIncomeViewHolder
+import wottrich.github.io.yourdiary.view.holders.FlowViewHolder
 import wottrich.github.io.yourdiary.view.holders.dailyIncome.DailyIncomeViewHolder
 import wottrich.github.io.yourdiary.view.holders.income.IncomeViewHolder
 import wottrich.github.io.yourdiary.view.holders.graph.GraphViewHolder
@@ -19,12 +21,15 @@ class ProfileAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val incomeLayout = R.layout.row_profile_income
+    private val flowLayout = R.layout.row_flow
     private val dailyIncomeLayout = R.layout.row_profile_daily_income
     private val graphLayout = R.layout.row_profile_graph
     private val expectedIncomeLayout = R.layout.row_profile_expected_income
 
     var onLinkedEmailClick: (() -> Unit)? = null
     var onExpectedIncomeClick: (() -> Unit)? = null
+    var onSpendClick: (() -> Unit)? = null
+    var onCustomerClick: (() -> Unit)? = null
 
     private val hasValue: Boolean
         get() = user.allCustomerValue != 0f || user.allSpendingValue != 0f
@@ -36,6 +41,7 @@ class ProfileAdapter(
         val view = inflate.inflate(viewType, viewGroup, false)
         return when(viewType) {
             incomeLayout -> IncomeViewHolder(view)
+            flowLayout -> FlowViewHolder(context, view)
             dailyIncomeLayout -> DailyIncomeViewHolder(view)
             graphLayout -> GraphViewHolder(context, view)
             expectedIncomeLayout -> ExpectedIncomeViewHolder(context, view)
@@ -43,14 +49,15 @@ class ProfileAdapter(
         }
     }
 
-    override fun getItemCount(): Int = if (hasValue) 4 else 3
+    override fun getItemCount(): Int = if (hasValue) 5 else 4
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
             0 -> incomeLayout
-            1 -> dailyIncomeLayout
-            2 -> if (hasValue) graphLayout else expectedIncomeLayout
-            3 -> expectedIncomeLayout
+            1 -> flowLayout
+            2 -> dailyIncomeLayout
+            3 -> if (hasValue) graphLayout else expectedIncomeLayout
+            4 -> expectedIncomeLayout
 
             else -> super.getItemViewType(position)
         }
@@ -63,6 +70,11 @@ class ProfileAdapter(
                     initValues(user) {
                         onLinkedEmailClick?.invoke()
                     }
+                }
+            }
+            flowLayout -> {
+                with(viewHolder as FlowViewHolder) {
+                    initValues(Customer.selectedCustomer(), onSpendClick, onCustomerClick)
                 }
             }
             dailyIncomeLayout -> {

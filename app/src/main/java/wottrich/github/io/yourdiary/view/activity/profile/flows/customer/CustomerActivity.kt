@@ -1,82 +1,58 @@
-package wottrich.github.io.yourdiary.view.fragments.customer
+package wottrich.github.io.yourdiary.view.activity.profile.flows.customer
 
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
-import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_clients.*
-import kotlinx.android.synthetic.main.fragment_clients.view.*
-import kotlinx.android.synthetic.main.fragment_clients.view.lotEmptyList
-import wottrich.github.io.yourdiary.BuildConfig
-
+import androidx.appcompat.widget.Toolbar
+import kotlinx.android.synthetic.main.activity_customer.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.OrderAdapter
 import wottrich.github.io.yourdiary.enumerators.CustomerType
 import wottrich.github.io.yourdiary.enumerators.RegisterType
-import wottrich.github.io.yourdiary.extensions.*
-import wottrich.github.io.yourdiary.generics.BaseFragment
+import wottrich.github.io.yourdiary.extensions.orderId
+import wottrich.github.io.yourdiary.extensions.registerType
+import wottrich.github.io.yourdiary.extensions.userId
+import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.Order
-import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
-import wottrich.github.io.yourdiary.view.activity.main.MainActivity
-import wottrich.github.io.yourdiary.view.activity.register.RegisterActivity
-import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
+import wottrich.github.io.yourdiary.view.activity.profile.register.RegisterActivity
 import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
+import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
 
-@SuppressLint("StaticFieldLeak", "ValidFragment")
-open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.OnClickListener,
+class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
 
-    val viewModel: CustomerFragmentViewModel by lazy {
-        CustomerFragmentViewModel()
+    val updateListCode = 100
+
+    val viewModel: CustomerActivityViewModel by lazy {
+        CustomerActivityViewModel()
     }
 
     private lateinit var _toolbar: Toolbar
 
     private val orderAdapter: OrderAdapter by lazy {
-        OrderAdapter(viewModel.orders, requireActivity(), this::onClickOrder, this::onLongClickOrder)
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = CustomerFragment()
+        OrderAdapter(viewModel.orders, this, this::onClickOrder, this::onLongClickOrder)
     }
 
     override fun initValues() {
-        _toolbar = baseView.toolbar
-        baseView.rvOrders.adapter = orderAdapter
+        _toolbar = toolbar
+        rvOrders.adapter = orderAdapter
         configMenu()
         loadCustomer()
     }
 
-    private fun emptyList () {
-        if (viewModel.orders.isEmpty() && Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            baseView.lotEmptyList.playAnimation()
-            baseView.lotEmptyList.visibility = View.VISIBLE
-            baseView.tvEmptyList.visibility = View.VISIBLE
-        } else {
-            baseView.lotEmptyList.cancelAnimation()
-            baseView.lotEmptyList.visibility = View.GONE
-            baseView.tvEmptyList.visibility = View.GONE
-        }
+    private fun configMenu() {
+        _toolbar.inflateMenu(R.menu.customer_options)
+        _toolbar.menu.getItem(1).isVisible = false
+        _toolbar.setOnMenuItemClickListener(this)
+        _toolbar.setOnClickListener(this)
+        _toolbar.setNavigationOnClickListener { finish() }
     }
 
-    fun playAnimation (play: Boolean) {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            if (play && baseView.lotEmptyList.visibility == View.VISIBLE)
-                baseView.lotEmptyList.playAnimation()
-            else baseView.lotEmptyList.cancelAnimation()
-        } else {
-            baseView.lotEmptyList.visibility = View.GONE
-            baseView.lotEmptyList.cancelAnimation()
-        }
-    }
-
-    fun loadCustomer() {
+    private fun loadCustomer() {
         if (viewModel.clientCount > 0) {
             _toolbar.title = viewModel.client?.name
             _toolbar.subtitle = "Novo pedido..."
@@ -91,42 +67,48 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
         emptyList()
     }
 
-    private fun showMenu (show: Boolean) {
+    private fun showMenu(show: Boolean) {
         _toolbar.menu.getItem(0).isVisible = show
         //_toolbar.menu.getItem(1).isVisible = show
     }
 
-    private fun configMenu () {
-        _toolbar.inflateMenu(R.menu.customer_options)
-        _toolbar.menu.getItem(1).isVisible = false
-        _toolbar.setOnMenuItemClickListener(this)
-        _toolbar.setOnClickListener(this)
+    private fun emptyList() {
+        if (viewModel.orders.isEmpty() && Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            lotEmptyList.playAnimation()
+            lotEmptyList.visibility = View.VISIBLE
+            tvEmptyList.visibility = View.VISIBLE
+        } else {
+            lotEmptyList.cancelAnimation()
+            lotEmptyList.visibility = View.GONE
+            tvEmptyList.visibility = View.GONE
+        }
     }
 
-    private fun onClickOrder (order: Order?, position: Int) {
+    private fun onClickOrder(order: Order?, position: Int) {
         if (!viewModel.onLongClickableMode) {
             if (order != null) {
-                val intent = Intent(activity, RegisterActivity::class.java).apply {
-                    this registerType  RegisterType.EDIT
+                val intent = Intent(this, RegisterActivity::class.java).apply {
+                    this registerType RegisterType.EDIT
                     this orderId order.id
                 }
-                activity?.startActivityForResult(intent, MainActivity.UPDATE_ORDER_LIST)
+
+                startActivityForResult(intent, updateListCode)
             } else {
-                Toast.makeText(activity, "Error to get order id", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error to get order id", Toast.LENGTH_SHORT).show()
             }
         } else if (order != null) {
             controlSelectedList(order, position)
         } else {
-            Toast.makeText(activity, "Error to get order id", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error to get order id", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun onLongClickOrder (order: Order?, position: Int) {
+    private fun onLongClickOrder(order: Order?, position: Int) {
         order ?: return
         controlSelectedList(order, position)
     }
 
-    private fun controlSelectedList (order: Order, position: Int) {
+    private fun controlSelectedList(order: Order, position: Int) {
         if (viewModel.ordersSelected.isEmpty()) {
             order.isSelected = true
             viewModel.ordersSelected.add(order)
@@ -154,7 +136,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
         //_toolbar.menu.getItem(2).isVisible = !_toolbar.menu.getItem(2).isVisible
     }
 
-    fun cleanSelectedItems () {
+    private fun cleanSelectedItems () {
         if (viewModel.onLongClickableMode) {
             viewModel.ordersSelected.clear()
             selectedItem()
@@ -168,18 +150,18 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
             R.id.toolbar -> {
                 if (viewModel.clientCount > 0) {
                     cleanSelectedItems()
-                    val intent = Intent(activity, RegisterActivity::class.java).apply {
-                        this registerType  RegisterType.NEW
+                    val intent = Intent(this, RegisterActivity::class.java).apply {
+                        this registerType RegisterType.NEW
                         this userId viewModel.client?.id
                     }
-                    activity?.startActivityForResult(intent, MainActivity.UPDATE_ORDER_LIST)
+                    startActivityForResult(intent, updateListCode)
                 } else {
-                    KeyboardUtils.showKeyboard(requireActivity(), baseView)
-                    baseView.postDelayed({
+                    KeyboardUtils.showKeyboard(this, root)
+                    root.postDelayed({
                         CustomerDialog(
                             this::loadCustomer,
                             CustomerType.NEW
-                        ).show(activity?.supportFragmentManager, "CustomerDialog")
+                        ).show(supportFragmentManager, "CustomerDialog")
                     }, 100)
                 }
             }
@@ -189,7 +171,7 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.itChangeCustomer -> {
-                ShowCustomersDialog(this::loadCustomer).show(activity?.supportFragmentManager, "ShowCustomerDialog")
+                ShowCustomersDialog(this::loadCustomer).show(supportFragmentManager, "ShowCustomerDialog")
                 true
             }
             R.id.itDelete -> {
@@ -202,24 +184,24 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
                 true
             }
             R.id.itSettings -> {
-                KeyboardUtils.showKeyboard(requireActivity(), baseView)
-                baseView.postDelayed({
+                KeyboardUtils.showKeyboard(this, root)
+                root.postDelayed({
                     CustomerDialog(
                         this::loadCustomer,
                         CustomerType.EDIT,
                         viewModel.client?.id ?: -1
-                    ).show(activity?.supportFragmentManager, "CustomerDialog")
+                    ).show(supportFragmentManager, "CustomerDialog")
                 },100)
                 true
             }
             R.id.itNewCustomer -> {
                 cleanSelectedItems()
-                KeyboardUtils.showKeyboard(requireActivity(), baseView)
-                baseView.postDelayed({
+                KeyboardUtils.showKeyboard(this, root)
+                root.postDelayed({
                     CustomerDialog(
                         this::loadCustomer,
                         CustomerType.NEW
-                    ).show(activity?.supportFragmentManager, "CustomerDialog")
+                    ).show(supportFragmentManager, "CustomerDialog")
                 }, 100)
                 true
             }
@@ -227,8 +209,32 @@ open class CustomerFragment() : BaseFragment(R.layout.fragment_clients), View.On
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when {
+
+            resultCode == Activity.RESULT_OK && requestCode == updateListCode -> loadCustomer()
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onStart() {
+        if (viewModel.orders.isEmpty()) {
+            lotEmptyList.playAnimation()
+        }
+        super.onStart()
+    }
+
+    override fun onStop() {
+        lotEmptyList.cancelAnimation()
+        super.onStop()
+    }
+
+    override fun onBackPressed() {
+        if (viewModel.ordersSelected.isNotEmpty()) {
+            cleanSelectedItems()
+        } else super.onBackPressed()
     }
 
 }

@@ -1,6 +1,5 @@
-package wottrich.github.io.yourdiary.view.activity.register
+package wottrich.github.io.yourdiary.view.activity.profile.register
 
-import android.content.Context
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.enumerators.RegisterType
 import wottrich.github.io.yourdiary.extensions.box
