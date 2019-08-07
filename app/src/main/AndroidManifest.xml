@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity"></activity>
+        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity"/>
         <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity" />
         <activity android:name=".view.activity.profile.ProfileActivity" />
         <activity android:name=".view.activity.singIn.SingInActivity" />

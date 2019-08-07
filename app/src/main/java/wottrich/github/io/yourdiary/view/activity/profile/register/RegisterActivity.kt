@@ -14,6 +14,7 @@ import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.enumerators.RegisterType
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseActivity
+import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import java.util.*

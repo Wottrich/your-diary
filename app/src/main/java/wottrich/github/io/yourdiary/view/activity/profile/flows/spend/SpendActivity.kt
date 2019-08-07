@@ -42,6 +42,7 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
         toolbar.menu.getItem(1).isVisible = false
         toolbar.setOnMenuItemClickListener(this)
         toolbar.setNavigationOnClickListener {
+            setResult(Activity.RESULT_OK)
             finish()
             //overridePendingTransition()
         }
@@ -170,7 +171,10 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
             }
             menuSelectedItem()
             emptyList()
-        } else super.onBackPressed()
+        } else {
+            setResult(Activity.RESULT_OK)
+            super.onBackPressed()
+        }
     }
 
 }

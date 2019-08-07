@@ -25,9 +25,10 @@ import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
 class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
 
-    val updateListCode = 100
+    private val updateListCode = 100
+    private var resultOK = false
 
-    val viewModel: CustomerActivityViewModel by lazy {
+    private val viewModel: CustomerActivityViewModel by lazy {
         CustomerActivityViewModel()
     }
 
@@ -49,7 +50,10 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
         _toolbar.menu.getItem(1).isVisible = false
         _toolbar.setOnMenuItemClickListener(this)
         _toolbar.setOnClickListener(this)
-        _toolbar.setNavigationOnClickListener { finish() }
+        _toolbar.setNavigationOnClickListener {
+            result()
+            finish()
+        }
     }
 
     private fun loadCustomer() {
@@ -145,6 +149,12 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
         emptyList()
     }
 
+    private fun result () {
+        if(resultOK) {
+            setResult(Activity.RESULT_OK)
+        }
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.toolbar -> {
@@ -158,9 +168,10 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
                 } else {
                     KeyboardUtils.showKeyboard(this, root)
                     root.postDelayed({
-                        CustomerDialog(
-                            this::loadCustomer,
-                            CustomerType.NEW
+                        CustomerDialog({
+                            resultOK = true
+                            loadCustomer()
+                        }, CustomerType.NEW
                         ).show(supportFragmentManager, "CustomerDialog")
                     }, 100)
                 }
@@ -171,11 +182,15 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.itChangeCustomer -> {
-                ShowCustomersDialog(this::loadCustomer).show(supportFragmentManager, "ShowCustomerDialog")
+                ShowCustomersDialog{
+                    resultOK = true
+                    loadCustomer()
+                }.show(supportFragmentManager, "ShowCustomerDialog")
                 true
             }
             R.id.itDelete -> {
                 viewModel.deleteSelectedOrders {
+                    resultOK = true
                     viewModel.ordersSelected.clear()
                     this.orderAdapter.updateList()
                     selectedItem()
@@ -186,10 +201,10 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
             R.id.itSettings -> {
                 KeyboardUtils.showKeyboard(this, root)
                 root.postDelayed({
-                    CustomerDialog(
-                        this::loadCustomer,
-                        CustomerType.EDIT,
-                        viewModel.client?.id ?: -1
+                    CustomerDialog({
+                        resultOK = true
+                        loadCustomer()
+                    }, CustomerType.EDIT,viewModel.client?.id ?: -1
                     ).show(supportFragmentManager, "CustomerDialog")
                 },100)
                 true
@@ -198,9 +213,10 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
                 cleanSelectedItems()
                 KeyboardUtils.showKeyboard(this, root)
                 root.postDelayed({
-                    CustomerDialog(
-                        this::loadCustomer,
-                        CustomerType.NEW
+                    CustomerDialog({
+                        resultOK = true
+                        loadCustomer()
+                    }, CustomerType.NEW
                     ).show(supportFragmentManager, "CustomerDialog")
                 }, 100)
                 true
@@ -212,7 +228,10 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when {
 
-            resultCode == Activity.RESULT_OK && requestCode == updateListCode -> loadCustomer()
+            resultCode == Activity.RESULT_OK && requestCode == updateListCode -> {
+                resultOK = true
+                loadCustomer()
+            }
 
         }
 
@@ -234,7 +253,10 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
     override fun onBackPressed() {
         if (viewModel.ordersSelected.isNotEmpty()) {
             cleanSelectedItems()
-        } else super.onBackPressed()
+        } else {
+            result()
+            super.onBackPressed()
+        }
     }
 
 }

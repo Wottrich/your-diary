@@ -31,18 +31,154 @@
                 app:titleTextColor="@color/white" />
 
         </com.google.android.material.appbar.AppBarLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginBottom="60dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:overScrollMode="never"
-            android:id="@+id/rvProfileInfo"
+            <androidx.recyclerview.widget.RecyclerView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:overScrollMode="never"
+                android:id="@+id/rvProfileInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager"
+                app:reverseLayout="false"
+                tools:itemCount="1"
+                tools:listitem="@layout/row_profile_graph" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            app:behavior_peekHeight="60dp"
+            android:id="@+id/btnSheet"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            style="Widget.MaterialComponents.BottomSheet.Modal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="LinearLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:reverseLayout="false"
-            tools:itemCount="1"
-            tools:listitem="@layout/row_profile_graph" />
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/transparent">
 
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:clickable="true"
+                   android:focusable="true"
+                   android:id="@+id/clHeader"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   android:layout_width="wrap_content"
+                   android:layout_height="60dp">
+
+                   <ImageView
+                       android:id="@+id/imgArrow"
+                       android:layout_marginTop="10dp"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       android:rotation="90"
+                       android:src="@drawable/arrow_back_white_24"
+                       android:layout_width="wrap_content"
+                       android:layout_height="0dp" />
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:background="@color/slight_black"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toBottomOf="@id/clHeader"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etTitle"
+                       style="@style/LabelTitle.White"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="5dp"
+                       android:layout_marginTop="15dp"
+                       android:layout_marginEnd="5dp"
+                       android:background="@color/transparent"
+                       android:fontFamily="@font/roboto_bold"
+                       android:hint="@string/activity_register_order_title"
+                       android:paddingStart="5dp"
+                       android:paddingEnd="5dp"
+                       android:textAllCaps="false"
+                       android:textColorHint="@color/dark_white"
+                       android:textSize="20sp"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       tools:text="Texto ae" />
+
+                   <EditText
+                       android:id="@+id/etPrice"
+                       style="@style/Label.ShinyShamrock"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="5dp"
+                       android:layout_marginTop="5dp"
+                       android:layout_marginEnd="5dp"
+                       android:background="@color/transparent"
+                       android:fontFamily="@font/roboto_bold"
+                       android:hint="@string/activity_register_order_amount"
+                       android:inputType="number"
+                       android:paddingStart="5dp"
+                       android:paddingEnd="5dp"
+                       android:textAllCaps="false"
+                       android:textColorHint="@color/dark_white"
+                       android:textSize="20sp"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@id/etTitle" />
+
+                   <Button
+                       android:id="@+id/btnDate"
+                       style="@style/Label.White"
+                       android:layout_width="0dp"
+                       android:layout_height="35dp"
+                       android:layout_marginStart="5dp"
+                       android:layout_marginTop="5dp"
+                       android:layout_marginEnd="5dp"
+                       android:layout_marginBottom="20dp"
+                       android:background="@color/transparent"
+                       android:fontFamily="@font/roboto_bold"
+                       android:hint="@string/activity_register_order_date"
+                       android:paddingStart="5dp"
+                       android:paddingEnd="5dp"
+                       android:textAlignment="textStart"
+                       android:textAllCaps="false"
+                       android:textColorHint="@color/dark_white"
+                       android:textSize="20sp"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toBottomOf="@id/etPrice"
+                       tools:text="20/12/1999" />
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
