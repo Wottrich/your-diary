@@ -90,6 +90,10 @@
     <string name="activity_sing_in_password">*Essa será a senha utilizada para entrar no aplicativo</string>
     <string name="activity_sing_in_btn">Sincronizar</string>
 
+    <!--ProfileActivity-->
+    <string name="activity_profile_spend_radiobutton">Novo Gasto</string>
+    <string name="activity_profile_customer_radiobutton">Novo Pedido</string>
+
     <!--Splash-->
     <string name="activity_splash_retry">Tentar novamente</string>
 

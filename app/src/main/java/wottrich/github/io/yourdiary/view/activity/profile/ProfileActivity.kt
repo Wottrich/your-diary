@@ -17,11 +17,13 @@ import wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActiv
 import wottrich.github.io.yourdiary.view.activity.singIn.SingInActivity
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class ProfileActivity : BaseActivity(R.layout.activity_profile) {
 
+    private val updateLinkedEmailCode = 500
     private val updateSelectedCustomerCode = 600
-    private val updateProfileList = 400
+    private val updateProfileListCode = 400
 
     private val profileAdapter : ProfileAdapter by lazy {
         ProfileAdapter(this)
@@ -47,7 +49,20 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
         sheet.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) = Unit
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                /*
+                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) myView.getLayoutParams();
+                params.horizontalBias = 0.2f; // here is one modification for example. modify anything else you want :)
+                myView.setLayoutParams(params);
+                 */
+
+                val params = imgArrow.layoutParams as ConstraintLayout.LayoutParams
+
+                params.horizontalBias = (1f-slideOffset) * 0.5f
+                imgArrow.layoutParams = params
+
                 imgArrow.rotation = slideOffset * 180f + 90f
+                imgOK.alpha = slideOffset
+                viewHeader.alpha = slideOffset
             }
         })
 
@@ -72,7 +87,7 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
     }
 
     private fun onLinkedEmailClick () {
-        startMyActivity(SingInActivity::class)
+        startMyActivity(SingInActivity::class, updateLinkedEmailCode)
     }
 
     private fun onCustomerClick () {
@@ -80,18 +95,21 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
     }
 
     private fun onSpendClick () {
-        startMyActivity(SpendActivity::class, updateProfileList)
+        startMyActivity(SpendActivity::class, updateProfileListCode)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        when {
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                updateSelectedCustomerCode, updateProfileListCode -> {
+                    profileAdapter.notifyDataSetChanged()
+                }
 
-            resultCode == Activity.RESULT_OK
-                    && (requestCode == updateSelectedCustomerCode || requestCode == updateProfileList) -> {
-                profileAdapter.notifyDataSetChanged()
+                updateLinkedEmailCode -> {
+                    profileAdapter.notifyItemChanged(0)
+                }
             }
-
         }
         super.onActivityResult(requestCode, resultCode, data)
     }

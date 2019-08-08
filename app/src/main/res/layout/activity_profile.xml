@@ -53,7 +53,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+<!--app:behavior_peekHeight="60dp"-->
 
         <com.google.android.material.card.MaterialCardView
             app:behavior_peekHeight="60dp"
@@ -76,18 +76,42 @@
                    app:layout_constraintTop_toTopOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintStart_toStartOf="parent"
-                   android:layout_width="wrap_content"
+                   android:layout_width="match_parent"
                    android:layout_height="60dp">
 
+                   <View
+                       android:id="@+id/viewHeader"
+                       android:alpha="0"
+                       android:background="@color/arenic"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       android:layout_width="0dp"
+                       android:layout_height="0dp"/>
+
                    <ImageView
+                       android:layout_marginEnd="20dp"
+                       android:layout_marginStart="20dp"
+                       app:layout_constraintHorizontal_bias="0.5"
                        android:id="@+id/imgArrow"
-                       android:layout_marginTop="10dp"
                        app:layout_constraintBottom_toBottomOf="parent"
                        app:layout_constraintTop_toTopOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
                        app:layout_constraintEnd_toEndOf="parent"
                        android:rotation="90"
                        android:src="@drawable/arrow_back_white_24"
+                       android:layout_width="wrap_content"
+                       android:layout_height="0dp" />
+
+                   <ImageView
+                       android:alpha="0"
+                       android:layout_marginEnd="20dp"
+                       android:id="@+id/imgOK"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       android:src="@drawable/check_ok_32dp"
                        android:layout_width="wrap_content"
                        android:layout_height="0dp" />
 
@@ -125,25 +149,41 @@
                        tools:text="Texto ae" />
 
                    <EditText
+                       style="@style/LabelTitle.White"
                        android:id="@+id/etPrice"
-                       style="@style/Label.ShinyShamrock"
+                       android:textSize="20sp"
                        android:layout_width="0dp"
                        android:layout_height="wrap_content"
-                       android:layout_marginStart="5dp"
-                       android:layout_marginTop="5dp"
-                       android:layout_marginEnd="5dp"
-                       android:background="@color/transparent"
-                       android:fontFamily="@font/roboto_bold"
-                       android:hint="@string/activity_register_order_amount"
+                       android:layout_marginStart="20dp"
+                       android:layout_marginEnd="20dp"
+                       android:animateLayoutChanges="true"
+                       android:backgroundTint="@color/iguana_green"
+                       android:hint="0,00"
                        android:inputType="number"
-                       android:paddingStart="5dp"
-                       android:paddingEnd="5dp"
-                       android:textAllCaps="false"
-                       android:textColorHint="@color/dark_white"
-                       android:textSize="20sp"
+                       android:maxLength="20"
+                       android:paddingStart="18dp"
+                       android:paddingEnd="0dp"
+                       android:background="@color/transparent"
+                       android:textColor="@color/white"
+                       android:textColorHint="@color/dark_white_2"
+                       android:visibility="visible"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toBottomOf="@id/etTitle" />
+                       app:layout_constraintTop_toBottomOf="@id/etTitle"
+                       app:layout_constraintVertical_bias="0.1"
+                       tools:ignore="Autofill" />
+
+                   <TextView
+                       style="@style/LabelTitle.White"
+                       android:id="@+id/tvSymbol"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:text="R$"
+                       android:textColor="@color/white"
+                       android:textSize="20sp"
+                       app:layout_constraintBaseline_toBaselineOf="@id/etPrice"
+                       app:layout_constraintStart_toStartOf="parent" />
 
                    <Button
                        android:id="@+id/btnDate"
@@ -163,11 +203,46 @@
                        android:textAllCaps="false"
                        android:textColorHint="@color/dark_white"
                        android:textSize="20sp"
-                       app:layout_constraintBottom_toBottomOf="parent"
                        app:layout_constraintEnd_toEndOf="parent"
                        app:layout_constraintStart_toStartOf="parent"
                        app:layout_constraintTop_toBottomOf="@id/etPrice"
                        tools:text="20/12/1999" />
+
+                   <RadioGroup
+                       android:layout_marginBottom="10dp"
+                       android:id="@+id/rbTypeRegister"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       android:orientation="vertical"
+                       app:layout_constraintTop_toBottomOf="@id/btnDate"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content">
+
+                       <RadioButton
+                           android:checked="true"
+                           android:textSize="16sp"
+                           style="@style/Label.White"
+                           android:id="@+id/rbSpend"
+                           android:textColor="@color/white"
+                           android:text="@string/activity_profile_spend_radiobutton"
+                           android:buttonTint="@color/white"
+                           android:layout_width="match_parent"
+                           android:layout_height="46dp" />
+
+                       <RadioButton
+                           android:textSize="16sp"
+                           style="@style/Label.White"
+                           android:id="@+id/rbOrder"
+                           android:textColor="@color/white"
+                           android:text="@string/activity_profile_customer_radiobutton"
+                           android:buttonTint="@color/white"
+                           android:layout_width="match_parent"
+                           android:layout_height="46dp" />
+
+                   </RadioGroup>
+
+
 
                </androidx.constraintlayout.widget.ConstraintLayout>
 
