@@ -44,19 +44,23 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
         profileAdapter.onSpendClick = this::onSpendClick
         rvProfileInfo.adapter = profileAdapter
 
+        bottomSheetConfig()
+
+        mToolbar = toolbar
+        mToolbar.title = viewModel.user.name
+        mToolbar.subtitle = "${viewModel.user.age} anos"
+
+    }
+
+    private fun bottomSheetConfig () {
+
         sheet = BottomSheetBehavior.from(btnSheet)
 
         sheet.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) = Unit
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                /*
-                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) myView.getLayoutParams();
-                params.horizontalBias = 0.2f; // here is one modification for example. modify anything else you want :)
-                myView.setLayoutParams(params);
-                 */
 
                 val params = imgArrow.layoutParams as ConstraintLayout.LayoutParams
-
                 params.horizontalBias = (1f-slideOffset) * 0.5f
                 imgArrow.layoutParams = params
 
@@ -66,9 +70,35 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
             }
         })
 
-        mToolbar = toolbar
-        mToolbar.title = viewModel.user.name
-        mToolbar.subtitle = "${viewModel.user.age} anos"
+        imgArrow.setOnClickListener {
+
+            if (sheet.state == BottomSheetBehavior.STATE_EXPANDED) {
+                sheet.state = BottomSheetBehavior.STATE_COLLAPSED
+            } else {
+                sheet.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+
+        }
+
+        imgOK.setOnClickListener {
+
+            newOrder()
+
+        }
+
+    }
+
+    private fun newOrder () {
+
+        if (rbSpend.isChecked) {
+
+
+
+        } else if (rbOrder.isChecked) {
+
+
+
+        }
 
     }
 
