@@ -35,7 +35,7 @@
             android:id="@+id/rvCustomers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
             tools:itemCount="6"
             tools:orientation="horizontal"
             tools:scrollbars="horizontal"
-            tools:spanCount="2"
+            tools:spanCount="9"
             tools:listitem="@layout/row_customer" />
 
         <Button
@@ -57,7 +57,7 @@
             style="@style/Button.WhiteRound"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:text="@string/dialog_customer_btn_no"
+            android:text="@string/dialog_select_customer_btn_ok"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvQuestion" />

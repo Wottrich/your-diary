@@ -43,6 +43,8 @@
     <string name="dialog_customer_btn_yes">Sim</string>
     <string name="dialog_customer_btn_no">Não</string>
 
+    <!--Dialog Select Customer-->
+    <string name="dialog_select_customer_btn_ok">Selecionar</string>
 
     <!--Dialog Order-->
     <string name="dialog_order_title">Registrar Pedido</string>
