@@ -14,7 +14,7 @@ import wottrich.github.io.yourdiary.model.Customer
 
 class SelectCustomerAdapter(
     var context: Context,
-    var inflater: LayoutInflater = LayoutInflater.from(context)
+    private var inflater: LayoutInflater = LayoutInflater.from(context)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var customers = getUser().customers
@@ -33,12 +33,20 @@ class SelectCustomerAdapter(
         view.tvCountOrder.text = String.format("%d Pedidos", customer.orders.size)
         view.tvPriceOrder.text = customer.totalPriceFromSelectedCustomer()
         view.tvDateLastOrder.text = customer.lastDateOrder()
+
         if (customer.selected) {
             holder.itemView.background = context.getDrawable(R.drawable.shape_row_customer_selected)
         } else {
             holder.itemView.background = context.getDrawable(R.color.transparent)
         }
+
         holder.itemView.setOnClickListener {
+            customers.forEach {
+                it.selected = false
+            }
+
+            customer.selected = true
+
             onSelectedCustomer?.invoke(customer)
         }
     }

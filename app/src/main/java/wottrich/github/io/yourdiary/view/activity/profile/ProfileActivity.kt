@@ -2,6 +2,8 @@ package wottrich.github.io.yourdiary.view.activity.profile
 
 import android.app.Activity
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.animation.RotateAnimation
 import android.widget.Toast
@@ -10,7 +12,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_profile.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.ProfileAdapter
-import wottrich.github.io.yourdiary.extensions.startMyActivity
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity
 import wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity
@@ -18,6 +19,12 @@ import wottrich.github.io.yourdiary.view.activity.singIn.SingInActivity
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
+import wottrich.github.io.yourdiary.extensions.*
+import wottrich.github.io.yourdiary.model.Order
+import wottrich.github.io.yourdiary.model.Spending
+import wottrich.github.io.yourdiary.utils.CurrencyUtils
+import wottrich.github.io.yourdiary.view.dialog.SelectCustomerDialog
+import java.util.*
 
 class ProfileActivity : BaseActivity(R.layout.activity_profile) {
 
@@ -45,6 +52,7 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
         rvProfileInfo.adapter = profileAdapter
 
         bottomSheetConfig()
+        textWatcher()
 
         mToolbar = toolbar
         mToolbar.title = viewModel.user.name
@@ -90,26 +98,71 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
 
     private fun newOrder () {
 
+        if (etTitle.text == null || etTitle.text.toString().isEmpty()
+            || etPrice.text == null || etPrice.text.toString().isEmpty()
+            || convertToDouble(etPrice.text.toString(), _locale) == 0.toDouble()) {
+            Toast.makeText(this, "Preencha todos os campos para continuar ou um valor maior que 0", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val title = etTitle.text.toString()
+        val date = Date()
+        val price = convertToDouble(etPrice.text.toString(), _locale)
+
         if (rbSpend.isChecked) {
-
-
-
+            cleanBottomSheet()
+            val user = viewModel.user
+            val spend = Spending()
+            spend.title = title
+            spend.date = date
+            spend.price = price
+            user.spendingList.add(spend)
+            put(user)
+            Toast.makeText(this, "Gasto registrado com sucesso", Toast.LENGTH_SHORT).show()
+            profileAdapter.notifyDataSetChanged()
         } else if (rbOrder.isChecked) {
 
-
+            SelectCustomerDialog {
+                cleanBottomSheet()
+                val order = Order()
+                order.title = title
+                order.date = date
+                order.price = price
+                it.orders.add(order)
+                put(it)
+                Toast.makeText(this, "Pedido registrado com sucesso no cliente ${it.name}", Toast.LENGTH_SHORT).show()
+                profileAdapter.notifyDataSetChanged()
+            }.show(this.supportFragmentManager, "SelectCustomerDialog")
 
         }
 
     }
 
-    fun reloadList (updateNow: Boolean) {
-        viewModel.canUpdate {
-            if (updateNow || it) {
-                profileAdapter.notifyItemChanged(1)
-                profileAdapter.notifyItemChanged(2)
-                profileAdapter.notifyItemChanged(3)
+    private fun textWatcher () {
+
+        etPrice.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) = Unit
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                etPrice.removeTextChangedListener(this)
+                etPrice setText CurrencyUtils.formatToLocale(s.toString(), withoutSymbol = true)
+                etPrice.setSelection(etPrice.text.length)
+                etPrice.addTextChangedListener(this)
             }
-        }
+
+        })
+
+    }
+
+    private fun cleanBottomSheet() {
+
+        sheet.state = BottomSheetBehavior.STATE_COLLAPSED
+        etTitle.setText("")
+        etPrice.setText("")
+        rbSpend.isChecked = true
+        rbOrder.isChecked = false
+
     }
 
     private fun onExpectedIncomeClick () {

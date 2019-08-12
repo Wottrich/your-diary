@@ -7,6 +7,7 @@
     android:background="@color/transparent_black_13">
 
     <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/llParent"
         app:layout_constraintVertical_bias="1"
         app:layout_constraintTop_toTopOf="parent"
@@ -14,7 +15,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shape_show_customers"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -47,23 +47,9 @@
             tools:spanCount="9"
             tools:listitem="@layout/row_customer" />
 
-        <Button
-            android:layout_marginBottom="10dp"
-            android:layout_width="match_parent"
-            app:layout_constraintStart_toEndOf="@id/btnYes"
-            android:visibility="visible"
-            android:layout_marginTop="15dp"
-            android:id="@+id/btnNo"
-            style="@style/Button.WhiteRound"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/dialog_select_customer_btn_ok"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvQuestion" />
-
-
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
