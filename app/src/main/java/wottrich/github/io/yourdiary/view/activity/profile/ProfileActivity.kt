@@ -2,10 +2,10 @@ package wottrich.github.io.yourdiary.view.activity.profile
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.animation.RotateAnimation
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -16,13 +16,12 @@ import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity
 import wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity
 import wottrich.github.io.yourdiary.view.activity.singIn.SingInActivity
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
 import androidx.constraintlayout.widget.ConstraintLayout
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.model.Spending
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
+import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import wottrich.github.io.yourdiary.view.dialog.SelectCustomerDialog
 import java.util.*
 
@@ -57,6 +56,7 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
         mToolbar = toolbar
         mToolbar.title = viewModel.user.name
         mToolbar.subtitle = "${viewModel.user.age} anos"
+        hasSomeoneCustomer()
 
     }
 
@@ -80,11 +80,17 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
 
         imgArrow.setOnClickListener {
 
-            if (sheet.state == BottomSheetBehavior.STATE_EXPANDED) {
-                sheet.state = BottomSheetBehavior.STATE_COLLAPSED
-            } else {
-                sheet.state = BottomSheetBehavior.STATE_EXPANDED
-            }
+            KeyboardUtils.hideKeyboard(this, btnSheet)
+
+            Handler().postDelayed({
+                if (sheet.state == BottomSheetBehavior.STATE_EXPANDED) {
+                    sheet.state = BottomSheetBehavior.STATE_COLLAPSED
+                } else {
+                    sheet.state = BottomSheetBehavior.STATE_EXPANDED
+                }
+            }, 200)
+
+
 
         }
 
@@ -156,7 +162,7 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
     }
 
     private fun cleanBottomSheet() {
-
+        KeyboardUtils.hideKeyboard(this, btnSheet)
         sheet.state = BottomSheetBehavior.STATE_COLLAPSED
         etTitle.setText("")
         etPrice.setText("")
@@ -181,11 +187,20 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
         startMyActivity(SpendActivity::class, updateProfileListCode)
     }
 
+    private fun hasSomeoneCustomer() {
+        if (viewModel.user.customers.isEmpty()) {
+            rbOrder.visibility = View.GONE
+        } else {
+            rbOrder.visibility = View.VISIBLE
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 updateSelectedCustomerCode, updateProfileListCode -> {
+                    hasSomeoneCustomer()
                     profileAdapter.notifyDataSetChanged()
                 }
 
