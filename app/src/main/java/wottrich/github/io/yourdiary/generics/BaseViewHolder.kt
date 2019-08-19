@@ -1,8 +1,9 @@
 package wottrich.github.io.yourdiary.generics
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import wottrich.github.io.yourdiary.extensions.getUser
+import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.User
 
 abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -12,7 +13,10 @@ abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     open fun initValues () {}
 
+    open fun initValues (onClick: () -> Unit) {}
 
     open fun initValues (user: User) {}
+
+    open fun initValues (customer: Customer?) {}
 
 }

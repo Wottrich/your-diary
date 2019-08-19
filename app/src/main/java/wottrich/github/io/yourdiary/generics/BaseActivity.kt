@@ -1,7 +1,7 @@
 package wottrich.github.io.yourdiary.generics
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity(
         private var layout: Int

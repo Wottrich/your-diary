@@ -1,13 +1,12 @@
-package wottrich.github.io.yourdiary.view.fragments.customer
+package wottrich.github.io.yourdiary.view.activity.profile.flows.customer
 
 import wottrich.github.io.yourdiary.extensions.box
-import wottrich.github.io.yourdiary.extensions.boxList
 import wottrich.github.io.yourdiary.extensions.getUser
 import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.model.User
 
-class CustomerFragmentViewModel {
+class CustomerActivityViewModel {
 
     var ordersSelected: MutableList<Order> = mutableListOf()
     val onLongClickableMode: Boolean

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootSpend"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_row_order"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="10dp"
+        app:layout_constraintEnd_toStartOf="@id/rootCustomer"
+        app:layout_constraintBottom_toBottomOf="@id/rootCustomer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/arrowSpend"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/arrow_back_white_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:id="@+id/infoSpend"
+            style="@style/RobotoBoldWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/flow_view_holder_spend"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAlignment="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/arrowSpend"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootCustomer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape_row_order"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rootSpend"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/arrowCustomer"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:rotation="180"
+            android:src="@drawable/arrow_back_white_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginEnd="10dp"
+            android:textAlignment="textEnd"
+            android:id="@+id/infoCustomer"
+            style="@style/RobotoBoldWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/flow_view_holder_customer"
+            app:layout_constraintEnd_toStartOf="@id/arrowCustomer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:visibility="visible"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/infoCustomer"
+            android:textSize="12sp"
+            android:layout_marginEnd="10dp"
+            android:textAlignment="textEnd"
+            android:id="@+id/tvSelectedCustomer"
+            style="@style/RobotoDarkWhite2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Cliente Selecionado"
+            app:layout_constraintEnd_toStartOf="@id/arrowCustomer"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:visibility="gone"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/tvSelectedCustomer"
+            android:textSize="12sp"
+            android:layout_marginEnd="10dp"
+            android:textAlignment="textEnd"
+            android:id="@+id/tvSelectedCustomerPrice"
+            style="@style/RobotoBoldShinyShamrock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="R$ 300.000,00"
+            app:layout_constraintEnd_toStartOf="@id/arrowCustomer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

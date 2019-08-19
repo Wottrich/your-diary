@@ -12,7 +12,7 @@ import wottrich.github.io.yourdiary.extensions.startMyActivity
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.view.activity.firstAccess.UserRegisterActivity
-import wottrich.github.io.yourdiary.view.activity.main.MainActivity
+import wottrich.github.io.yourdiary.view.activity.profile.ProfileActivity
 
 class SplashActivity : BaseActivity(R.layout.activity_splash) {
 
@@ -29,7 +29,7 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
 
             if (user.lockApp) startActivityForResult(intentLockActivity(), RETURN_FINGERPRINT)
             else {
-                startMyActivity(MainActivity::class.java)
+                startMyActivity(ProfileActivity::class)
                 finish()
             }
 
@@ -50,7 +50,7 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
         when (requestCode) {
             RETURN_FINGERPRINT -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    startMyActivity(MainActivity::class.java)
+                    startMyActivity(ProfileActivity::class)
                     finish()
                 } else {
                     btnRetry.visibility = View.VISIBLE

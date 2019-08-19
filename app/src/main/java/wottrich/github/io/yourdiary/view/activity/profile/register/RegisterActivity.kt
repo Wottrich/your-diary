@@ -1,7 +1,7 @@
-package wottrich.github.io.yourdiary.view.activity.register
+package wottrich.github.io.yourdiary.view.activity.profile.register
 
 import android.app.Activity
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
@@ -14,6 +14,7 @@ import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.enumerators.RegisterType
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseActivity
+import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import java.util.*

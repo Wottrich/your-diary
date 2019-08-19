@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="wottrich.github.io.yourdiary">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".CustomApplication"
         android:allowBackup="true"
@@ -12,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.SplashActivity"
+        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity"/>
+        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity" />
+        <activity android:name=".view.activity.profile.ProfileActivity" />
+        <activity android:name=".view.activity.singIn.SingInActivity" />
+        <activity
+            android:name=".view.activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,15 +27,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.activity.firstAccess.UserRegisterActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".view.activity.register.RegisterActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".view.activity.main.MainActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.firstAccess.UserRegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="wottrich.github.io.yourdiary.view.activity.profile.register.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.main.MainActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

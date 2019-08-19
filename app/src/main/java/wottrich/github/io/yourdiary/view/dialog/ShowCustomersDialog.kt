@@ -1,15 +1,14 @@
 package wottrich.github.io.yourdiary.view.dialog
 
 import android.annotation.SuppressLint
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.Toolbar
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.dialog_show_customers.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.CustomerAdapter
 import wottrich.github.io.yourdiary.generics.BaseDialog
-import wottrich.github.io.yourdiary.utils.KeyboardUtils
 
 @SuppressLint("ValidFragment")
 class ShowCustomersDialog(var onSelectedCustomer: () -> Unit) : BaseDialog(R.layout.dialog_show_customers), View.OnClickListener {
@@ -24,7 +23,11 @@ class ShowCustomersDialog(var onSelectedCustomer: () -> Unit) : BaseDialog(R.lay
         this.parent = baseView.llParent
         customerAdapter.onClick = this
         baseView.rvCustomers.adapter = customerAdapter
-        val manager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        val manager = LinearLayoutManager(
+            activity,
+            RecyclerView.VERTICAL,
+            false
+        )
         baseView.rvCustomers.layoutManager = manager
         toolbar = baseView.toolbar
         toolbar.setNavigationOnClickListener {

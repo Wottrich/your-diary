@@ -1,7 +1,7 @@
 package wottrich.github.io.yourdiary.view.dialog
 
 import android.annotation.SuppressLint
-import android.support.v7.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.dialog_month_picker.view.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.MonthAdapter

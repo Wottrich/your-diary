@@ -43,6 +43,8 @@
     <string name="dialog_customer_btn_yes">Sim</string>
     <string name="dialog_customer_btn_no">Não</string>
 
+    <!--Dialog Select Customer-->
+    <string name="dialog_select_customer_btn_ok">Selecionar</string>
 
     <!--Dialog Order-->
     <string name="dialog_order_title">Registrar Pedido</string>
@@ -70,6 +72,7 @@
     <string name="activity_user_register_because_income">Com sua renda podemos fazer previsões mais detalhadas sobre o seu mês.</string>
     <string name="activity_user_register_insert_data">Insira seus dados para\nnós te conhecermos melhor =)</string>
     <string name="activity_user_register_name_hint">Digite seu Nome</string>
+    <string name="activity_user_register_email_hint">Digite seu Email</string>
     <string name="activity_user_register_age_hint">Digite sua Idade</string>
     <string name="activity_user_register_income_hint">Digite sua Renda</string>
     <string name="activity_user_register_btn_continue">Continuar</string>
@@ -78,6 +81,20 @@
     <string name="activity_user_register_age_0">Sua Idade tem que ser maior que 0</string>
     <string name="activity_user_register_income_0">Sua Renda tem que ser maior que 0</string>
     <string name="activity_user_register_error">Verifique os dados e tente novamente</string>
+
+    <!--SingIn-->
+    <string name="activity_sing_in_welcome">Vincular email…</string>
+    <string name="activity_sing_in_welcome_message">Olá %s!</string>
+    <string name="activity_sing_in_welcome_insert">Vamos sincronicar seus dados locais com seu email?</string>
+    <string name="activity_sing_in_welcome_insert_2">A principal vantagem é que você não irá perder seus dados caso exclua o aplicativo sem querer!!</string>
+    <string name="activity_sing_in_hint_email">Digite seu email</string>
+    <string name="activity_sing_in_hint_password">Digite uma senha*</string>
+    <string name="activity_sing_in_password">*Essa será a senha utilizada para entrar no aplicativo</string>
+    <string name="activity_sing_in_btn">Sincronizar</string>
+
+    <!--ProfileActivity-->
+    <string name="activity_profile_spend_radiobutton">Novo Gasto</string>
+    <string name="activity_profile_customer_radiobutton">Novo Pedido</string>
 
     <!--Splash-->
     <string name="activity_splash_retry">Tentar novamente</string>
@@ -113,11 +130,19 @@
     <!--DailyIncomeViewHolder-->
     <string name="daily_income_view_holder_info">Total do dia</string>
 
+    <!--LinkedEmailViewHolder-->
+    <string name="linked_email_view_holder_email_null">Clique aqui para vincular seu email!</string>
+
     <!--ExpectedIncomeViewHolder-->
     <string name="expected_income_view_holder_actual_income">Atual:</string>
     <string name="expected_income_view_holder_expected_income">Previsto:</string>
-    <string name="expected_income_view_holder_expected_income_empty">Nenhum rendimento previsto.\nClique aqui para adicionar</string>
+    <string name="expected_income_view_holder_expected_income_empty">Nenhum rendimento previsto.\nClique aqui para adicionar.</string>
     <string name="expected_income_view_holder_income">Rendimentos</string>
+
+    <!--FlowViewHolder-->
+    <string name="flow_view_holder_spend">Gastos</string>
+    <string name="flow_view_holder_customer">Clientes</string>
+    <string name="flow_view_holder_no_selected_customer">Nenhum cliente selecionado</string>
 
     <!--</editor-folder>-->
 

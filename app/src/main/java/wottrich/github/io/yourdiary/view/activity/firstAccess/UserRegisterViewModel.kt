@@ -2,6 +2,7 @@ package wottrich.github.io.yourdiary.view.activity.firstAccess
 
 import wottrich.github.io.yourdiary.extensions.isNotNullOrEmpty
 import wottrich.github.io.yourdiary.extensions.put
+import wottrich.github.io.yourdiary.firebase.MyFirebase
 import wottrich.github.io.yourdiary.model.User
 
 class UserRegisterViewModel {

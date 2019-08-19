@@ -3,7 +3,7 @@ package wottrich.github.io.yourdiary.view.holders.graph
 
 import android.content.Context
 import android.graphics.Color
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry

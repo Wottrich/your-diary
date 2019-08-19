@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/arenic_1"
-    tools:context=".view.activity.register.RegisterActivity"
+    tools:context=".view.activity.profile.register.RegisterActivity"
     android:id="@+id/root">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             app:navigationContentDescription="@string/activity_register_arrow_back"
             app:title="Title"
             android:id="@+id/toolbar"
@@ -30,10 +30,10 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:navigationIcon="@drawable/arrow_back_white_24" />
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBar">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -133,8 +133,8 @@
                 app:layout_constraintTop_toBottomOf="@id/btnDate"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ullamcorper velit, ac egestas nibh. In vehicula quam lectus, vitae facilisis lorem tristique a. Sed pulvinar fermentum nunc, sed pellentesque neque fringilla eget. Pellentesque at ex blandit, malesuada nunc id, suscipit nisl. Pellentesque vulputate, metus nec feugiat venenatis, libero nunc convallis velit, et tempor turpis magna at arcu. Nam eu cursus mi. Suspendisse aliquet mattis tempus. Duis arcu odio, luctus sit amet enim eu, tristique pharetra felis. Duis ut velit sapien. Proin ut orci ac lorem posuere suscipit. Phasellus hendrerit rhoncus massa nec malesuada. " />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
