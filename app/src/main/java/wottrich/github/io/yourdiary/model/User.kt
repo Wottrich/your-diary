@@ -5,14 +5,12 @@ import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.relation.ToMany
 import wottrich.github.io.yourdiary.extensions.compareActualDate
-import wottrich.github.io.yourdiary.extensions.exMonth
-import wottrich.github.io.yourdiary.extensions.exYear
-import java.util.*
 
 @Entity
 class User() {
 
     @Id var id: Long = 0
+    var uid: Long = 0
     var email: String? = null
     var name: String? = null
     var age: Int? = null
