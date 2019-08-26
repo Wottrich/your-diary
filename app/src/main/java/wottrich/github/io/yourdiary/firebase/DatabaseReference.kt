@@ -82,3 +82,7 @@ fun ValueEventListener.listenerUserChange (userId: String) {
 fun ValueEventListener.listenerCustomersChange (userId: String) {
     Child.customers(userId).addValueEventListener(this)
 }
+
+fun ValueEventListener.listernerOrdersChange (userId: String, customerId: String) {
+    Child.orders(userId, customerId).addValueEventListener(this)
+}
