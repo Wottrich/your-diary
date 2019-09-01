@@ -6,7 +6,8 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sing_in.*
 import wottrich.github.io.yourdiary.R
-import wottrich.github.io.yourdiary.firebase.MyFirebase
+import wottrich.github.io.yourdiary.extensions.getString
+import wottrich.github.io.yourdiary.firebase.createAccount
 import wottrich.github.io.yourdiary.generics.BaseActivity
 
 class SingInActivity : BaseActivity(R.layout.activity_sing_in), View.OnClickListener {
@@ -59,18 +60,28 @@ class SingInActivity : BaseActivity(R.layout.activity_sing_in), View.OnClickList
             R.id.btnContinue -> {
 
                 if (etUserEmail.text.isNotEmpty() && etUserPassword.text.isNotEmpty()) {
-                    MyFirebase.createAccount(this, etUserEmail.text.toString(), etUserPassword.text.toString()) {
-                        if (it) {
-
-                        } else {
-
-                        }
-                    }
+                    createAccount(etUserEmail.getString(), etUserPassword.getString(),
+                        onCreatedAccount = this::onCreateAccount, onSavedAccount = this::onSavedAccount)
                 } else {
                     Toast.makeText(this, "Complete todos os campos para continuar", Toast.LENGTH_SHORT).show()
                 }
 
             }
+        }
+    }
+
+    private fun onCreateAccount (success: Boolean) {
+        if (!success) {
+            Toast.makeText(this, "OnCreateAccountError", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun onSavedAccount (success: Boolean) {
+        if (!success) {
+            Toast.makeText(this, "OnSavedAccountError", Toast.LENGTH_SHORT).show()
+        } else {
+            val message = "Conta criada com sucesso, agora só aproveitar o melhor do aplicativo!"
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
     }
 
