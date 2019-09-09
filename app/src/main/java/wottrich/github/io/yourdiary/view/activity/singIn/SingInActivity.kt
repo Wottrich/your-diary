@@ -1,5 +1,6 @@
 package wottrich.github.io.yourdiary.view.activity.singIn
 
+import android.app.Activity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -82,6 +83,8 @@ class SingInActivity : BaseActivity(R.layout.activity_sing_in), View.OnClickList
         } else {
             val message = "Conta criada com sucesso, agora só aproveitar o melhor do aplicativo!"
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            setResult(Activity.RESULT_OK)
+            finish()
         }
     }
 

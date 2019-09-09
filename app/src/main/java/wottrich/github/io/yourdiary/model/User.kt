@@ -1,5 +1,7 @@
 package wottrich.github.io.yourdiary.model
 
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
@@ -7,24 +9,28 @@ import io.objectbox.relation.ToMany
 import wottrich.github.io.yourdiary.extensions.compareActualDate
 
 @Entity
-class User() {
+@IgnoreExtraProperties
+data class User(
+    var uid: String = "",
+    var email: String? = null,
+    var name: String? = null,
+    var age: Int? = null,
+    var income: Double = 0.0,
+    var lockApp: Boolean = false,
+    var expectedIncome: Double = 0.0
+) {
 
     @Id var id: Long = 0
-    var uid: Long = 0
-    var email: String? = null
-    var name: String? = null
-    var age: Int? = null
-    var income: Double = 0.0
-    var lockApp: Boolean = false
-    var expectedIncome: Double = 0.0
 
+    @get:Exclude
     val allSpendingValue: Float
         get() =  loadAllSpending()
 
+    @get:Exclude
     val allCustomerValue: Float
         get() = loadAllCustomers()
 
-    constructor(name: String?, age: Int?, income: Double, lockApp: Boolean) : this() {
+    constructor(name: String, age: Int, income: Double, lockApp: Boolean) : this() {
         this.name = name
         this.age = age
         this.income = income

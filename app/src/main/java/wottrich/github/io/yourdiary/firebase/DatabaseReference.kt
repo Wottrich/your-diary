@@ -1,15 +1,19 @@
 package wottrich.github.io.yourdiary.firebase
 
 import android.app.Activity
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import wottrich.github.io.yourdiary.model.User
 
 object Child {
 
     /**
      * Return user list
      */
-    private fun users () : DatabaseReference {
+    fun users () : DatabaseReference {
         return gReference.child("users")
     }
 
@@ -77,6 +81,23 @@ object Child {
 
 fun ValueEventListener.listenerUserChange (userId: String) {
     Child.user(userId).addValueEventListener(this)
+}
+
+fun getUserAuth(userId: String, result:(User?, String) -> Unit) {
+    val ref = Child.user(userId)
+
+    ref.addValueEventListener(object : ValueEventListener {
+        override fun onCancelled(error: DatabaseError) {
+            ref.removeEventListener(this)
+            result(null, error.message)
+        }
+
+        override fun onDataChange(snap: DataSnapshot) {
+            ref.removeEventListener(this)
+            //TODO mapear o user e enviar de volta
+        }
+
+    })
 }
 
 fun ValueEventListener.listenerCustomersChange (userId: String) {

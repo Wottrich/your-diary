@@ -73,7 +73,7 @@
     <string name="activity_user_register_insert_data">Insira seus dados para\nnós te conhecermos melhor =)</string>
     <string name="activity_user_register_name_hint">Digite seu Nome</string>
     <string name="activity_user_register_email_hint">Digite seu Email</string>
-    <string name="activity_user_register_age_hint">Digite sua Idade</string>
+    <string name="activity_user_register_age_hint">Data de nascimento</string>
     <string name="activity_user_register_income_hint">Digite sua Renda</string>
     <string name="activity_user_register_btn_continue">Continuar</string>
     <string name="activity_user_register_btn_finish">Finalizar</string>

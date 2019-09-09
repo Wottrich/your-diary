@@ -67,7 +67,7 @@
 
            <androidx.constraintlayout.widget.ConstraintLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content">
+               android:layout_height="match_parent">
 
                <androidx.constraintlayout.widget.ConstraintLayout
                    android:clickable="true"
@@ -116,8 +116,6 @@
                        android:layout_height="60dp" />
 
                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
                <androidx.constraintlayout.widget.ConstraintLayout
                    android:background="@color/slight_black"
@@ -222,10 +220,6 @@
 
 
                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
 
            </androidx.constraintlayout.widget.ConstraintLayout>
 

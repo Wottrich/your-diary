@@ -2,6 +2,7 @@ package wottrich.github.io.yourdiary.firebase
 
 import android.app.Activity
 import com.google.firebase.auth.FirebaseAuth
+import wottrich.github.io.yourdiary.extensions.getUser
 
 fun Activity.createAccount(
     email: String, password: String,
@@ -14,6 +15,14 @@ fun Activity.createAccount(
 
         if (task.isSuccessful) {
             gAuth.currentUser?.let {
+
+                val user = getUser()
+                user.uid = it.uid
+                user.email = it.email
+                UserAction().toSave(user) { success ->
+                    onSavedAccount(success)
+                }
+
 
             }
         } else {
