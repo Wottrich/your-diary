@@ -13,6 +13,7 @@ import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.view.activity.firstAccess.UserRegisterActivity
 import wottrich.github.io.yourdiary.view.activity.profile.ProfileActivity
+import wottrich.github.io.yourdiary.view.activity.singIn.SingInActivity
 
 class SplashActivity : BaseActivity(R.layout.activity_splash) {
 
@@ -33,7 +34,11 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
                         }
                     }
                 } else {
-                    //TODO
+                    gAuth.currentUser!!.delete()
+                    startMyActivity(SingInActivity::class) { intent ->
+                        intent.putExtra("login", true)
+                        intent
+                    }
                 }
             }
         } else {

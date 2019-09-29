@@ -18,7 +18,7 @@ class UserAction {
 
     fun toSave (user: User, success: (Boolean) -> Unit) {
 
-        val userRef = Child.users().child(user.uid)
+        val userRef = Child.users().push().child(user.uid)
         userRef.setValue(user)
 
         userRef.addValueEventListener(object : ValueEventListener {
@@ -32,6 +32,12 @@ class UserAction {
                 success(false)
             }
         })
+
+    }
+
+    fun customersSync (userId: String) {
+
+
 
     }
 

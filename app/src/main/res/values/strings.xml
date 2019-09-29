@@ -61,6 +61,7 @@
     <string name="activity_register_order_date">Data do pedido</string>
     <string name="activity_register_order_description">Descrição</string>
     <string name="activity_register_order">Novo Pedido!</string>
+    <string name="activity_register_order_edit">Editar Pedido!</string>
     <string name="activity_register_spending">Gastos</string>
     <string name="activity_register_arrow_back">Voltar</string>
     <string name="activity_register_name_description_empty">Defina um titulo ou uma mensagem para o seu pedido</string>
@@ -85,12 +86,15 @@
     <!--SingIn-->
     <string name="activity_sing_in_welcome">Vincular email…</string>
     <string name="activity_sing_in_welcome_message">Olá %s!</string>
+    <string name="activity_sing_in_welcome_login">Bem-vindo(a)</string>
+    <string name="activity_sing_in_welcome_insert_login">Faça login para carregar todos os seus dados.</string>
     <string name="activity_sing_in_welcome_insert">Vamos sincronicar seus dados locais com seu email?</string>
     <string name="activity_sing_in_welcome_insert_2">A principal vantagem é que você não irá perder seus dados caso exclua o aplicativo sem querer!!</string>
     <string name="activity_sing_in_hint_email">Digite seu email</string>
     <string name="activity_sing_in_hint_password">Digite uma senha*</string>
     <string name="activity_sing_in_password">*Essa será a senha utilizada para entrar no aplicativo</string>
     <string name="activity_sing_in_btn">Sincronizar</string>
+    <string name="activity_sing_in_btn_login">Entrar</string>
 
     <!--ProfileActivity-->
     <string name="activity_profile_spend_radiobutton">Novo Gasto</string>

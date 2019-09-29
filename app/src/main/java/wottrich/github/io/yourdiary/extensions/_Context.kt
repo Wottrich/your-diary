@@ -15,8 +15,10 @@ fun Context.startMyActivity (clazz : KClass<*>) {
     this.startActivity(Intent(this, clazz.java))
 }
 
-fun Activity.startMyActivity (clazz : KClass<*>, result: Int) {
-    this.startActivityForResult(Intent(this, clazz.java), result)
+fun Activity.startMyActivity (clazz : KClass<*>, result: Int, prepareIntent: ((Intent) -> Intent)? = null) {
+    val intent = prepareIntent?.invoke(Intent()) ?: Intent()
+    intent.setClass(this, clazz.java)
+    this.startActivityForResult(intent, result)
 }
 
 fun Context.startMyActivity (clazz : KClass<*>, prepareIntent: (Intent) -> Intent) {
