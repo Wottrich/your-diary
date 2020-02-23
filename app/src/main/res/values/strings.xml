@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Diary</string>
 
+    <string name="cancel">Cancelar</string>
+    <string name="error">Error</string>
+    <string name="format_month_year">%s | %s</string>
+
     <!--<editor-folder defaultstate="Collapsed" desc="Fragments">-->
     <!--Fragment Spending-->
     <string name="fragment_spending_title">Gastos</string>
@@ -126,7 +130,7 @@
     <!--<editor-folder defaultstate="Collapsed" desc="Holders">-->
 
     <!--GraphViewHolder-->
-    <string name="graph_view_holder_info">Gráfico do mês atual:</string>
+    <string name="graph_view_holder_info">Gráfico do mês atual: (%s)</string>
 
     <!--IncomeViewHolder-->
     <string name="income_view_holder_info">Renda mensal</string>

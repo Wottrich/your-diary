@@ -33,6 +33,23 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title="@string/fragment_spending_title" />
 
+            <TextView
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/tvMonth"
+                android:padding="5dp"
+                android:textSize="14sp"
+                style="@style/RobotoWebOrange"
+                android:drawablePadding="5dp"
+                android:textAlignment="textEnd"
+                android:gravity="center_vertical"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_24dp"
+                tools:text="Janeiro - 2020"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="RtlCompat" />
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -1,7 +1,5 @@
 package wottrich.github.io.yourdiary.model
 
-import com.google.firebase.database.Exclude
-import com.google.firebase.database.IgnoreExtraProperties
 import io.objectbox.annotation.Backlink
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
@@ -9,7 +7,6 @@ import io.objectbox.relation.ToMany
 import wottrich.github.io.yourdiary.extensions.compareActualDate
 
 @Entity
-@IgnoreExtraProperties
 data class User(
     var uid: String = "",
     var email: String? = null,
@@ -22,11 +19,9 @@ data class User(
 
     @Id var id: Long = 0
 
-    @get:Exclude
     val allSpendingValue: Float
         get() =  loadAllSpending()
 
-    @get:Exclude
     val allCustomerValue: Float
         get() = loadAllCustomers()
 

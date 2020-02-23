@@ -8,8 +8,6 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sing_in.*
 import wottrich.github.io.yourdiary.R
-import wottrich.github.io.yourdiary.extensions.getString
-import wottrich.github.io.yourdiary.firebase.createAccount
 import wottrich.github.io.yourdiary.generics.BaseActivity
 
 class SingInActivity : BaseActivity(R.layout.activity_sing_in), View.OnClickListener {
@@ -75,8 +73,8 @@ class SingInActivity : BaseActivity(R.layout.activity_sing_in), View.OnClickList
 
                 if (etUserEmail.text.isNotEmpty() && etUserPassword.text.isNotEmpty()) {
                     showLoader()
-                    createAccount(etUserEmail.getString(), etUserPassword.getString(),
-                        onCreatedAccount = this::onCreateAccount, onSavedAccount = this::onSavedAccount)
+//                    createAccount(etUserEmail.getString(), etUserPassword.getString(),
+//                        onCreatedAccount = this::onCreateAccount, onSavedAccount = this::onSavedAccount)
                 } else {
                     Toast.makeText(this, "Complete todos os campos para continuar", Toast.LENGTH_SHORT).show()
                 }

@@ -3,17 +3,13 @@ package wottrich.github.io.yourdiary.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.view.View
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_splash.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.extensions.*
-import wottrich.github.io.yourdiary.firebase.gAuth
-import wottrich.github.io.yourdiary.firebase.getUserAuth
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.view.activity.firstAccess.UserRegisterActivity
 import wottrich.github.io.yourdiary.view.activity.profile.ProfileActivity
-import wottrich.github.io.yourdiary.view.activity.singIn.SingInActivity
 
 class SplashActivity : BaseActivity(R.layout.activity_splash) {
 
@@ -21,27 +17,28 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
     private var hasLockScreen = false
 
     override fun initValues() {
-        if (gAuth.currentUser != null) {
-            gAuth.currentUser!!.sendEmailVerification().addOnCompleteListener {
-                if (it.isSuccessful) {
-                    gAuth.currentUser?.let { currentUser ->
-                        getUserAuth(currentUser.uid) { user, message ->
-                            if (user != null) {
-
-                            } else {
-                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
-                } else {
-                    gAuth.currentUser!!.delete()
-                    startMyActivity(SingInActivity::class) { intent ->
-                        intent.putExtra("login", true)
-                        intent
-                    }
-                }
-            }
-        } else {
+//        if (gAuth.currentUser != null) {
+//            gAuth.currentUser!!.sendEmailVerification().addOnCompleteListener {
+//                if (it.isSuccessful) {
+//                    gAuth.currentUser?.let { currentUser ->
+//                        getUserAuth(currentUser.uid) { user, message ->
+//                            if (user != null) {
+//
+//                            } else {
+//                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    gAuth.currentUser!!.delete()
+//                    startMyActivity(SingInActivity::class) { intent ->
+//                        intent.putExtra("login", true)
+//                        intent
+//                    }
+//                }
+//            }
+//        } else {
+//        }
             if (box<User>().isEmpty) {
                 startActivity(Intent(this, UserRegisterActivity::class.java))
                 return
@@ -56,7 +53,7 @@ class SplashActivity : BaseActivity(R.layout.activity_splash) {
                 }
 
             }
-        }
+
 
         btnRetry.visibility = View.GONE
 

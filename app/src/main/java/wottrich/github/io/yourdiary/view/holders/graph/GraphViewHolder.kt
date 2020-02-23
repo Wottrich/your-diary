@@ -15,8 +15,12 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.android.synthetic.main.row_profile_graph.view.*
 import wottrich.github.io.yourdiary.R
+import wottrich.github.io.yourdiary.extensions.actualMonth
+import wottrich.github.io.yourdiary.extensions.getDateString
+import wottrich.github.io.yourdiary.extensions.withoutTime
 import wottrich.github.io.yourdiary.model.User
 import wottrich.github.io.yourdiary.utils.MyValueFormatter
+import java.util.*
 
 
 class GraphViewHolder(var context: Context, var view: View) : RecyclerView.ViewHolder(view),
@@ -29,6 +33,10 @@ class GraphViewHolder(var context: Context, var view: View) : RecyclerView.ViewH
     private lateinit var graph: PieChart
 
     fun initValues (user: User) {
+
+        val stringFormatMonth = context.getString(R.string.graph_view_holder_info)
+        view.tvInfo.text = String.format(stringFormatMonth, Calendar.getInstance().actualMonth())
+
         viewModel.user = user
         graph = view.gpIncome
         graph.setOnChartValueSelectedListener(this)
