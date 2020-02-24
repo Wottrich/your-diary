@@ -3,6 +3,7 @@ package wottrich.github.io.yourdiary.widget
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
@@ -20,7 +21,7 @@ import kotlin.math.max
  * Copyright © 2020 your-diary. All rights reserved.
  *
  */
- 
+
 open class DatePickerMonthYearDialog : AlertDialog, DialogInterface.OnClickListener {
 
     private val keyYear = "year"
@@ -28,19 +29,38 @@ open class DatePickerMonthYearDialog : AlertDialog, DialogInterface.OnClickListe
 
     private var delegate: DatePickerMonthYearDelegate? = null
     private var onDateSetListener: OnDateChangedListener? = null
+    private var onDateResetListener: OnDateResetListener? = null
 
-    constructor(context: Context?, listener: OnDateChangedListener?, monthYear: MonthYear) : super(context) {
-        init(context, 0, listener, monthYear)
+    constructor(
+        context: Context?,
+        listener: OnDateChangedListener?,
+        resetListener: OnDateResetListener?,
+        monthYear: MonthYear
+    ) : super(context) {
+        init(context, 0, listener, resetListener, monthYear)
     }
 
-    constructor(context: Context?, themeResId: Int, listener: OnDateChangedListener?, monthYear: MonthYear) : super(context, themeResId) {
-        init(context, themeResId, listener, monthYear)
+    constructor(
+        context: Context?,
+        themeResId: Int,
+        listener: OnDateChangedListener?,
+        resetListener: OnDateResetListener?,
+        monthYear: MonthYear
+    ) : super(context, themeResId) {
+        init(context, themeResId, listener, resetListener, monthYear)
     }
 
     @SuppressLint("InflateParams")
-    private fun init (context: Context?, themeResId: Int, listener: OnDateChangedListener?, monthYear: MonthYear) {
+    private fun init(
+        context: Context?,
+        themeResId: Int,
+        listener: OnDateChangedListener?,
+        resetListener: OnDateResetListener?,
+        monthYear: MonthYear
+    ) {
 
         this.onDateSetListener = listener
+        this.onDateResetListener = resetListener
 
         val themeContext = context ?: return
         val inflater = LayoutInflater.from(context) ?: return
@@ -50,17 +70,18 @@ open class DatePickerMonthYearDialog : AlertDialog, DialogInterface.OnClickListe
 
         setButton(DialogInterface.BUTTON_POSITIVE, themeContext.getString(R.string.ok_option), this)
         setButton(DialogInterface.BUTTON_NEGATIVE, themeContext.getString(R.string.cancel), this)
+        setButton(DialogInterface.BUTTON_NEUTRAL, themeContext.getString(R.string.reset), this)
 
         this.delegate = DatePickerMonthYearDelegate(view)
         this.delegate?.init(monthYear = monthYear, onDateChangeListener = listener)
 
     }
 
-    open fun setMinDate (minDate: Long) {
+    open fun setMinDate(minDate: Long) {
         this.delegate?.setMinDate(minDate)
     }
 
-    open fun setMaxDate (maxDate: Long) {
+    open fun setMaxDate(maxDate: Long) {
         this.delegate?.setMaxDate(maxDate)
     }
 
@@ -88,12 +109,15 @@ open class DatePickerMonthYearDialog : AlertDialog, DialogInterface.OnClickListe
 
     override fun onClick(dialog: DialogInterface?, which: Int) {
 
-        when(which) {
+        when (which) {
             DialogInterface.BUTTON_POSITIVE -> {
                 this.onDateSetListener?.invoke(this.delegate?.getMonthYear())
             }
             DialogInterface.BUTTON_NEGATIVE -> {
                 cancel()
+            }
+            DialogInterface.BUTTON_NEUTRAL -> {
+                this.onDateResetListener?.invoke()
             }
         }
 

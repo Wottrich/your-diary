@@ -56,8 +56,8 @@ class SpendingAdapter(
         }
     }
 
-    fun updateList() {
-        spendingList = boxList<Spending>().asReversed()
+    fun updateList(spendList: List<Spending>) {
+        spendingList = spendList
         notifyDataSetChanged()
     }
 

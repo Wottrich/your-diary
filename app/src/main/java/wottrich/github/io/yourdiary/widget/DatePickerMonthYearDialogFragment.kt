@@ -56,6 +56,7 @@ class DatePickerMonthYearDialogFragment : DialogFragment() {
     }
 
     var mOnDateSetListener: OnDateChangedListener? = null
+    var mOnDateResetListener: OnDateResetListener? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -71,7 +72,10 @@ class DatePickerMonthYearDialogFragment : DialogFragment() {
         checkForValidDate(monthYear, minDate, maxDate)
 
         val datePickerDialog = DatePickerMonthYearDialog(
-            activity, this.mOnDateSetListener, monthYear
+            activity,
+            this.mOnDateSetListener,
+            this.mOnDateResetListener,
+            monthYear
         )
 
         if (minDate != -1L) {
@@ -101,7 +105,7 @@ class DatePickerMonthYearDialogFragment : DialogFragment() {
     }
 
     fun DatePickerMonthYearDialogFragment.showPicker(supportFragmentManager: FragmentManager) {
-        this.show(supportFragmentManager, "DatePickerMonthYearDialogFragment")
+        this@DatePickerMonthYearDialogFragment.show(supportFragmentManager, "DatePickerMonthYearDialogFragment")
     }
 
 }

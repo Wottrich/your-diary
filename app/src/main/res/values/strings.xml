@@ -3,7 +3,9 @@
 
     <string name="cancel">Cancelar</string>
     <string name="error">Error</string>
+    <string name="reset">Resetar</string>
     <string name="format_month_year">%s | %s</string>
+    <string name="format_amount">Total do mês:\n%s</string>
 
     <!--<editor-folder defaultstate="Collapsed" desc="Fragments">-->
     <!--Fragment Spending-->

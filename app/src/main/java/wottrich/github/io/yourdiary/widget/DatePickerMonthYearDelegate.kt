@@ -21,6 +21,7 @@ import java.util.*
 
 data class MonthYear(var month: Month, var year: Int)
 typealias OnDateChangedListener = ((MonthYear?) -> Unit)
+typealias OnDateResetListener = (() -> Unit)
 
 open class DatePickerMonthYearDelegate(parent: View) {
 

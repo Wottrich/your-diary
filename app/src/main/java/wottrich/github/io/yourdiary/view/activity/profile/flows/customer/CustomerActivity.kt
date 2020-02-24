@@ -7,11 +7,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_customer.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.OrderAdapter
 import wottrich.github.io.yourdiary.enumerators.CustomerType
 import wottrich.github.io.yourdiary.enumerators.RegisterType
+import wottrich.github.io.yourdiary.extensions.format
 import wottrich.github.io.yourdiary.extensions.orderId
 import wottrich.github.io.yourdiary.extensions.registerType
 import wottrich.github.io.yourdiary.extensions.userId
@@ -21,6 +23,8 @@ import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import wottrich.github.io.yourdiary.view.activity.profile.register.RegisterActivity
 import wottrich.github.io.yourdiary.view.dialog.ShowCustomersDialog
 import wottrich.github.io.yourdiary.view.dialog.customer.CustomerDialog
+import wottrich.github.io.yourdiary.widget.DatePickerMonthYearDialogFragment
+import wottrich.github.io.yourdiary.widget.MonthYear
 
 class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickListener,
     Toolbar.OnMenuItemClickListener {
@@ -41,8 +45,30 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
     override fun initValues() {
         _toolbar = toolbar
         rvOrders.adapter = orderAdapter
+
+        viewModel.totalAmountByPeriod.observe(this, Observer (this::onTotalAmountChange))
+        configSearch()
+
         configMenu()
         loadCustomer()
+    }
+
+    private fun configSearch () {
+
+        setActualSearch()
+        tvMonth.setOnClickListener {
+
+            DatePickerMonthYearDialogFragment
+                .getInstance(this.viewModel.selectedMonthYear).apply {
+
+                    this.mOnDateSetListener = this@CustomerActivity::onDateChange
+                    this.mOnDateResetListener = this@CustomerActivity::onDateReset
+
+                    showPicker(this@CustomerActivity.supportFragmentManager)
+                }
+
+        }
+
     }
 
     private fun configMenu() {
@@ -57,23 +83,52 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
     }
 
     private fun loadCustomer() {
-        if (viewModel.clientCount > 0) {
-            _toolbar.title = viewModel.client?.name
-            _toolbar.subtitle = "Novo pedido..."
-            showMenu(true)
-            orderAdapter.updateList()
-        } else {
-            _toolbar.title = "Novo Cliente"
-            _toolbar.subtitle = null
-            orderAdapter.updateList()
-            showMenu(false)
-        }
+        val hasClient = viewModel.clientCount > 0
+
+        _toolbar.title = if (hasClient) viewModel.client?.name else "Novo Cliente"
+        _toolbar.subtitle = if (hasClient) "Novo pedido..." else null
+        showMenu(hasClient)
+
+        orderAdapter.updateList(viewModel.orders)
         emptyList()
     }
 
     private fun showMenu(show: Boolean) {
         _toolbar.menu.getItem(0).isVisible = show
         //_toolbar.menu.getItem(1).isVisible = show
+    }
+
+    private fun setActualSearch () {
+        val monthYear = viewModel.selectedMonthYear
+
+        val month = getString(monthYear.month.nameMonth)
+        val year = monthYear.year
+
+        tvMonth.text = String.format(getString(R.string.format_month_year), month, year)
+    }
+
+    private fun onDateChange (monthYear: MonthYear?) {
+        monthYear ?: return
+
+        this.viewModel.selectedMonthYear = monthYear
+
+        setActualSearch()
+
+        this.orderAdapter.updateList(viewModel.orders)
+    }
+
+    private fun onDateReset () {
+        viewModel.resetSearch()
+
+        setActualSearch()
+
+        this.orderAdapter.updateList(viewModel.orders)
+    }
+
+    private fun onTotalAmountChange (amount: Double?) {
+
+        tvAmount.text = String.format(getString(R.string.format_amount), (amount ?: 0.0).format())
+
     }
 
     private fun emptyList() {
@@ -144,7 +199,7 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
         if (viewModel.onLongClickableMode) {
             viewModel.ordersSelected.clear()
             selectedItem()
-            this.orderAdapter.updateList()
+            this.orderAdapter.updateList(viewModel.orders)
         }
         emptyList()
     }
@@ -192,7 +247,7 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
                 viewModel.deleteSelectedOrders {
                     resultOK = true
                     viewModel.ordersSelected.clear()
-                    this.orderAdapter.updateList()
+                    this.orderAdapter.updateList(viewModel.orders)
                     selectedItem()
                     emptyList()
                 }

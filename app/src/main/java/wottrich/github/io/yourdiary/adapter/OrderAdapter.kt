@@ -59,8 +59,8 @@ class OrderAdapter(
         }
     }
 
-    fun updateList() {
-        _orders = Customer.selectedCustomer()?.orders
+    fun updateList(orders: List<Order>) {
+        _orders = orders
         notifyDataSetChanged()
     }
 

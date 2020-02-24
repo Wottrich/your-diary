@@ -1,14 +1,13 @@
 package wottrich.github.io.yourdiary.view.activity.profile.flows.spend
 
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
 import android.view.MenuItem
 import android.view.View
-import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_spend.*
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.adapter.SpendingAdapter
@@ -17,16 +16,14 @@ import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.model.Spending
 import wottrich.github.io.yourdiary.view.activity.profile.register.RegisterActivity
-import wottrich.github.io.yourdiary.view.dialog.MonthPickerDialog
 import wottrich.github.io.yourdiary.widget.DatePickerMonthYearDialogFragment
 import wottrich.github.io.yourdiary.widget.MonthYear
-import java.util.*
 
 class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemClickListener {
 
     private val updateListCode = 200
 
-    val viewModel: SpendActivityViewModel by lazy {
+    private val viewModel: SpendActivityViewModel by lazy {
         SpendActivityViewModel()
     }
 
@@ -43,8 +40,9 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
         rvSpending.adapter = spendingAdapter
         rvSpending.setHasFixedSize(true)
 
-        val month = getString(getActualMonthByMonth().nameMonth)
-        tvMonth.text = String.format(getString(R.string.format_month_year), month, getActualYear())
+        setActualSearch()
+
+        viewModel.totalAmountByPeriod.observe(this, Observer (this::onTotalAmountChange))
 
         setupToolbar()
         iniListeners()
@@ -55,9 +53,12 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
     private fun iniListeners () {
 
         tvMonth.setOnClickListener {
-            DatePickerMonthYearDialogFragment.getInstance(this.viewModel.selectedMonthYear)
-                .apply {
+            DatePickerMonthYearDialogFragment
+                .getInstance(this.viewModel.selectedMonthYear).apply {
+
                     this.mOnDateSetListener = this@SpendActivity::onDateChange
+                    this.mOnDateResetListener = this@SpendActivity::onDateReset
+
                     showPicker(this@SpendActivity.supportFragmentManager)
                 }
         }
@@ -142,15 +143,37 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
         }
     }
 
-    private fun onDateChange (monthYear: MonthYear?) {
-        monthYear ?: return
-
-        this.viewModel.selectedMonthYear = monthYear
+    private fun setActualSearch () {
+        val monthYear = viewModel.selectedMonthYear
 
         val month = getString(monthYear.month.nameMonth)
         val year = monthYear.year
 
         tvMonth.text = String.format(getString(R.string.format_month_year), month, year)
+    }
+
+    private fun onDateChange (monthYear: MonthYear?) {
+        monthYear ?: return
+
+        this.viewModel.selectedMonthYear = monthYear
+
+        setActualSearch()
+
+        this.spendingAdapter.updateList(viewModel.boxSpendingList)
+    }
+
+    private fun onDateReset () {
+        viewModel.resetSearch()
+
+        setActualSearch()
+
+        this.spendingAdapter.updateList(viewModel.boxSpendingList)
+    }
+
+    private fun onTotalAmountChange (amount: Double?) {
+
+        tvAmount.text = String.format(getString(R.string.format_amount), (amount ?: 0.0).format())
+
     }
 
     override fun onMenuItemClick(menuItem: MenuItem?): Boolean {
@@ -166,7 +189,7 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
             R.id.itDelete -> {
                 viewModel.deleteSelectedItems {
                     viewModel.selectedSpending.clear()
-                    spendingAdapter.updateList()
+                    spendingAdapter.updateList(viewModel.boxSpendingList)
                     menuSelectedItem()
                     emptyList()
                 }
@@ -181,7 +204,7 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
         when {
             resultCode == Activity.RESULT_OK
                     && requestCode == updateListCode -> {
-                spendingAdapter.updateList()
+                spendingAdapter.updateList(viewModel.boxSpendingList)
                 emptyList()
             }
         }
@@ -205,7 +228,7 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
         if (viewModel.selectedSpending.isNotEmpty()) {
             if (viewModel.onLongClickEnable) {
                 viewModel.selectedSpending.clear()
-                spendingAdapter.updateList()
+                spendingAdapter.updateList(viewModel.boxSpendingList)
             }
             menuSelectedItem()
             emptyList()
