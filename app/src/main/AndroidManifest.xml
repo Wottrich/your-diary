@@ -7,16 +7,19 @@
 
     <application
         android:name=".CustomApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity"/>
+        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity" />
         <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity" />
-        <activity android:name=".view.activity.profile.ProfileActivity" />
+        <activity
+            android:name=".view.activity.profile.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.activity.singIn.SingInActivity" />
         <activity
             android:name=".view.activity.SplashActivity"
@@ -32,9 +35,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="wottrich.github.io.yourdiary.view.activity.profile.register.RegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.activity.main.MainActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

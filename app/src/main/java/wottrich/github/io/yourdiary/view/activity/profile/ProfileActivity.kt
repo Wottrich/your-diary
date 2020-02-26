@@ -15,7 +15,6 @@ import wottrich.github.io.yourdiary.adapter.ProfileAdapter
 import wottrich.github.io.yourdiary.generics.BaseActivity
 import wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity
 import wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity
-import wottrich.github.io.yourdiary.view.activity.singIn.SingInActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.model.Order
@@ -45,7 +44,7 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
     override fun initValues() {
 
         profileAdapter.onExpectedIncomeClick = this::onExpectedIncomeClick
-        profileAdapter.onLinkedEmailClick = this::onLinkedEmailClick
+        //profileAdapter.onLinkedEmailClick = this::onLinkedEmailClick
         profileAdapter.onCustomerClick = this::onCustomerClick
         profileAdapter.onSpendClick = this::onSpendClick
         rvProfileInfo.adapter = profileAdapter
@@ -176,7 +175,7 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
     }
 
     private fun onLinkedEmailClick () {
-        startMyActivity(SingInActivity::class, updateLinkedEmailCode)
+        //startMyActivity(SingInActivity::class, updateLinkedEmailCode)
     }
 
     private fun onCustomerClick () {

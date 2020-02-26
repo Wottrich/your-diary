@@ -1,10 +1,10 @@
-package wottrich.github.io.yourdiary.firebase
-
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-
-val gDatabase = FirebaseDatabase.getInstance()
-
-val gReference = gDatabase.reference
-
-val gAuth: FirebaseAuth = FirebaseAuth.getInstance()
+//package wottrich.github.io.yourdiary.firebase
+//
+//import com.google.firebase.auth.FirebaseAuth
+//import com.google.firebase.database.FirebaseDatabase
+//
+//val gDatabase get() = FirebaseDatabase.getInstance()
+//
+//val gReference get() = gDatabase.reference
+//
+//val gAuth: FirebaseAuth get() =  FirebaseAuth.getInstance()

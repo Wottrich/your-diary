@@ -5,6 +5,8 @@ import wottrich.github.io.yourdiary.model.User
 
 class SingInViewModel {
 
+    var login = false
+
     val user: User
         get() = getUser()
 

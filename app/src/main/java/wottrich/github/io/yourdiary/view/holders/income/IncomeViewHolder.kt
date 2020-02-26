@@ -11,13 +11,20 @@ class IncomeViewHolder (var view: View) : RecyclerView.ViewHolder(view) {
     fun initValues(user: User, onClick: () -> Unit) {
         view.tvIncome.text = user.income.format()
 
-        if (user.email != null) {
-            view.tvLinkedEmail.text
-        }
+//        var hasUserLogged = false
 
-        itemView.rootView.setOnClickListener {
-            onClick()
-        }
+//        gAuth.currentUser?.let {
+//            if (it.email.isNotNullOrEmpty()) {
+//                view.tvLinkedEmail.text = it.email
+//                hasUserLogged = true
+//            }
+//        }
+
+//        if(!hasUserLogged) {
+//            itemView.rootView.setOnClickListener {
+//                onClick()
+//            }
+//        }
     }
 
 }

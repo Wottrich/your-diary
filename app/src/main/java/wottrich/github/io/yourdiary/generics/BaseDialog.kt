@@ -14,7 +14,7 @@ import wottrich.github.io.yourdiary.extensions.AnimationMin
 import wottrich.github.io.yourdiary.extensions.toTranslateBottomToTop
 import wottrich.github.io.yourdiary.extensions.toTranslateTopToBottom
 
-abstract class BaseDialog(private val layoutView: Int) : androidx.fragment.app.DialogFragment() {
+abstract class BaseDialog(private val layoutView: Int, var animation: Boolean = true) : androidx.fragment.app.DialogFragment() {
 
     protected lateinit var baseView: View
     protected var parent: ViewGroup? = null
@@ -61,7 +61,7 @@ abstract class BaseDialog(private val layoutView: Int) : androidx.fragment.app.D
         attrs?.dimAmount = 0f
         dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
 
-        if (parent != null)
+        if (parent != null && animation)
             initAnimation()
     }
 

@@ -7,16 +7,17 @@ import io.objectbox.relation.ToMany
 import wottrich.github.io.yourdiary.extensions.compareActualDate
 
 @Entity
-class User() {
+data class User(
+    var uid: String = "",
+    var email: String? = null,
+    var name: String? = null,
+    var age: Int? = null,
+    var income: Double = 0.0,
+    var lockApp: Boolean = false,
+    var expectedIncome: Double = 0.0
+) {
 
     @Id var id: Long = 0
-    var uid: Long = 0
-    var email: String? = null
-    var name: String? = null
-    var age: Int? = null
-    var income: Double = 0.0
-    var lockApp: Boolean = false
-    var expectedIncome: Double = 0.0
 
     val allSpendingValue: Float
         get() =  loadAllSpending()
@@ -24,7 +25,7 @@ class User() {
     val allCustomerValue: Float
         get() = loadAllCustomers()
 
-    constructor(name: String?, age: Int?, income: Double, lockApp: Boolean) : this() {
+    constructor(name: String, age: Int, income: Double, lockApp: Boolean) : this() {
         this.name = name
         this.age = age
         this.income = income

@@ -20,7 +20,7 @@ fun convertToDouble(value: String, l: Locale): Double {
     val removeSymbol = value.replace(symbol, "").replace(" ", "")
     val clean2 = removeSymbol.replace(".", "").replace(",", "")
     val clean = cleanText(clean2)
-    print("$clean $value")
+    //print("$clean $value")
 
     val parsed = BigDecimal(clean)
             .setScale(2, BigDecimal.ROUND_FLOOR)

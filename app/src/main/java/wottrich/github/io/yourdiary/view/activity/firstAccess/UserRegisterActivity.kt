@@ -64,7 +64,11 @@ class UserRegisterActivity : BaseActivity(R.layout.activity_user_register), View
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewModel.user.age = s.toString().toInt()
+                if (s.toString().isEmpty()) {
+                    viewModel.user.age = 0
+                } else {
+                    viewModel.user.age = s.toString().toInt()
+                }
             }
         })
 

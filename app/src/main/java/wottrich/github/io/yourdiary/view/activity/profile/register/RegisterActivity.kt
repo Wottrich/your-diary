@@ -47,7 +47,11 @@ class RegisterActivity : BaseActivity(R.layout.activity_register_order), View.On
         btnDate.text = viewModel.getDate().getDateString()
 
         if (viewModel.isSpending) toolbar.setTitle(R.string.activity_register_spending)
-        else toolbar.setTitle(R.string.activity_register_order)
+        else {
+            if (viewModel.type == RegisterType.EDIT)
+                toolbar.setTitle(R.string.activity_register_order_edit)
+            else toolbar.setTitle(R.string.activity_register_order)
+        }
 
         addListeners()
     }

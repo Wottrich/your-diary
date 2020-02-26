@@ -19,38 +19,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <TextView
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/linked_email_view_holder_email_null"
-            style="@style/RobotoWhite"
-            android:id="@+id/tvLinkedEmail"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_marginTop="10dp"
             android:text="@string/income_view_holder_info"
             style="@style/RobotoBoldWhite"
             android:id="@+id/info"
-            app:layout_constraintTop_toBottomOf="@id/tvLinkedEmail"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvIncome"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_marginTop="10dp"
             android:textAlignment="textEnd"
             app:layout_constraintStart_toEndOf="@id/info"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="R$ 1.800,00"
             style="@style/RobotoBoldShinyShamrock"
             android:id="@+id/tvIncome"
-            app:layout_constraintTop_toBottomOf="@id/tvLinkedEmail"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
