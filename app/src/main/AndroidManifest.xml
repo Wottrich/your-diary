@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="wottrich.github.io.yourdiary">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".CustomApplication"
         android:allowBackup="false"
@@ -14,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.spend.SpendActivity" />
-        <activity android:name="wottrich.github.io.yourdiary.view.activity.profile.flows.customer.CustomerActivity" />
+        <activity android:name=".view.activity.income.IncomeDayActivity"></activity>
+        <activity android:name=".view.activity.profile.flows.spend.SpendActivity" />
+        <activity android:name=".view.activity.profile.flows.customer.CustomerActivity" />
         <activity
             android:name=".view.activity.profile.ProfileActivity"
             android:screenOrientation="portrait"
@@ -34,12 +33,14 @@
             android:name=".view.activity.firstAccess.UserRegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="wottrich.github.io.yourdiary.view.activity.profile.register.RegisterActivity"
+            android:name=".view.activity.profile.register.RegisterActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

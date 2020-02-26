@@ -1,12 +1,14 @@
 package wottrich.github.io.yourdiary.generics
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.view.dialog.LoadingDialog
 
@@ -26,6 +28,7 @@ abstract class BaseActivity(
     }
 
     protected abstract fun initValues()
+    open fun onInitListeners () {}
     open fun onRecoverIntent (intent: Intent) {}
 
     fun showLoader () {
@@ -40,6 +43,14 @@ abstract class BaseActivity(
             loader!!.dismiss()
             loader = null
         }
+    }
+
+    inline fun <reified T : ViewModel> initViewModelProvider() : T {
+        return ViewModelProviders.of(this)[T::class.java]
+    }
+
+    infix fun <T> MutableLiveData<T>.observer(completion: (T?) -> Unit) {
+        this.observe(this@BaseActivity, Observer(completion))
     }
 
     fun showAlertDialog(icon: Drawable? = null, title: String, message: String, cancelable: Boolean = true, onClick: (() -> Unit)? = null){

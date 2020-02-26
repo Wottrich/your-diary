@@ -174,6 +174,13 @@ fun Date.getYesterday(): Date {
     return calendar.time
 }
 
+fun Date.addDays (days: Int) : Date {
+    val calendar = Calendar.getInstance()
+    calendar.time = this
+    calendar.add(Calendar.DAY_OF_MONTH, days)
+    return calendar.time
+}
+
 fun Date.getFirstDayOfMonth (): Date {
 
     val calendar = Calendar.getInstance()
