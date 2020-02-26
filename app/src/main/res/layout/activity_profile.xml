@@ -56,6 +56,7 @@
 <!--app:behavior_peekHeight="60dp"-->
 
         <com.google.android.material.card.MaterialCardView
+            android:visibility="gone"
             app:behavior_peekHeight="60dp"
             android:id="@+id/btnSheet"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"

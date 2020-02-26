@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import androidx.annotation.ColorRes
 import kotlin.reflect.KClass
 
 fun Context.intentLockActivity (message: String = "") : Intent {
@@ -25,5 +27,13 @@ fun Context.startMyActivity (clazz : KClass<*>, prepareIntent: (Intent) -> Inten
     val intent = prepareIntent.invoke(Intent())
     intent.setClass(this, clazz.java)
     this.startActivity(intent)
+}
+
+fun Context.getResourseColor (@ColorRes color: Int) : Int {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        this.resources.getColor(color, this.theme)
+    } else {
+        this.resources.getColor(color)
+    }
 }
 
