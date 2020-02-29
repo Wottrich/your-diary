@@ -22,7 +22,7 @@ class SpendActivityViewModel {
                 val actualDate = actualSpend.date ?: Date()
                 val nextDate = nextSpend.date ?: Date()
 
-                actualDate.compareTo(nextDate)
+                nextDate.compareTo(actualDate)
             })
 
             val spendFiltered = spendList.filter {

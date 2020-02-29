@@ -24,6 +24,7 @@ abstract class BaseActivity(
 
         this.onRecoverIntent(intent)
         this.initValues()
+        this.onInitListeners()
 
     }
 

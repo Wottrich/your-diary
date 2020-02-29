@@ -109,6 +109,9 @@
     <!--Splash-->
     <string name="activity_splash_retry">Tentar novamente</string>
 
+    <!--IncomeDayActivity-->
+    <string name="activity_income_day_title">Rendimento diário</string>
+
     <!--</editor-folder>-->
 
     <!--<editor-folder defaultstate="Collapsed" desc="Menus">-->

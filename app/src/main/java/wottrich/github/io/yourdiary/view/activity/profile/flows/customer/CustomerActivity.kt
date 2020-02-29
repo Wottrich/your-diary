@@ -46,7 +46,7 @@ class CustomerActivity : BaseActivity(R.layout.activity_customer), View.OnClickL
         _toolbar = toolbar
         rvOrders.adapter = orderAdapter
 
-        viewModel.totalAmountByPeriod.observe(this, Observer (this::onTotalAmountChange))
+        viewModel.totalAmountByPeriod observer this::onTotalAmountChange
         configSearch()
 
         configMenu()

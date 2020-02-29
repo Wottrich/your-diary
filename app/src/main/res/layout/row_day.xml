@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/arenic"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:visibility="gone"
+        android:rotation="90"
+        android:id="@+id/ivProfit"
+        android:layout_marginEnd="20dp"
+        android:tint="@color/red_shiny_shamrock"
+        android:src="@drawable/ic_profit_32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_row_order"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivProfit"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toStartOf="@id/tvProfit"
+            android:id="@+id/tvDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/llFooterContainer"
+            tools:text="12/12/2020"
+            style="@style/RobotoBoldWebOrange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textAlignment="textEnd"
+            app:layout_constraintStart_toEndOf="@id/tvDate"
+            android:id="@+id/tvProfit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/RobotoBoldShinyShamrock"
+            tools:text="Entrada: R$ 300,45"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="textEnd"
+            app:layout_constraintStart_toEndOf="@id/tvDate"
+            app:layout_constraintTop_toBottomOf="@id/tvProfit"
+            app:layout_constraintBottom_toTopOf="@id/llFooterContainer"
+            android:id="@+id/tvLoss"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/RobotoBoldRedShinyShamrock"
+            tools:text="Gastos: R$ 200,45"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:padding="5dp"
+            android:background="@drawable/shape_row_profit_footer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/llFooterContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:textSize="14sp"
+                style="@style/RobotoBoldWhite"
+                tools:text="Total: R$5.000,00"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

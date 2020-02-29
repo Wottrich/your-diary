@@ -28,7 +28,7 @@ class CustomerActivityViewModel {
             val actualDate = actualOrder.date
             val nextDate = nextOrder.date
 
-            actualDate.compareTo(nextDate)
+            nextDate.compareTo(actualDate)
         })
 
         val internalOrderFiltered = internalOrderList.filter {

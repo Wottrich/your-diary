@@ -38,6 +38,12 @@ class Day2 () {
 
 fun main() {
 
+
+
+}
+
+fun main2() {
+
     val tests = mutableListOf<Test>(
         Test("1", 1.0, Date(), true),
         Test("3", 2.0, Date().addDays(-1)),

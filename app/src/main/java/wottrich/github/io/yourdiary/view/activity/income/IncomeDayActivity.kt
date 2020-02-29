@@ -1,8 +1,8 @@
 package wottrich.github.io.yourdiary.view.activity.income
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_income_day.*
 import wottrich.github.io.yourdiary.R
+import wottrich.github.io.yourdiary.adapter.IncomeDayAdapter
 import wottrich.github.io.yourdiary.generics.BaseActivity
 
 class IncomeDayActivity : BaseActivity(R.layout.activity_income_day) {
@@ -11,7 +11,22 @@ class IncomeDayActivity : BaseActivity(R.layout.activity_income_day) {
         initViewModelProvider<IncomeDayViewModel>()
     }
 
+    private val adapter: IncomeDayAdapter by lazy {
+        IncomeDayAdapter(this)
+    }
+
     override fun initValues() {
+
+        rvDay.adapter = adapter
+        adapter.update(viewModel.days)
+
+    }
+
+    override fun onInitListeners() {
+
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
 
     }
 

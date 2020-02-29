@@ -21,8 +21,8 @@ class IncomeDayViewModel : ViewModel() {
     val user: User get () = getUser()
 
     private val spendingList: List<Spending> get() = user.spendingList
+    private var spendOrderList: MutableList<OrderSpending> = mutableListOf()
 
-    var spendOrderList: MutableList<OrderSpending> = mutableListOf()
     var days: MutableList<Day> = mutableListOf()
 
     init {
@@ -45,13 +45,16 @@ class IncomeDayViewModel : ViewModel() {
                 val price = item.price
 
                 if (item.isOrder) {
-                    day!!.loss += price
-                } else {
                     day!!.profit += price
+                } else {
+                    day!!.loss += price
                 }
 
                 if (addDay) {
-                    days.add(day!!)
+                    day?.let {
+                        it.isProfit = it.profit > it.loss
+                        days.add(it)
+                    }
                 }
 
             }
@@ -78,7 +81,7 @@ class IncomeDayViewModel : ViewModel() {
             val actualDate = actualItem.date
             val nextDate = nextItem.date
 
-            actualDate.compareTo(nextDate)
+            nextDate.compareTo(actualDate)
         })
 
     }
