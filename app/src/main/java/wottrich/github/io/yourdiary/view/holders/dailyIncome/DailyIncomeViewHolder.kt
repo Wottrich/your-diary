@@ -8,6 +8,8 @@ import java.util.Date
 
 class DailyIncomeViewHolder(var view: View) : BaseViewHolder(view) {
 
+    var onIncomeClick: (() -> Unit)? = null
+
     override fun initValues() {
         view.tvDate.text = Date().getDateString()
 
@@ -32,6 +34,10 @@ class DailyIncomeViewHolder(var view: View) : BaseViewHolder(view) {
         }
 
         view.tvIncome.text = totalDay.format()
+
+        itemView.setOnClickListener {
+            this.onIncomeClick?.invoke()
+        }
 
     }
 

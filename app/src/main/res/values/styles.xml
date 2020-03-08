@@ -119,6 +119,23 @@
     <style name="RobotoBoldShinyShamrock" parent="CustomLabel.RobotoBold">
         <item name="android:textColor">@color/shiny_shamrock</item>
     </style>
+
+    <style name="RobotoVenetianRed" parent="CustomLabel.Roboto">
+        <item name="android:textColor">@color/venetian_red</item>
+    </style>
+
+    <style name="RobotoBoldVenetianRed" parent="CustomLabel.RobotoBold">
+        <item name="android:textColor">@color/venetian_red</item>
+    </style>
+
+    <style name="RobotoRedShinyShamrock" parent="CustomLabel.Roboto">
+        <item name="android:textColor">@color/red_shiny_shamrock</item>
+    </style>
+
+    <style name="RobotoBoldRedShinyShamrock" parent="CustomLabel.RobotoBold">
+        <item name="android:textColor">@color/red_shiny_shamrock</item>
+    </style>
+
     <!--</editor-folder>-->
 
     <style name="Divider">

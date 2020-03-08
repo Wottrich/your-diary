@@ -42,7 +42,7 @@ class SpendActivity : BaseActivity(R.layout.activity_spend), Toolbar.OnMenuItemC
 
         setActualSearch()
 
-        viewModel.totalAmountByPeriod.observe(this, Observer (this::onTotalAmountChange))
+        viewModel.totalAmountByPeriod observer this::onTotalAmountChange
 
         setupToolbar()
         iniListeners()

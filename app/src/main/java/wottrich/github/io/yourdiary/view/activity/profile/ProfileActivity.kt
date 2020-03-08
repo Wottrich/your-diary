@@ -21,12 +21,14 @@ import wottrich.github.io.yourdiary.model.Order
 import wottrich.github.io.yourdiary.model.Spending
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
+import wottrich.github.io.yourdiary.view.activity.income.IncomeDayActivity
 import wottrich.github.io.yourdiary.view.dialog.SelectCustomerDialog
 import java.util.*
 
 class ProfileActivity : BaseActivity(R.layout.activity_profile) {
 
     private val updateLinkedEmailCode = 500
+    private val updateIncomeCode = 700
     private val updateSelectedCustomerCode = 600
     private val updateProfileListCode = 400
 
@@ -45,6 +47,7 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
 
         profileAdapter.onExpectedIncomeClick = this::onExpectedIncomeClick
         //profileAdapter.onLinkedEmailClick = this::onLinkedEmailClick
+        profileAdapter.onIncomeClick = this::onIncomeClick
         profileAdapter.onCustomerClick = this::onCustomerClick
         profileAdapter.onSpendClick = this::onSpendClick
         rvProfileInfo.adapter = profileAdapter
@@ -176,6 +179,10 @@ class ProfileActivity : BaseActivity(R.layout.activity_profile) {
 
     private fun onLinkedEmailClick () {
         //startMyActivity(SingInActivity::class, updateLinkedEmailCode)
+    }
+
+    private fun onIncomeClick () {
+        startMyActivity(IncomeDayActivity::class, updateIncomeCode)
     }
 
     private fun onCustomerClick () {

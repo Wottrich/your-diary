@@ -10,6 +10,7 @@
     <color name="light_gray">#808185</color>
     <color name="blue">#41A6F1</color>
     <color name="white">#ffffff</color>
+    <color name="another_white">#698052</color>
     <color name="transparent_white">#63FFFFFF</color>
     <color name="dark_white">#B8B8B8</color>
     <color name="dark_white_2">#979797</color>
@@ -39,4 +40,5 @@
     <color name="arenic_2">#5B626A</color>
     <!--A2CA7F-->
     <color name="venetian_red">#C60D0D</color>
+    <color name="red_shiny_shamrock">#A04949</color>
 </resources>

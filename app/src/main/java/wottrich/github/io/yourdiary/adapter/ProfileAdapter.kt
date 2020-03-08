@@ -27,6 +27,7 @@ class ProfileAdapter(
     private val expectedIncomeLayout = R.layout.row_profile_expected_income
 
     var onLinkedEmailClick: (() -> Unit)? = null
+    var onIncomeClick: (() -> Unit)? = null
     var onExpectedIncomeClick: (() -> Unit)? = null
     var onSpendClick: (() -> Unit)? = null
     var onCustomerClick: (() -> Unit)? = null
@@ -79,6 +80,7 @@ class ProfileAdapter(
             }
             dailyIncomeLayout -> {
                 with(viewHolder as DailyIncomeViewHolder) {
+                    this.onIncomeClick = this@ProfileAdapter.onIncomeClick
                     initValues()
                 }
             }
