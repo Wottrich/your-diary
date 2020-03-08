@@ -111,6 +111,9 @@
 
     <!--IncomeDayActivity-->
     <string name="activity_income_day_title">Rendimento diário</string>
+    <string name="activity_income_day_no_search">Sem filtro</string>
+    <string name="activity_income_day_search_label_until">até</string>
+    <string name="activity_income_day_search_clear">Clique para limpar o filtro.</string>
 
     <!--</editor-folder>-->
 

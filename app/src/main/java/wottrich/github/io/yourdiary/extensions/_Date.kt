@@ -194,7 +194,7 @@ fun Date.getFirstDayOfMonth (): Date {
     return calendar.time
 }
 
-fun Date.reInit(): Date {
+fun Date?.reInit(): Date {
     val calendar = Calendar.getInstance()
     calendar.time = this
     calendar.set(Calendar.HOUR_OF_DAY, 0)
@@ -263,11 +263,6 @@ fun Date.withoutTime(): Date {
 fun Context.datePickerWithoutDay(month: Int, year: Int): DatePickerDialog? {
 
     val picker = DatePickerDialog(this, null, year, month, 1)
-//
-//    val datePickerViewGroup = picker.datePicker as ViewGroup
-//    val resourceId = Resources.getSystem().getIdentifier("day", "id", "android")
-
-//    datePickerViewGroup.findViewById<ViewGroup>(resourceId).visibility = View.GONE
 
     try {
         val datePickerFields = picker::class.java.declaredFields
@@ -337,7 +332,7 @@ fun Context.showCalenderStackOverFlow (onDateSetListener: DatePickerDialog.OnDat
 }
 
 
-fun OnCalendarPicker.showPicker(context: Context): DatePickerDialog {
+fun OnCalendarPicker.initDatePickerDialog(context: Context, tag: Int = 0): DatePickerDialog {
     DatePickerDialog(
         context,
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
@@ -348,13 +343,15 @@ fun OnCalendarPicker.showPicker(context: Context): DatePickerDialog {
                 if (dayOfMonth.toString().length == 1) "0$dayOfMonth" else dayOfMonth.toString()
             this.onDate(
                 "$dayCorrect/$monthCorrect/$year".getDate(),
-                "$dayCorrect/$monthCorrect/$year"
+                "$dayCorrect/$monthCorrect/$year",
+                tag
             )
         },
         Calendar.getInstance().get(Calendar.YEAR),
         Calendar.getInstance().get(Calendar.MONTH),
         Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
     ).let { picker ->
+        picker.datePicker.rootView.tag = tag
         return picker
     }
 }
@@ -378,7 +375,7 @@ fun Calendar.actualMonth(): String {
 }
 
 interface OnCalendarPicker {
-    fun onDate(date: Date, dateString: String)
+    fun onDate(date: Date, dateString: String, tag: Int)
 }
 
 class MonthModel(var id: Long, var name: String, var month: Month)

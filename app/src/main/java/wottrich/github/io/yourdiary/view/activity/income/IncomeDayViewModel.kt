@@ -1,7 +1,10 @@
 package wottrich.github.io.yourdiary.view.activity.income
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import wottrich.github.io.yourdiary.extensions.getUser
+import wottrich.github.io.yourdiary.extensions.reInit
 import wottrich.github.io.yourdiary.extensions.withoutTime
 import wottrich.github.io.yourdiary.model.*
 import java.util.*
@@ -18,14 +21,32 @@ import kotlin.Comparator
  
 class IncomeDayViewModel : ViewModel() {
 
+    companion object {
+        //initial date
+        const val tagIncomeInitialDate = 100
+        const val tagIncomeInitialDateTextViewClick = 200
+
+        //final date
+        const val tagIncomeFinalDate = 300
+        const val tagIncomeFinalDateTextViewClick = 400
+    }
+
+    //Search
+    var initialDate: Date? = null
+    var finalDate: Date? = null
+
     val user: User get () = getUser()
 
     private val spendingList: List<Spending> get() = user.spendingList
     private var spendOrderList: MutableList<OrderSpending> = mutableListOf()
 
-    var days: MutableList<Day> = mutableListOf()
+    var days: MutableLiveData<MutableList<Day>> = MutableLiveData()
 
     init {
+        initSearch()
+    }
+
+    fun initSearch() {
         joinSpendWithOrder()
         sortByDateSpendAndOrder()
         separateByDay()
@@ -70,7 +91,7 @@ class IncomeDayViewModel : ViewModel() {
 
         }
 
-        this.days = days
+        this.days.value = days
 
     }
 
@@ -110,8 +131,35 @@ class IncomeDayViewModel : ViewModel() {
 
         }
 
+        if (initialDate != null && finalDate != null) {
+
+            val filteredItems = mutableListOf<OrderSpending>()
+
+            for (item in items) {
+
+                if (item.date.reInit() >= initialDate.reInit() && item.date.reInit() <= finalDate.reInit()) {
+                    filteredItems.add(item)
+                }
+
+            }
+
+            this.spendOrderList = filteredItems
+
+            return
+        }
+
         this.spendOrderList = items
 
+    }
+
+    fun isEmptySearch () : Boolean {
+        return initialDate == null || finalDate == null
+    }
+
+    fun clearSearch () {
+        initialDate = null
+        finalDate = null
+        initSearch()
     }
 
 }

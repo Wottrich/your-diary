@@ -14,7 +14,6 @@ import wottrich.github.io.yourdiary.R
 import wottrich.github.io.yourdiary.enumerators.RegisterType
 import wottrich.github.io.yourdiary.extensions.*
 import wottrich.github.io.yourdiary.generics.BaseActivity
-import wottrich.github.io.yourdiary.model.Customer
 import wottrich.github.io.yourdiary.utils.CurrencyUtils
 import wottrich.github.io.yourdiary.utils.KeyboardUtils
 import java.util.*
@@ -118,7 +117,7 @@ class RegisterActivity : BaseActivity(R.layout.activity_register_order), View.On
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btnDate -> {
-                showPicker(this).show()
+                initDatePickerDialog(this).show()
             }
         }
     }
@@ -133,7 +132,7 @@ class RegisterActivity : BaseActivity(R.layout.activity_register_order), View.On
         }
     }
 
-    override fun onDate(date: Date, dateString: String) {
+    override fun onDate(date: Date, dateString: String, tag: Int) {
         viewModel.changeDate(date)
         btnDate.text = dateString
     }
